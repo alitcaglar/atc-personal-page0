@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import { DiAtom } from "react-icons/di";
 //import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,10 +22,13 @@ export default function RootLayout({
       <body
         className={
           inter.className +
-          " w-full h-screen bg-gradient-radial from-slate-300 to-slate-200 "
+          "w-screen h-screen bg-gradient-radial from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-950 dark"
         }
       >
-        <Header></Header>
+        <Header />
+        <p className="flex text-teal-600 h-[70px]">
+          <DiAtom />
+        </p>
         {children}
         {/*<Footer></Footer>*/}
       </body>
