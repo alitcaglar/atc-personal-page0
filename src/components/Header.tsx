@@ -13,7 +13,7 @@ export default function Header() {
         <nav className="flex items-center">
           <ul className="flex items-center mr-3">
             <li className="p-3">Home</li>
-            <li className="p-3">About</li>
+            <li className="p-3">About Me</li>
           </ul>
         </nav>
       </header>
