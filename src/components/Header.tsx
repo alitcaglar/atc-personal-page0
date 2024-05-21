@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 export default function Header() {
   interface NavLink {
@@ -59,7 +60,7 @@ export default function Header() {
             className={
               "sm:flex items-center mr-3" +
               (openNav
-                ? " fixed top-[73px] right-0 px-8 drop-shadow-lg bg-slate-200 dark:bg-slate-800 bg-opacity-90 rounded-lg w-full"
+                ? "left-4 fixed top-[73px] right-0 px-8 drop-shadow-lg bg-slate-200 dark:bg-slate-800 bg-opacity-90 rounded-lg w-full"
                 : " hidden")
             }
           >
@@ -69,8 +70,8 @@ export default function Header() {
                 <li
                   className={
                     isActive
-                      ? "p-2 font-semibold bg-gradient-to-r from-teal-500 to-lime-500 bg-clip-text text-transparent text-center drop-shadow-md"
-                      : "p-2 font-semibold text-slate-800 dark:text-teal-100 drop-shadow-md hover:bg-gradient-to-r hover:from-teal-500 hover:to-lime-500 hover:bg-clip-text hover:text-transparent hover:transition hover:ease-in-out hover:duration-300 text-center hover:drop-shadow-md"
+                      ? "p-2 font-semibold bg-gradient-to-r from-teal-500 to-lime-500 bg-clip-text text-transparent text-center "
+                      : "p-2 font-semibold text-slate-500  hover:bg-gradient-to-r hover:from-teal-500 hover:to-lime-500 hover:bg-clip-text hover:text-transparent hover:transition hover:ease-in-out hover:duration-300 text-center hover:drop-shadow-md"
                   }
                   key={index}
                 >
@@ -80,6 +81,9 @@ export default function Header() {
                 </li>
               );
             })}
+            <li>
+              <ThemeSwitcher />
+            </li>
           </ul>
         </nav>
       </header>
