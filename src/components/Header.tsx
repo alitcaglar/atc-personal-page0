@@ -6,32 +6,20 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import ThemeSwitcher from "./ThemeSwitcher";
+import navLinks from "@/utils/navLinks";
+import HeaderBottom from "./HeaderBottom";
 
 export default function Header() {
-  interface NavLink {
-    title: string;
-    path: string;
-  }
-
   const generatePath = (title: string): string => {
-    return "/" + title.toLowerCase().replace(/\s+/g, "-");
+    return "/" + title.toLowerCase().replaceAll(/\s+/g, "-");
   };
 
   const pathname = usePathname();
 
-  // path only lowercase!!!
-  const navLinks: NavLink[] = [
-    { title: "My Projects", path: "/my-projects" },
-    { title: "About Me", path: "/about-me" },
-    { title: "News", path: "/news" },
-    { title: "Contact", path: "/contact" },
-  ];
-  // path only lowercase!!!
-
   const [openNav, setOpenNav] = useState(false);
   return (
     <>
-      <header className="flex justify-between backdrop-blur-sm fixed top-0 left-0 right-0">
+      <header className="flex justify-between backdrop-blur-sm fixed top-0 left-0 right-0 z-10 bg-slate-50 bg-opacity-70 dark:bg-slate-950 dark:bg-opacity-60">
         <Link
           href="/"
           className="flex items-center m-2 ml-3 text-lime-600 dark:text-lime-400 hover:text-teal-600 dark:hover:text-teal-400 hover:transition hover:duration-300"
@@ -60,7 +48,7 @@ export default function Header() {
             className={
               "sm:flex items-center mr-3" +
               (openNav
-                ? "left-4 fixed top-[73px] right-0 px-8 drop-shadow-lg bg-slate-200 dark:bg-slate-800 bg-opacity-90 rounded-lg w-full"
+                ? "left-4 fixed top-[73px] right-0 px-8 drop-shadow-lg rounded-lg w-full transition bg-gradient-radial bg-slate-200 dark:bg-slate-900 opacity-90 backdrop-blur-md"
                 : " hidden")
             }
           >
@@ -87,7 +75,7 @@ export default function Header() {
           </ul>
         </nav>
       </header>
-      <div className="fixed top-[71px] w-full bg-gradient-to-l from-transparent via-teal-500 to-transparent h-[2px] bg-contain"></div>
+      <HeaderBottom />
     </>
   );
 }
