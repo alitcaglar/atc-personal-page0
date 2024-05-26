@@ -9,8 +9,11 @@ import e2 from "../../../public/images/e2.jpg";
 import e3 from "../../../public/images/e3.jpg";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { getPhotos } from "@/utils/getPhotos";
+import Link from "next/link";
 
-export default function MainTopCarousel({ className, ...props }: any) {
+export default async function MainTopCarousel({ className, ...props }: any) {
+  const photos = await getPhotos();
   return (
     <Carousel
       className={cn(
@@ -19,26 +22,36 @@ export default function MainTopCarousel({ className, ...props }: any) {
       )}
     >
       <CarouselContent className="cursor-pointer">
-        <CarouselItem className="">
+        <CarouselItem className="text-center">
+          {/* <p className="mt-4 text-2xl opacity-80 text-slate-500">image1</p>
+          <p className="mb-2 text-lg opacity-50 text-slate-500">by</p>
           <Image
             src={e1}
             alt="image1"
-            className="w-full rounded-3xl border border-lime-500"
-          />
-        </CarouselItem>
-        <CarouselItem className="flex">
-          <Image
-            src={e2}
-            alt="image2"
-            className="w-full rounded-3xl border border-lime-500 "
-          />
-        </CarouselItem>
-        <CarouselItem className="flex">
-          <Image
-            src={e3}
-            alt="image3"
-            className="w-full rounded-3xl border border-lime-500"
-          />
+            className="rounded-3xl border border-lime-500"
+            width="500"
+          />*/}
+          {photos.map((photo, index) => {
+            return (
+              <div key={index}>
+                <p className="mt-4 text-2xl opacity-80 text-slate-500">
+                  {photo.photoName}
+                </p>
+                <p className="mb-2 text-lg opacity-50 text-slate-500">
+                  by {photo.takenBy} in {photo.takenYear}
+                </p>
+                <Link href={`/app-photos/${photo.photoName}`}>
+                  <Image
+                    src={photo.photoUrl}
+                    alt={photo.photoName}
+                    className="w-full rounded-3xl border border-lime-500"
+                    width="500"
+                    height="500"
+                  />
+                </Link>
+              </div>
+            );
+          })}
         </CarouselItem>
       </CarouselContent>
       <div className="flex justify-center text-3xl opacity-70 animate-pulse">
