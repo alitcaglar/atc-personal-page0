@@ -21,9 +21,9 @@ export default function Emblems() {
   return (
     <>
       <Tilt>
-        <div className="flex flex-wrap justify-between w-10/12">
+        <div className="flex flex-wrap justify-between">
           <HoverCard>
-            <div className="m-24 text-6xl text-slate-500 hover:text-slate-400 transition ">
+            <div className="m-8 text-6xl text-slate-500 hover:text-slate-400 transition ">
               <HoverCardTrigger>
                 <SiMongodb />
               </HoverCardTrigger>
@@ -33,7 +33,7 @@ export default function Emblems() {
             </div>
           </HoverCard>
           <HoverCard>
-            <div className="m-12 text-6xl text-slate-500 hover:text-slate-400">
+            <div className="m-8 text-6xl text-slate-500 hover:text-slate-400">
               <HoverCardTrigger>
                 <FaHtml5 />
               </HoverCardTrigger>
@@ -43,7 +43,7 @@ export default function Emblems() {
             </div>
           </HoverCard>
           <HoverCard>
-            <div className="m-24 text-6xl text-slate-500 hover:text-slate-400">
+            <div className="m-8 text-6xl text-slate-500 hover:text-slate-400">
               <HoverCardTrigger>
                 <IoLogoJavascript />
               </HoverCardTrigger>
@@ -53,7 +53,7 @@ export default function Emblems() {
             </div>
           </HoverCard>
           <HoverCard>
-            <div className="m-12 text-6xl text-slate-500 hover:text-slate-400">
+            <div className="m-8 text-6xl text-slate-500 hover:text-slate-400">
               <HoverCardTrigger>
                 <SiReacthookform />
               </HoverCardTrigger>
@@ -63,7 +63,7 @@ export default function Emblems() {
             </div>
           </HoverCard>
           <HoverCard>
-            <div className="m-24 text-6xl text-slate-500 hover:text-slate-400">
+            <div className="m-8 text-6xl text-slate-500 hover:text-slate-400">
               <HoverCardTrigger>
                 <SiNextdotjs />
               </HoverCardTrigger>
@@ -73,7 +73,7 @@ export default function Emblems() {
             </div>
           </HoverCard>
           <HoverCard>
-            <div className="m-12 text-6xl text-slate-500 hover:text-slate-400">
+            <div className="m-8 text-6xl text-slate-500 hover:text-slate-400">
               <HoverCardTrigger>
                 <FaGit />
               </HoverCardTrigger>
@@ -84,7 +84,7 @@ export default function Emblems() {
             </div>
           </HoverCard>
           <HoverCard>
-            <div className="m-24 text-6xl text-slate-500 hover:text-slate-400">
+            <div className="m-8 text-6xl text-slate-500 hover:text-slate-400">
               <HoverCardTrigger>
                 <FaGithub />
               </HoverCardTrigger>
@@ -94,7 +94,7 @@ export default function Emblems() {
             </div>
           </HoverCard>
           <HoverCard>
-            <div className="m-12 text-6xl text-slate-500 hover:text-slate-400">
+            <div className="m-8 text-6xl text-slate-500 hover:text-slate-400">
               <HoverCardTrigger>
                 <FaNpm />
               </HoverCardTrigger>
@@ -104,7 +104,7 @@ export default function Emblems() {
             </div>
           </HoverCard>
           <HoverCard>
-            <div className="m-24 text-6xl text-slate-500 hover:text-slate-400">
+            <div className="m-8 text-6xl text-slate-500 hover:text-slate-400">
               <HoverCardTrigger>
                 <FaReact />
               </HoverCardTrigger>
@@ -115,7 +115,7 @@ export default function Emblems() {
             </div>
           </HoverCard>
           <HoverCard>
-            <div className="m-12 text-6xl text-slate-500 hover:text-slate-400">
+            <div className="m-8 text-6xl text-slate-500 hover:text-slate-400">
               <HoverCardTrigger>
                 <RiTailwindCssFill />
               </HoverCardTrigger>
@@ -125,7 +125,7 @@ export default function Emblems() {
             </div>
           </HoverCard>
           <HoverCard>
-            <div className="m-24 text-6xl text-slate-500 hover:text-slate-400">
+            <div className="m-8 text-6xl text-slate-500 hover:text-slate-400">
               <HoverCardTrigger>
                 <FaCss3 />
               </HoverCardTrigger>

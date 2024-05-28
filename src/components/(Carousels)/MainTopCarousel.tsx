@@ -4,13 +4,13 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import e1 from "../../../public/images/e1.jpg";
-import e2 from "../../../public/images/e2.jpg";
-import e3 from "../../../public/images/e3.jpg";
+
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { getPhotos } from "@/utils/getPhotos";
 import Link from "next/link";
+import EnterUpdateForm from "../Forms/EnterUpdateForm";
+import UploadPhotoForm from "../Forms/UploadPhotoForm";
 
 export default async function MainTopCarousel({ className, ...props }: any) {
   const photos = await getPhotos();
@@ -41,13 +41,15 @@ export default async function MainTopCarousel({ className, ...props }: any) {
                   by {photo.takenBy} in {photo.takenYear}
                 </p>
                 <Link href={`/app-photos/${photo.photoName}`}>
+                  <div className="w-full bg-gradient-to-l from-transparent via-lime-500 to-transparent h-1"></div>
                   <Image
                     src={photo.photoUrl}
                     alt={photo.photoName}
-                    className="w-full rounded-3xl border border-lime-500"
+                    className="w-full rounded-sm"
                     width="500"
                     height="500"
                   />
+                  <div className="w-full bg-gradient-to-l from-transparent via-lime-500 to-transparent h-1"></div>
                 </Link>
               </div>
             );
@@ -57,6 +59,7 @@ export default async function MainTopCarousel({ className, ...props }: any) {
       <div className="flex justify-center text-3xl opacity-70 animate-pulse">
         <PiHandSwipeRightThin />
       </div>
+      <EnterUpdateForm />
     </Carousel>
   );
 }
