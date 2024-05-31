@@ -19,6 +19,8 @@ import { useToast } from "@/components/ui/use-toast";
 import { useState, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 
+//zod schema
+
 const uploadPhotoFormSchema = z.object({
   photoName: z.string().min(2, {
     message: "Photo name must be at least 2 characters.",
@@ -37,6 +39,7 @@ const uploadPhotoFormSchema = z.object({
   photoUrl: z.string().url({ message: "Photo URL must be a valid URL." }),
 });
 
+//function
 export default function UploadPhotoForm() {
   const router = useRouter();
   const { toast } = useToast();
@@ -45,6 +48,7 @@ export default function UploadPhotoForm() {
   };
 
   // cloudinary url degistirme
+
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [photoUrl, setPhotoUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
@@ -72,7 +76,9 @@ export default function UploadPhotoForm() {
     setSelectedFile(file);
   }
 
-  // cloudinary url degistirme
+  // cloudinary url degistirme-sonu
+
+  //form tanimlama zod ve rhf
 
   const form = useForm<z.infer<typeof uploadPhotoFormSchema>>({
     resolver: zodResolver(uploadPhotoFormSchema),
@@ -84,21 +90,45 @@ export default function UploadPhotoForm() {
     },
   });
 
+  // cloudinary urlsini useState ile degistirme
+
   useEffect(() => {
     form.setValue("photoUrl", photoUrl);
   }, [form, photoUrl]);
 
-  function onSubmit(values: z.infer<typeof uploadPhotoFormSchema>) {
-    setPhotoUrl("");
-    setSelectedFile(null);
-    form.reset();
+  //form submit // ve iceriginde ki await post function
+  async function onSubmit(values: z.infer<typeof uploadPhotoFormSchema>) {
     console.log(values);
-    console.log("is onSubmit not handle");
-    toast({
-      title: "SUCCESS!",
-      description: "Added photo successfully!",
-    });
-    router.push("/");
+    setIsLoading(true);
+    try {
+      const response = await fetch("/api/photo-album", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+      console.log("Form submission method:", response.headers.get("method"));
+
+      if (response.ok) {
+        setPhotoUrl("");
+        setSelectedFile(null);
+        form.reset();
+        console.log(values);
+        // console.log("is onSubmit not handle");
+        toast({
+          title: "SUCCESS!",
+          description: "Added photo successfully!",
+        });
+        router.push("/");
+      } else {
+        console.error("Failed to save photo");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -106,7 +136,11 @@ export default function UploadPhotoForm() {
       <Toaster />
       {photoUrl ? (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            method="POST"
+            className="space-y-8"
+          >
             <FormField
               control={form.control}
               name="photoName"
@@ -146,26 +180,30 @@ export default function UploadPhotoForm() {
                 </FormItem>
               )}
             />
-            <div className="hidden">
-              <FormField
-                control={form.control}
-                name="photoUrl"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Your Image URL</FormLabel>
-                    <FormControl>
-                      <Input placeholder="https://..." {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+            <FormField
+              control={form.control}
+              name="photoUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Your Image URL</FormLabel>
+                  <FormControl>
+                    <Input placeholder="https://..." {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <Button
               type="submit"
               className="bg-gradient-to-r from-lime-600 to-teal-600 hover:from-lime-700 hover:to-teal-700"
             >
-              Add
+              {isLoading ? (
+                <div className="animate-spin px-3">
+                  <AiOutlineLoading3Quarters />
+                </div>
+              ) : (
+                "Add"
+              )}
             </Button>
           </form>
         </Form>

@@ -10,7 +10,6 @@ import { cn } from "@/lib/utils";
 import { getPhotos } from "@/utils/getPhotos";
 import Link from "next/link";
 import EnterUpdateForm from "../Forms/EnterUpdateForm";
-import UploadPhotoForm from "../Forms/UploadPhotoForm";
 
 export default async function MainTopCarousel({ className, ...props }: any) {
   const photos = await getPhotos();

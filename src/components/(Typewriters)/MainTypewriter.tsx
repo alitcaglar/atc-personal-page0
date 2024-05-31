@@ -9,10 +9,7 @@ export default function MainTypewriter() {
       <div className="App text-6xl m-8 w-80 h-[45rem] bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent">
         <Typewriter
           words={[
-            "Eat",
-            "Sleep",
-            "Code",
-            "Repeat!",
+            "Eat(); Sleep(); Code();  Repeat!",
             "Always learning, this problem-solving expert turned  developer crafts intuitive interfaces.",
             "From nuclear precision to digital finesse, this ever-evolving  developer's expertise shines.",
             "Complex challenges fuel innovation! This growth-minded  developer delivers smart solutions.",
