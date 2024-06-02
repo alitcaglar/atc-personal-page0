@@ -11,6 +11,10 @@ import { FaNpm } from "react-icons/fa6";
 import { FaReact } from "react-icons/fa";
 import Tilt from "react-parallax-tilt";
 import { RiTailwindCssFill } from "react-icons/ri";
+import { SiShadcnui } from "react-icons/si";
+import { SiCloudinary } from "react-icons/si";
+import { SiZod } from "react-icons/si";
+import { SiTypescript } from "react-icons/si";
 import {
   HoverCard,
   HoverCardContent,
@@ -131,6 +135,46 @@ export default function Emblems() {
               </HoverCardTrigger>
               <HoverCardContent className="text-3xl">
                 Styling language with animations and responsive design.
+              </HoverCardContent>
+            </div>
+          </HoverCard>
+          <HoverCard>
+            <div className="m-8 text-6xl text-slate-500 hover:text-slate-400">
+              <HoverCardTrigger>
+                <SiShadcnui />
+              </HoverCardTrigger>
+              <HoverCardContent className="text-3xl">
+                Component library for building accessible web applications.
+              </HoverCardContent>
+            </div>
+          </HoverCard>
+          <HoverCard>
+            <div className="m-8 text-6xl text-slate-500 hover:text-slate-400">
+              <HoverCardTrigger>
+                <SiCloudinary />
+              </HoverCardTrigger>
+              <HoverCardContent className="text-3xl">
+                Cloud-based media management service for web developers.
+              </HoverCardContent>
+            </div>
+          </HoverCard>
+          <HoverCard>
+            <div className="m-8 text-6xl text-slate-500 hover:text-slate-400">
+              <HoverCardTrigger>
+                <SiZod />
+              </HoverCardTrigger>
+              <HoverCardContent className="text-3xl">
+                TypeScript-first schema declaration and validation library.
+              </HoverCardContent>
+            </div>
+          </HoverCard>
+          <HoverCard>
+            <div className="m-8 text-6xl text-slate-500 hover:text-slate-400">
+              <HoverCardTrigger>
+                <SiTypescript />
+              </HoverCardTrigger>
+              <HoverCardContent className="text-3xl">
+                Strongly typed programming language that builds on JavaScript.
               </HoverCardContent>
             </div>
           </HoverCard>

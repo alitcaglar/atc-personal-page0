@@ -11,14 +11,17 @@ import { FaFileUpload } from "react-icons/fa";
 
 export default function EnterUpdateForm() {
   return (
-    <div className="m-4 text-3xl text-center text-slate-500">
+    <div className="text-3xl text-center text-slate-500">
       <Dialog>
         <DialogTrigger>
           <FaFileUpload />
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Upload Photo Here</DialogTitle>
+            <DialogTitle>
+              Upload Photo Here{" "}
+              <i className="text-slate-500 font-thin"> owner access only </i>
+            </DialogTitle>
             <DialogDescription>
               <UploadPhotoForm />
             </DialogDescription>

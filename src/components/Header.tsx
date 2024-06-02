@@ -8,6 +8,7 @@ import { CiMenuBurger } from "react-icons/ci";
 import ThemeSwitcher from "./ThemeSwitcher";
 import navLinks from "@/utils/navLinks";
 import HeaderBottom from "./HeaderBottom";
+import PhotoDeleteButton from "./photo-delete-button/PhotoDeleteButton";
 
 export default function Header() {
   const generatePath = (title: string): string => {

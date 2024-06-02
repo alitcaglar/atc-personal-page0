@@ -43,9 +43,9 @@ const uploadPhotoFormSchema = z.object({
 export default function UploadPhotoForm() {
   const router = useRouter();
   const { toast } = useToast();
-  const handleFormSubmit = (data: z.infer<typeof uploadPhotoFormSchema>) => {
-    console.log(data);
-  };
+  // const handleFormSubmit = (data: z.infer<typeof uploadPhotoFormSchema>) => {
+  //   console.log(data);
+  // };
 
   // cloudinary url degistirme
 
@@ -98,10 +98,10 @@ export default function UploadPhotoForm() {
 
   //form submit // ve iceriginde ki await post function
   async function onSubmit(values: z.infer<typeof uploadPhotoFormSchema>) {
-    console.log(values);
+    console.log("form values:", values);
     setIsLoading(true);
     try {
-      const response = await fetch("/api/photo-album", {
+      const response = await fetch("/api/photo-album-post", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -115,7 +115,6 @@ export default function UploadPhotoForm() {
         setSelectedFile(null);
         form.reset();
         console.log(values);
-        // console.log("is onSubmit not handle");
         toast({
           title: "SUCCESS!",
           description: "Added photo successfully!",
@@ -218,8 +217,7 @@ export default function UploadPhotoForm() {
             <Button
               onClick={handleFileUpload}
               className={
-                "m-2 bg-gradient-to-r from-lime-600 to-teal-600 hover:ring-2 transition duration-300" +
-                (isLoading ? "" : "animate-pulse")
+                "m-2 bg-gradient-to-r from-lime-600 to-teal-600 hover:ring-2 transition duration-300"
               }
             >
               {isLoading ? (
