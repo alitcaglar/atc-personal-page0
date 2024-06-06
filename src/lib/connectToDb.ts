@@ -4,7 +4,7 @@ let connection: any = {};
 
 export const connectToDb = async (): Promise<void> => {
   if (connection.isConnected) {
-    console.log("log: already connected");
+    console.log("log: already started to connect");
     return;
   }
   try {

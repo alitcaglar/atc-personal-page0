@@ -10,6 +10,6 @@ export async function getPhotos() {
     return photos;
   } catch (error) {
     console.log(error);
-    throw new Error("Failed to fetch photos");
+    // throw new Error("Failed to fetch photos");
   }
 }

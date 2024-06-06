@@ -25,7 +25,7 @@ export default function Emblems() {
   return (
     <>
       <Tilt>
-        <div className="flex flex-wrap justify-between">
+        <div className="flex flex-wrap justify-center items-stretch">
           <HoverCard>
             <div className="m-8 text-6xl text-slate-500 hover:text-slate-400 transition ">
               <HoverCardTrigger>
