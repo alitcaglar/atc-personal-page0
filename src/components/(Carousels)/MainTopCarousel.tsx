@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 import { getPhotos } from "@/utils/getPhotos";
 import Link from "next/link";
 import EnterUpdateForm from "../Forms/EnterUpdateForm";
-import { MdEditDocument } from "react-icons/md";
 import { MdZoomOutMap } from "react-icons/md";
 import PhotoEditButton from "../Buttons/PhotoEditButton";
 import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
@@ -63,7 +62,11 @@ export default async function MainTopCarousel({ className, ...props }: any) {
                   </div>
 
                   <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
-                    <Link href={`/app-photos/${photo.photoName}`}>
+                    <Link
+                      href={`/app-photos/${photo.photoUrl
+                        .replaceAll("/", "ssslashhh")
+                        .replaceAll(".", "dddottt")}`}
+                    >
                       <MdZoomOutMap />
                     </Link>
                   </div>

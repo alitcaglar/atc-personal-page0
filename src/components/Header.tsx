@@ -32,7 +32,7 @@ export default function Header() {
             Ali Turabi Caglar.
           </span>
           <span className="sm:hidden font-bold opacity-40 text-lime-600">
-            {pathname.replaceAll("-", " ")}
+            {pathname.replaceAll("-", " ").split("/")[1]}
           </span>
         </Link>
         <nav className="flex items-center">
