@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import { DiAtom } from "react-icons/di";
 import Providers from "@/components/Providers";
+import { Toaster } from "@/components/ui/toaster";
 //import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,7 +24,8 @@ export default function RootLayout({
       <body
         className={
           inter.className +
-          "w-screen h-screen bg-gradient-radial from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-950"
+          " " +
+          "bg-gradient-to-b from-slate-100 to-slate-200 dark:from-slate-950 dark:to-slate-900"
         }
       >
         <Providers>
@@ -32,6 +34,7 @@ export default function RootLayout({
             <DiAtom />
           </p>
           {children}
+          <Toaster />
           {/*<Footer></Footer>*/}
         </Providers>
       </body>

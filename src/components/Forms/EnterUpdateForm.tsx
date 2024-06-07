@@ -11,7 +11,7 @@ import { FaFileUpload } from "react-icons/fa";
 
 export default function EnterUpdateForm() {
   return (
-    <div className="text-3xl text-center text-slate-500">
+    <div className="text-3xl text-center mt-[1px] text-slate-500">
       <Dialog>
         <DialogTrigger>
           <FaFileUpload />

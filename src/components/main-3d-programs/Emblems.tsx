@@ -30,7 +30,7 @@ export default function Emblems() {
           <span className="text-lime-600 dark:text-teal-500 text-3xl">
             software technologies
           </span>{" "}
-          that I prefer to use
+          that I use
         </p>
         <div className="flex flex-wrap justify-center items-stretch">
           <HoverCard>

@@ -64,7 +64,7 @@ export default function PhotoDeleteButton({
     <AlertDialog>
       <Toaster />
       <AlertDialogTrigger>
-        <MdDeleteForever className="text-4xl text-slate-500 " />
+        <MdDeleteForever className="text-4xl text-slate-500 text-center mb-[1px]" />
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

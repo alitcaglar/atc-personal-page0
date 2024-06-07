@@ -13,7 +13,7 @@ export default function PhotoEditButton({ photoName }: { photoName: string }) {
   return (
     <>
       {" "}
-      <div className="text-3xl text-center text-slate-500">
+      <div className="text-3xl text-center mt-[7px] text-slate-500">
         <Dialog>
           <DialogTrigger>
             <MdEditDocument />
