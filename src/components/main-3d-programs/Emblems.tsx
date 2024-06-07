@@ -25,6 +25,13 @@ export default function Emblems() {
   return (
     <>
       <Tilt>
+        <p className="text-2xl text-slate-500 text-center mb-4">
+          Some of{" "}
+          <span className="text-lime-600 dark:text-teal-500 text-3xl">
+            software technologies
+          </span>{" "}
+          that I prefer to use
+        </p>
         <div className="flex flex-wrap justify-center items-stretch">
           <HoverCard>
             <div className="m-8 text-6xl text-slate-500 hover:text-slate-400 transition ">
