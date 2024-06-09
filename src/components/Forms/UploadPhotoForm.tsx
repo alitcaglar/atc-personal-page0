@@ -183,7 +183,7 @@ export default function UploadPhotoForm() {
               control={form.control}
               name="photoUrl"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="hidden">
                   <FormLabel>Your Image URL</FormLabel>
                   <FormControl>
                     <Input placeholder="https://..." {...field} />
