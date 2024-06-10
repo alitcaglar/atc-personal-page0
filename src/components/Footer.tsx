@@ -59,12 +59,14 @@ export default function Footer() {
                   <div className="text-6xl text-teal-500  m-2">
                     <LuMailCheck />
                   </div>
-                  {isCopied ? "Copied" : "aliturabicaglar@gmail.com"}
+                  {isCopied
+                    ? "Email address Copied"
+                    : "aliturabicaglar@gmail.com"}
                 </div>
               </CopyToClipboard>
 
-              <p className="flex items-center * phone  hover:translate-x-[1px] hover:translate-y-1 transition">
-                <div className="text-6xl text-lime-600 m-1">
+              <p className="flex items-center * phone ">
+                <div className="text-6xl text-lime-500 m-1">
                   <IoLogoWhatsapp />
                 </div>
                 +90 538 845 69 10
@@ -73,7 +75,7 @@ export default function Footer() {
                 href="https://github.com/alitcaglar"
                 className="flex items-center hover:translate-x-[1px] hover:translate-y-1 transition m-4"
               >
-                <div className="text-6xl text-purple-700 m-1 ">
+                <div className="text-6xl text-purple-600 m-1 ">
                   <IoLogoGithub />
                 </div>
                 <div>GitHub</div>
@@ -82,7 +84,7 @@ export default function Footer() {
                 href="https://www.linkedin.com/"
                 className="flex items-center m-4 hover:translate-x-[1px] hover:translate-y-1 transition "
               >
-                <div className="text-6xl text-blue-800 m-1">
+                <div className="text-6xl text-blue-600 m-1">
                   <FaLinkedin />
                 </div>
                 <div>LinkedIn</div>

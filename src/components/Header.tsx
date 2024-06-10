@@ -59,7 +59,7 @@ export default function Header() {
                 <li
                   className={
                     isActive
-                      ? "p-2  font-bold bg-gradient-to-r from-teal-500 to-lime-500 bg-clip-text text-transparent text-center hover:text-xl"
+                      ? "p-2  font-bold bg-gradient-to-r from-teal-500 to-lime-500 bg-clip-text text-transparent text-center"
                       : "p-2 font-bold text-slate-500  hover:bg-gradient-to-r hover:from-teal-500 hover:to-lime-500 hover:bg-clip-text hover:text-transparent hover:transition hover:ease-in-out hover:duration-300 text-center hover:drop-shadow-md "
                   }
                   key={index}
