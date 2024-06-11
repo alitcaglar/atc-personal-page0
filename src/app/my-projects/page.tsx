@@ -1,9 +1,7 @@
-import UploadPhotoForm from "@/components/Forms/UploadPhotoForm";
-
 export default function MyProjects() {
   return (
-    <main>
-      
+    <main className="min-h-screen">
+      <h1>my projects TEST TEST</h1>
     </main>
   );
 }

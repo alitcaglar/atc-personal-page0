@@ -2,7 +2,7 @@ import EmailSendForm from "@/components/Forms/EmailSendForm";
 
 export default function AboutMe() {
   return (
-    <main>
+    <main className="min-h-screen">
       AboutMe
       <p>TEST</p>
       <EmailSendForm />

@@ -31,6 +31,11 @@ export const {
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     } as any),
   ],
+  callbacks: {
+    authorized({ auth, request }) {
+      return !!auth?.user;
+    },
+  },
   //   callbacks: {
   //     session({ session, token, user }) {
   //       // `session.user.address` is now a valid property, and will be type-checked
