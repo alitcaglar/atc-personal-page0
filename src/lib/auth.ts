@@ -1,6 +1,8 @@
 import NextAuth, { type DefaultSession } from "next-auth";
 import Google from "next-auth/providers/google";
 
+import GitHub from "next-auth/providers/github";
+
 declare module "next-auth" {
   /**
    * Returned by `auth`, `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
@@ -30,12 +32,21 @@ export const {
       clientId: process.env.AUTH_GOOGLE_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     } as any),
+
+    GitHub({
+      clientId: process.env.AUTH_GITHUB_ID,
+      clientSecret: process.env.AUTH_GITHUB_SECRET,
+    }),
   ],
   callbacks: {
     authorized({ auth, request }) {
       return !!auth?.user;
     },
   },
+  pages: {
+    signIn: "/profile",
+  },
+
   //   callbacks: {
   //     session({ session, token, user }) {
   //       // `session.user.address` is now a valid property, and will be type-checked

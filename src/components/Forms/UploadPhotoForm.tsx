@@ -54,7 +54,21 @@ export default function UploadPhotoForm() {
   const [isLoading, setIsLoading] = useState(false);
 
   async function handleFileUpload() {
-    if (!selectedFile) return;
+    if (!selectedFile) {
+      toast({
+        title: "ERROR!",
+        description: "Please select a file",
+      });
+      return;
+    }
+
+    if (selectedFile.size > 1024 * 256) {
+      toast({
+        title: "ERROR!",
+        description: `File size should be less than 256 KB`,
+      });
+      return;
+    }
 
     try {
       setIsLoading(true);
@@ -132,7 +146,6 @@ export default function UploadPhotoForm() {
 
   return (
     <>
-      <Toaster />
       {photoUrl ? (
         <Form {...form}>
           <form
