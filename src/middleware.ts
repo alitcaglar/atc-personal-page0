@@ -17,7 +17,7 @@ export const middleware = auth;
 // next auth ile programatiklestirme
 
 export const config = {
-  matcher: "/profile",
+  matcher: "/profile/login",
 };
 
 //bkz auth.js callback

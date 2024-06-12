@@ -9,7 +9,11 @@ import {
 import UploadPhotoForm from "../Forms/UploadPhotoForm";
 import { FaFileUpload } from "react-icons/fa";
 
-export default function EnterUpdateForm() {
+import { auth } from "@/lib/auth";
+
+export default async function EnterUpdateForm() {
+  const session = await auth();
+
   return (
     <div className="text-3xl text-center text-slate-500">
       <Dialog>
@@ -20,10 +24,13 @@ export default function EnterUpdateForm() {
           <DialogHeader>
             <DialogTitle>
               Upload Photo Here{" "}
-              <i className="text-slate-500 font-thin"> owner access only </i>
+              <i className="text-slate-500 font-thin">
+                {" "}
+                authorized access only{" "}
+              </i>
             </DialogTitle>
             <DialogDescription>
-              <UploadPhotoForm />
+              {session?.user?.name && <UploadPhotoForm />}
             </DialogDescription>
           </DialogHeader>
         </DialogContent>

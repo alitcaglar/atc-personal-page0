@@ -13,8 +13,11 @@ import { MdZoomOutMap } from "react-icons/md";
 import PhotoEditButton from "../Buttons/PhotoEditButton";
 import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
 
+import { auth } from "@/lib/auth";
+
 export default async function MainTopCarousel({ className, ...props }: any) {
   const photos = await getPhotos();
+  const session = await auth();
   if (!photos) return null;
   if (photos) {
     return (
@@ -54,12 +57,15 @@ export default async function MainTopCarousel({ className, ...props }: any) {
                   <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
                     <PhotoEditButton photoName={photo.photoName} />
                   </div>
-                  <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
-                    <PhotoDeleteButton
-                      alertDialog="You are about to delete this photo"
-                      photoName={photo.photoName}
-                    />
-                  </div>
+
+                  {session?.user?.name && (
+                    <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
+                      <PhotoDeleteButton
+                        alertDialog="You are about to delete this photo"
+                        photoName={photo.photoName}
+                      />
+                    </div>
+                  )}
 
                   <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
                     <Link

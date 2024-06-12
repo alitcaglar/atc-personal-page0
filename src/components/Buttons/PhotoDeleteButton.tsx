@@ -70,7 +70,7 @@ export default function PhotoDeleteButton({
         <AlertDialogHeader>
           <AlertDialogTitle>
             Are you sure to delete?{" "}
-            <i className="text-slate-500 font-thin"> owner access only </i>
+            <i className="text-slate-500 font-thin"> authorized access only </i>
           </AlertDialogTitle>
           <AlertDialogDescription>{alertDialog}</AlertDialogDescription>
         </AlertDialogHeader>

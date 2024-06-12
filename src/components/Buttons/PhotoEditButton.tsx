@@ -8,8 +8,14 @@ import {
 } from "@/components/ui/dialog";
 import { MdEditDocument } from "react-icons/md";
 import EditPhotoNameForm from "../Forms/EditPhotoNameForm";
+import { auth } from "@/lib/auth";
 
-export default function PhotoEditButton({ photoName }: { photoName: string }) {
+export default async function PhotoEditButton({
+  photoName,
+}: {
+  photoName: string;
+}) {
+  const session = await auth();
   return (
     <>
       {" "}
@@ -22,10 +28,15 @@ export default function PhotoEditButton({ photoName }: { photoName: string }) {
             <DialogHeader>
               <DialogTitle>
                 Edit Photo Name{" "}
-                <i className="text-slate-500 font-thin"> owner access only </i>
+                <i className="text-slate-500 font-thin">
+                  {" "}
+                  authorized access only{" "}
+                </i>
               </DialogTitle>
               <DialogDescription>
-                <EditPhotoNameForm photoName={photoName} />
+                {session?.user?.name && (
+                  <EditPhotoNameForm photoName={photoName} />
+                )}
               </DialogDescription>
             </DialogHeader>
           </DialogContent>

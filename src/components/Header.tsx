@@ -8,13 +8,9 @@ import { CiMenuBurger } from "react-icons/ci";
 import ThemeSwitcher from "./ThemeSwitcher";
 import navLinks from "@/utils/navLinks";
 import HeaderBottom from "./HeaderBottom";
-import PhotoDeleteButton from "./photo-delete-button/PhotoDeleteButton";
+import { CgProfile } from "react-icons/cg";
 
 export default function Header() {
-  const generatePath = (title: string): string => {
-    return "/" + title.toLowerCase().replaceAll(/\s+/g, "-");
-  };
-
   const pathname = usePathname();
 
   const [openNav, setOpenNav] = useState(false);
@@ -28,9 +24,8 @@ export default function Header() {
           <p className="text-6xl drop-shadow-md">
             <DiAtom />
           </p>
-          <span className="p-3 font-bold drop-shadow-md">
-            Ali Turabi Caglar.
-          </span>
+          <span className="p-3 font-bold drop-shadow-md">A. T. Caglar</span>
+
           <span className="sm:hidden font-bold opacity-40 text-lime-600">
             {pathname.replaceAll("-", " ").split("/")[1]}
           </span>
@@ -70,6 +65,17 @@ export default function Header() {
                 </li>
               );
             })}
+            <li
+              className={
+                pathname.startsWith("/profile")
+                  ? "p-2 text-teal-500  text-3xl"
+                  : "p-2  text-slate-500  hover:text-teal-500 text-3xl hover:transition hover:ease-in-out hover:duration-300"
+              }
+            >
+              <Link href="/profile" onClick={() => setOpenNav(false)}>
+                <CgProfile />
+              </Link>
+            </li>
             <li>
               <ThemeSwitcher />
             </li>

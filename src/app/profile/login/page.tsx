@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth";
 import Link from "next/link";
 
-export default async function Profile() {
+export default async function Login() {
   const session = await auth();
   console.log(session);
   console.log("*** test console server my-profile ***");
