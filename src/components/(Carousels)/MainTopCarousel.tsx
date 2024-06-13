@@ -2,6 +2,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 import Image from "next/image";
@@ -16,10 +18,14 @@ import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
 import { auth } from "@/lib/auth";
 
 export default async function MainTopCarousel({ className, ...props }: any) {
-  const photos = await getPhotos();
+  const photos: any = await getPhotos();
+  console.log(photos, typeof photos, photos?.length);
+
   const session = await auth();
   if (!photos) return null;
   if (photos) {
+    const maxFivePhotos =
+      photos.length > 5 ? [...photos].slice(-5) : [...photos];
     return (
       <Carousel
         className={cn(
@@ -27,8 +33,10 @@ export default async function MainTopCarousel({ className, ...props }: any) {
           className
         )}
       >
+        <CarouselPrevious className="border-transparent absolute translate-x-14 z-10" />
+        <CarouselNext className="border-transparent absolute -translate-x-14 z-10" />
         <CarouselContent className="cursor-pointer">
-          {photos.map((photo, index) => {
+          {maxFivePhotos.map((photo, index) => {
             return (
               <CarouselItem className="text-center" key={index}>
                 <p className="mt-4 text-2xl opacity-80 text-slate-500">
