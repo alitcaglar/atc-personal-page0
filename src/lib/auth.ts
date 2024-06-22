@@ -1,22 +1,16 @@
 import NextAuth, { type DefaultSession } from "next-auth";
 import Google from "next-auth/providers/google";
-
 import GitHub from "next-auth/providers/github";
+import User from "./models"; // Kullanıcı modelini içe aktarın
+import { MongoDBAdapter } from "@auth/mongodb-adapter";
+import clientPromise from "./db";
+import { connectToDb } from "./connectToDb";
 
 declare module "next-auth" {
-  /**
-   * Returned by `auth`, `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
-   */
   interface Session {
     user: {
-      /** The user's postal address. */
       address: string;
-      /**
-       * By default, TypeScript merges new interface properties and overwrites existing ones.
-       * In this case, the default session user properties will be overwritten,
-       * with the new ones defined above. To keep the default session user properties,
-       * you need to add them back into the newly declared interface.
-       */
+      role: string; // Kullanıcının rolünü oturum verisine ekleyin
     } & DefaultSession["user"];
   }
 }
@@ -32,32 +26,32 @@ export const {
       clientId: process.env.AUTH_GOOGLE_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     } as any),
-
     GitHub({
       clientId: process.env.AUTH_GITHUB_ID,
       clientSecret: process.env.AUTH_GITHUB_SECRET,
     }),
   ],
   callbacks: {
-    authorized({ auth, request }) {
-      return !!auth?.user;
+    async session({ session }) {
+      await connectToDb();
+      // Kullanıcıyı veritabanından bulun ve rolünü ekleyin
+      const user = await User.findOne({ email: session.user.email });
+      if (user) {
+        session.user.role = user.role;
+      }
+      return session;
+    },
+    async signIn({ user }) {
+      await connectToDb();
+      // Kullanıcı veritabanında mevcut mu kontrol edin, yoksa oluşturun
+      const existingUser = await User.findOne({ email: user.email });
+      if (!existingUser) {
+        await User.create({ email: user.email, name: user.name });
+      }
+      return true;
     },
   },
   pages: {
     signIn: "/profile",
   },
-
-  //   callbacks: {
-  //     session({ session, token, user }) {
-  //       // `session.user.address` is now a valid property, and will be type-checked
-  //       // in places like `useSession().data.user` or `auth().user`
-  //       return {
-  //         ...session,
-  //         user: {
-  //           ...session.user,
-  //           address: user.address,
-  //         },
-  //       };
-  //     },
-  //   },
 });

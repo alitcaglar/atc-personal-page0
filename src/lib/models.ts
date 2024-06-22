@@ -24,3 +24,23 @@ const photoAlbumSchema = new mongoose.Schema({
 
 export const PhotoAlbum =
   mongoose.models.PhotoAlbum || mongoose.model("PhotoAlbum", photoAlbumSchema);
+
+const UserSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+
+  address: {
+    type: String,
+  },
+  role: {
+    type: String,
+    enum: ["user", "admin", "atc266"],
+    default: "user",
+  },
+});
+
+const User = mongoose.models.User || mongoose.model("User", UserSchema);
+export default User;

@@ -30,7 +30,9 @@ export default async function EnterUpdateForm() {
               </i>
             </DialogTitle>
             <DialogDescription>
-              {session?.user?.name && <UploadPhotoForm />}
+              {session?.user?.role !== "user" && session?.user && (
+                <UploadPhotoForm />
+              )}
             </DialogDescription>
           </DialogHeader>
         </DialogContent>

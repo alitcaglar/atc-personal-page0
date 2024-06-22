@@ -9,6 +9,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import navLinks from "@/utils/navLinks";
 import HeaderBottom from "./HeaderBottom";
 import { CgProfile } from "react-icons/cg";
+import LoggedIn from "./LoggedIn/LoggedIn";
 
 export default function Header() {
   const pathname = usePathname();
@@ -75,6 +76,9 @@ export default function Header() {
               <Link href="/profile" onClick={() => setOpenNav(false)}>
                 <CgProfile />
               </Link>
+            </li>
+            <li>
+              <LoggedIn />
             </li>
             <li>
               <ThemeSwitcher />

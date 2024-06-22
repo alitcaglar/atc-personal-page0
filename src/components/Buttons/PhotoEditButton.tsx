@@ -34,7 +34,7 @@ export default async function PhotoEditButton({
                 </i>
               </DialogTitle>
               <DialogDescription>
-                {session?.user?.name && (
+                {session?.user?.role !== "user" && session?.user && (
                   <EditPhotoNameForm photoName={photoName} />
                 )}
               </DialogDescription>

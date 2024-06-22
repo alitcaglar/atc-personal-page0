@@ -66,7 +66,7 @@ export default async function MainTopCarousel({ className, ...props }: any) {
                     <PhotoEditButton photoName={photo.photoName} />
                   </div>
 
-                  {session?.user?.name && (
+                  {session?.user?.role !== "user" && session?.user && (
                     <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
                       <PhotoDeleteButton
                         alertDialog="You are about to delete this photo"
