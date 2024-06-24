@@ -1,12 +1,9 @@
-"use client";
-import { useSession } from "next-auth/react";
+import { auth } from "@/lib/auth";
 
-export default function LoggedIn() {
-  const { data: session, status } = useSession();
+// export const revalidate = 1;
 
-  if (status === "loading") {
-    return <p className="text-3xl text-slate-500 animate-ping">●</p>;
-  }
+export default async function LoggedIn() {
+  const session = await auth();
 
   return (
     <>

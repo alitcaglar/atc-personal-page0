@@ -35,7 +35,7 @@ export default function Header() {
           <button
             onClick={() => setOpenNav(!openNav)}
             className={
-              "sm:hidden text-3xl mr-4 transition duration-300" +
+              "sm:hidden text-3xl transition duration-300 mr-12" +
               (openNav ? " text-teal-500" : " text-lime-800")
             }
           >
@@ -69,20 +69,19 @@ export default function Header() {
             <li
               className={
                 pathname.startsWith("/profile")
-                  ? "p-2 text-teal-500  text-3xl"
-                  : "p-2  text-slate-500  hover:text-teal-500 text-3xl hover:transition hover:ease-in-out hover:duration-300"
+                  ? "p-2 text-teal-500  text-3xl flex justify-center items-center"
+                  : "p-2  text-slate-500  hover:text-teal-500 text-3xl hover:transition hover:ease-in-out hover:duration-300    flex justify-center items-center"
               }
             >
               <Link href="/profile" onClick={() => setOpenNav(false)}>
                 <CgProfile />
               </Link>
             </li>
-            <li>
-              <LoggedIn />
-            </li>
+
             <li>
               <ThemeSwitcher />
             </li>
+            <li className="mx-4"></li>
           </ul>
         </nav>
       </header>

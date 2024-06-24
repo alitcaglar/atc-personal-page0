@@ -11,5 +11,5 @@ export async function signInWithGithub() {
 }
 
 export async function signOutAction() {
-  await signOut({ redirectTo: "/" });
+  await signOut({ redirectTo: "/signed-out" });
 }

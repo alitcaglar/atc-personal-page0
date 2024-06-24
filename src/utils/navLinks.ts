@@ -5,7 +5,7 @@ interface NavLink {
 // path only lowercase!!!
 const navLinks: NavLink[] = [
   { title: "My Projects", path: "/my-projects" },
-  { title: "About Me", path: "/about-me" },
+  { title: "Introduction", path: "/introduction" },
 ];
 // path only lowercase!!!
 

@@ -1,34 +1,25 @@
-import { getUserRoles } from "@/utils/getUserRoles";
+import DummyPanelSwitchRole from "./DummySwitchRole";
 
-import updateUserRole from "@/utils/updateUserRole";
-
-import PanelSwitchRole from "./PanelSwitchRole";
-
-export default async function Atc266Panel() {
-  const handleSubmit = async (event: any) => {
+export default function DummyAtc266Panel() {
+  const handleSubmit = (event: any) => {
     event.preventDefault(); // Formun varsayılan davranışını engelle
-
-    const formData = new FormData(event.target);
-    const email = formData.get("email");
-    const newRole = formData.get("newRole");
-
-    try {
-      await updateUserRole(email as string, newRole as string);
-      // Başarılı bir şekilde güncellendiğinde yapılacak işlemler buraya eklenebilir
-    } catch (error) {
-      console.error("Hata:", error);
-      // Hata durumunda kullanıcıya bir hata mesajı gösterilebilir
-    }
+    // Dummy function, does nothing
   };
 
-  const userRoles = await getUserRoles();
+  const dummyUserRoles = [
+    { email: "user1@example.com", role: "admin" },
+    { email: "user2@example.com", role: "user" },
+    { email: "atc266@example.com", role: "atc266" },
+    { email: "user4@example.com", role: "user" },
+  ];
+
   return (
     <div className="min-h-screen m-16">
       <h1 className="text-3xl font-bold underline m-8">Developer Panel</h1>
       <p>Change user role</p>
 
       <div>
-        {userRoles?.map((user, index) => {
+        {dummyUserRoles.map((user, index) => {
           return (
             <div key={index} className="grid grid-cols-3 ">
               <p
@@ -52,7 +43,7 @@ export default async function Atc266Panel() {
                   ***Developer***
                 </p>
               ) : (
-                <PanelSwitchRole email={user.email} />
+                <DummyPanelSwitchRole email={user.email} />
               )}
 
               <p
