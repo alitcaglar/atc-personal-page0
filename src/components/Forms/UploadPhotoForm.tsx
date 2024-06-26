@@ -74,8 +74,8 @@ export default function UploadPhotoForm() {
       setIsLoading(true);
       const uploadedUrl = await uploadToCloudinary(
         selectedFile,
-        "dbjmcooux",
-        "ml_default"
+        process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME as string,
+        process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET as string
       );
       setPhotoUrl(uploadedUrl);
       console.log("Uploaded photo URL:", uploadedUrl);
