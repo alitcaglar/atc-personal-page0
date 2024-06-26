@@ -2,7 +2,7 @@
 
 import { NextResponse } from "next/server";
 import { connectToDb } from "@/lib/connectToDb";
-import User from "@/lib/models";
+import { User } from "@/lib/models";
 
 export async function PATCH(request: Request) {
   try {

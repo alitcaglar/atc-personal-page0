@@ -1,7 +1,7 @@
 import NextAuth, { type DefaultSession } from "next-auth";
 import Google from "next-auth/providers/google";
 import GitHub from "next-auth/providers/github";
-import User from "./models"; // Kullanıcı modelini içe aktarın
+import { User } from "./models"; // Kullanıcı modelini içe aktarın
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "./db";
 import { connectToDb } from "./connectToDb";

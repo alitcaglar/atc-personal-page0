@@ -1,5 +1,5 @@
 import { connectToDb } from "../lib/connectToDb";
-import User from "../lib/models";
+import { User } from "../lib/models";
 // import { unstable_noStore as noStore } from "next/cache";
 
 export async function getUserRoles() {
