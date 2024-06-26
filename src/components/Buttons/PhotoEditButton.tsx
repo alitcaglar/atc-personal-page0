@@ -1,3 +1,6 @@
+"use client";
+import { useSession } from "next-auth/react";
+
 import {
   Dialog,
   DialogContent,
@@ -10,12 +13,9 @@ import { MdEditDocument } from "react-icons/md";
 import EditPhotoNameForm from "../Forms/EditPhotoNameForm";
 import { auth } from "@/lib/auth";
 
-export default async function PhotoEditButton({
-  photoName,
-}: {
-  photoName: string;
-}) {
-  const session = await auth();
+export default function PhotoEditButton({ photoName }: { photoName: string }) {
+  const { data: session, status, update } = useSession();
+
   return (
     <>
       {" "}

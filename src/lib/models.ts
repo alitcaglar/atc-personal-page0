@@ -22,8 +22,15 @@ const photoAlbumSchema = new mongoose.Schema({
   },
 });
 
-export const PhotoAlbum =
-  mongoose.models.PhotoAlbum || mongoose.model("PhotoAlbum", photoAlbumSchema);
+let PhotoAlbum;
+
+try {
+  PhotoAlbum = mongoose.model("PhotoAlbum");
+} catch (error) {
+  PhotoAlbum = mongoose.model("PhotoAlbum", photoAlbumSchema);
+}
+
+export { PhotoAlbum };
 
 const UserSchema = new mongoose.Schema({
   email: {
@@ -31,7 +38,6 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-
   address: {
     type: String,
   },
@@ -42,5 +48,12 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-const User = mongoose.models.User || mongoose.model("User", UserSchema);
+let User;
+
+try {
+  User = mongoose.model("User");
+} catch (error) {
+  User = mongoose.model("User", UserSchema);
+}
+
 export default User;

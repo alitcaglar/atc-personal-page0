@@ -1,3 +1,10 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+
+import axios from "axios";
+
 import {
   Carousel,
   CarouselContent,
@@ -17,15 +24,42 @@ import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
 
 import { auth } from "@/lib/auth";
 
-export default async function MainTopCarousel({ className, ...props }: any) {
-  const photos: any = await getPhotos();
+export default function MainTopCarousel({ className, ...props }: any) {
+  const [photos, setPhotos] = useState(null);
+
+  useEffect(() => {
+    const fetchPhotos = async () => {
+      try {
+        const res = await axios.get("/api/get-photos");
+        setPhotos(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPhotos(); // Initial fetch
+
+    // Avoid continuous fetch by ensuring dependencies are properly managed
+  }, []);
+
   console.log(photos, typeof photos, photos?.length);
 
-  const session = await auth();
+  //const session = await auth();
+
+  const { data: session, status, update } = useSession();
   if (!photos) return null;
   if (photos) {
-    const maxFivePhotos =
-      photos.length > 5 ? [...photos].slice(-5) : [...photos];
+    console.log(
+      photos,
+      typeof photos,
+      "***data****",
+      photos.data,
+      "***photoName***",
+      photos.data[0].photoName
+    );
+
+    //const maxFivePhotos =
+    //   photos.length > 5 ? [...photos].slice(-5) : [...photos];
     return (
       <Carousel
         className={cn(
@@ -36,7 +70,7 @@ export default async function MainTopCarousel({ className, ...props }: any) {
         <CarouselPrevious className="border-transparent absolute translate-x-14 z-10" />
         <CarouselNext className="border-transparent absolute -translate-x-14 z-10" />
         <CarouselContent className="cursor-pointer">
-          {maxFivePhotos.map((photo, index) => {
+          {photos.data.map((photo, index) => {
             return (
               <CarouselItem className="text-center" key={index}>
                 <p className="mt-4 text-2xl opacity-80 text-slate-500">
@@ -78,8 +112,8 @@ export default async function MainTopCarousel({ className, ...props }: any) {
                   <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
                     <Link
                       href={`/app-photos/${photo.photoUrl
-                        .replaceAll("/", "ssslashhh")
-                        .replaceAll(".", "dddottt")}`}
+                        .replaceAll("/", "slsh")
+                        .replaceAll(".", "dott")}`}
                     >
                       <MdZoomOutMap />
                     </Link>

@@ -5,8 +5,8 @@ export default function PhotoPage({ params }: any) {
   console.log(params.photoSlug);
 
   const urlRevive = params.photoSlug
-    .replaceAll("ssslashhh", "/")
-    .replaceAll("dddottt", ".")
+    .replaceAll("slsh", "/")
+    .replaceAll("dott", ".")
     .replaceAll("%3A", ":");
   return (
     <div className="overflow-hidden h-screen mt-5">
