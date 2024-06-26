@@ -25,7 +25,7 @@ import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
 import { auth } from "@/lib/auth";
 
 export default function MainTopCarousel({ className, ...props }: any) {
-  const [photos, setPhotos] = useState(null);
+  const [photos, setPhotos] = useState<any>(null);
 
   useEffect(() => {
     const fetchPhotos = async () => {
@@ -70,7 +70,7 @@ export default function MainTopCarousel({ className, ...props }: any) {
         <CarouselPrevious className="border-transparent absolute translate-x-14 z-10" />
         <CarouselNext className="border-transparent absolute -translate-x-14 z-10" />
         <CarouselContent className="cursor-pointer">
-          {photos.data.map((photo, index) => {
+          {photos.data.map((photo: any, index: any) => {
             return (
               <CarouselItem className="text-center" key={index}>
                 <p className="mt-4 text-2xl opacity-80 text-slate-500">
