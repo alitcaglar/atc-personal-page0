@@ -10,6 +10,7 @@ const nextConfig = {
   env: {
     MONGO_URI: process.env.MONGO_URI,
   },
+  reactStrictMode: false,
 };
 
 export default nextConfig;
