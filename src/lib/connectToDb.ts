@@ -1,3 +1,30 @@
+// import { MongoClient } from "mongodb";
+// import dotenv from "dotenv";
+
+// dotenv.config();
+
+// const uri = process.env.MONGO_URI as string;
+// const client = new MongoClient(uri);
+
+// let isConnected = false;
+
+// export const connectToDb = async (): Promise<void> => {
+//   if (isConnected) {
+//     console.log("log::: already started to connect");
+//     return;
+//   }
+//   try {
+//     await client.connect();
+//     isConnected = true;
+//     console.log("log::: connected to database");
+//   } catch (error) {
+//     console.log("log::: error connecting to database");
+//     throw new Error(error as string);
+//   }
+// };
+
+// export const getClient = () => client;
+
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 

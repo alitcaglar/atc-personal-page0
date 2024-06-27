@@ -18,11 +18,11 @@ export const middleware = auth;
 
 export const config = {
   matcher: "/profile/login",
-  runtime: "experimental-edge", // for Edge API Routes only
-  unstable_allowDynamic: [
-    "/**", // allows a single file
-    "/node_modules/function-bind/**", // use a glob to allow anything in the function-bind 3rd party module
-  ],
+  // runtime: "experimental-edge", // for Edge API Routes only
+  // unstable_allowDynamic: [
+  //   "/**", // allows a single file
+  //   "/node_modules/function-bind/**", // use a glob to allow anything in the function-bind 3rd party module
+  // ],
 };
 
 //bkz auth.js callback
