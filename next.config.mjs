@@ -1,5 +1,3 @@
-import withWasm from "next-plugin-wasm";
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -13,5 +11,3 @@ const nextConfig = {
     MONGO_URI: process.env.MONGO_URI,
   },
 };
-
-export default withWasm(nextConfig);
