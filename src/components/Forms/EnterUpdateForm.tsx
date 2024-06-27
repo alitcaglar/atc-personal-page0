@@ -32,9 +32,9 @@ export default function EnterUpdateForm() {
               </i>
             </DialogTitle>
             <DialogDescription>
-              {session?.user?.role !== "user" && session?.user && (
-                <UploadPhotoForm />
-              )}
+              {
+                /*session?.user?.role !== "user" && session?.user && */ <UploadPhotoForm />
+              }
             </DialogDescription>
           </DialogHeader>
         </DialogContent>

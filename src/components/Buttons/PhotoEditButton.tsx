@@ -34,9 +34,11 @@ export default function PhotoEditButton({ photoName }: { photoName: string }) {
                 </i>
               </DialogTitle>
               <DialogDescription>
-                {session?.user?.role !== "user" && session?.user && (
-                  <EditPhotoNameForm photoName={photoName} />
-                )}
+                {
+                  /*session?.user?.role !== "user" && session?.user && */ <EditPhotoNameForm
+                    photoName={photoName}
+                  />
+                }
               </DialogDescription>
             </DialogHeader>
           </DialogContent>

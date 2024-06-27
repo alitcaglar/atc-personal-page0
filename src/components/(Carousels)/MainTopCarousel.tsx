@@ -44,21 +44,21 @@ export default function MainTopCarousel({ className, ...props }: any) {
     // Avoid continuous fetch by ensuring dependencies are properly managed
   }, []);
 
-  console.log(photos, typeof photos, photos?.length);
+  console.log(
+    "log getPhotos ::: photos ::",
+    photos,
+    "type::",
+    typeof photos,
+    "length::",
+    photos?.length
+  );
 
   //const session = await auth();
 
   const { data: session, status, update } = useSession();
   if (!photos) return null;
   if (photos) {
-    console.log(
-      photos,
-      typeof photos,
-      "***data****",
-      photos.data,
-      "***photoName***",
-      photos.data[0].photoName
-    );
+    console.log(photos, typeof photos, "***data****", photos.data);
 
     //const maxFivePhotos =
     //   photos.length > 5 ? [...photos].slice(-5) : [...photos];
@@ -102,14 +102,14 @@ export default function MainTopCarousel({ className, ...props }: any) {
                     <PhotoEditButton photoName={photo.photoName} />
                   </div>
 
-                  {session?.user?.role !== "user" && session?.user && (
-                    <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
+                  {
+                    /*session?.user?.role !== "user" && session?.user && */ <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
                       <PhotoDeleteButton
                         alertDialog="You are about to delete this photo"
                         photoName={photo.photoName}
                       />
                     </div>
-                  )}
+                  }
 
                   <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
                     <Link
