@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const uri = process.env.MONGO_URI;
 
@@ -8,6 +11,9 @@ export const connectToDb = async (): Promise<void> => {
   if (connection.isConnected) {
     console.log("log: already started to connect");
     return;
+  }
+  if (!uri) {
+    throw new Error("The MONGO_URI environment variable is not defined");
   }
   try {
     const db = await mongoose.connect(uri as string);
