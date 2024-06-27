@@ -1,3 +1,5 @@
+const withWasm = require("next-plugin-wasm");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -13,3 +15,5 @@ const nextConfig = {
 };
 
 export default nextConfig;
+
+module.exports = nextConfig;
