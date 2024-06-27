@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import { DiAtom } from "react-icons/di";
 import Providers from "@/components/Providers";
 import { Toaster } from "@/components/ui/toaster";
-import LoggedIn from "@/components/LoggedIn/LoggedIn";
+import LoggedIn from "../../recycleTODOuser-apiye/TODOklasorlere/componente/LoggedIn/LoggedIn";
 //import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });

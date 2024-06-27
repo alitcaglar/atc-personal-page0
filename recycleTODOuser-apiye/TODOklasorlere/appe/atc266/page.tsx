@@ -1,4 +1,4 @@
-import Atc266Panel from "@/components/Panel/Atc266Panel";
+import Atc266Panel from "../../componente/Panel/Atc266Panel";
 import { auth } from "@/lib/auth";
 
 export default async function atc266() {

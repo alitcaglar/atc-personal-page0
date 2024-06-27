@@ -9,7 +9,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import navLinks from "@/utils/navLinks";
 import HeaderBottom from "./HeaderBottom";
 import { CgProfile } from "react-icons/cg";
-import LoggedIn from "./LoggedIn/LoggedIn";
+import LoggedIn from "../../recycleTODOuser-apiye/TODOklasorlere/componente/LoggedIn/LoggedIn";
 
 export default function Header() {
   const pathname = usePathname();
