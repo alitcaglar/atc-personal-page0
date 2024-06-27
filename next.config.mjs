@@ -7,6 +7,9 @@ const nextConfig = {
       "avatars.githubusercontent.com",
     ],
   },
+  env: {
+    MONGO_URI: process.env.MONGO_URI,
+  },
 };
 
 export default nextConfig;
