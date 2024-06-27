@@ -133,7 +133,7 @@ export default function UploadPhotoForm() {
           title: "SUCCESS!",
           description: "Added photo successfully!",
         });
-        router.push("/");
+        router.refresh();
       } else {
         console.error("Failed to save photo");
       }

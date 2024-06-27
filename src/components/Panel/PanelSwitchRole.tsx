@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { useRouter } from "next/navigation";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -31,6 +33,8 @@ const SwitchRoleScema = z.object({
 });
 
 export default function PanelSwitchRole({ email }: { email: string }) {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof SwitchRoleScema>>({
     resolver: zodResolver(SwitchRoleScema),
     defaultValues: {
@@ -56,6 +60,7 @@ export default function PanelSwitchRole({ email }: { email: string }) {
       if (response.ok) {
         // Handle success
         console.log("Role updated successfully");
+        router.refresh();
 
         // You might want to update the UI here if needed
       } else {

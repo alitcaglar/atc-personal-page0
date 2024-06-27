@@ -1,9 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, cache } from "react";
 import { useSession } from "next-auth/react";
-
-import axios from "axios";
 
 import {
   Carousel,
@@ -22,7 +20,7 @@ import { MdZoomOutMap } from "react-icons/md";
 import PhotoEditButton from "../Buttons/PhotoEditButton";
 import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
 
-import { auth } from "@/lib/auth";
+//import { auth } from "@/lib/auth";
 
 export default function MainTopCarousel({ className, ...props }: any) {
   const [photos, setPhotos] = useState<any>(null);
@@ -30,8 +28,12 @@ export default function MainTopCarousel({ className, ...props }: any) {
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
-        const res = await axios.get("/api/get-photos");
-        setPhotos(res.data);
+        const res = await fetch("/api/get-photos");
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await res.json();
+        setPhotos(data);
       } catch (error) {
         console.error(error);
       }
@@ -127,3 +129,18 @@ export default function MainTopCarousel({ className, ...props }: any) {
     );
   }
 }
+
+// useEffect(() => {
+//   const fetchPhotos = async () => {
+//     try {
+//       const res = await axios.get("/api/get-photos");
+//       setPhotos(res.data);
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };
+
+//   fetchPhotos(); // Initial fetch
+
+//   // Avoid continuous fetch by ensuring dependencies are properly managed
+// }, []);

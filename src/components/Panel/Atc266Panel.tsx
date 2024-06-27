@@ -5,22 +5,6 @@ import updateUserRole from "@/utils/updateUserRole";
 import PanelSwitchRole from "./PanelSwitchRole";
 
 export default async function Atc266Panel() {
-  const handleSubmit = async (event: any) => {
-    event.preventDefault(); // Formun varsayılan davranışını engelle
-
-    const formData = new FormData(event.target);
-    const email = formData.get("email");
-    const newRole = formData.get("newRole");
-
-    try {
-      await updateUserRole(email as string, newRole as string);
-      // Başarılı bir şekilde güncellendiğinde yapılacak işlemler buraya eklenebilir
-    } catch (error) {
-      console.error("Hata:", error);
-      // Hata durumunda kullanıcıya bir hata mesajı gösterilebilir
-    }
-  };
-
   const userRoles = await getUserRoles();
   return (
     <div className="min-h-screen m-16">
@@ -41,6 +25,14 @@ export default async function Atc266Panel() {
                 {user.email}
               </p>
 
+              <p
+                className={
+                  (index % 2 === 0 ? "bg-slate-500 bg-opacity-20" : " ") +
+                  " p-4 my-1"
+                }
+              >
+                {user.role}
+              </p>
               {user.role === "atc266" ? (
                 <p
                   className={
@@ -52,17 +44,16 @@ export default async function Atc266Panel() {
                   ***Developer***
                 </p>
               ) : (
-                <PanelSwitchRole email={user.email} />
+                <div
+                  className={
+                    index % 2 === 0
+                      ? "flex justify-center p-4 bg-slate-500 bg-opacity-20 my-2"
+                      : "flex justify-center p-4 my-2"
+                  }
+                >
+                  <PanelSwitchRole email={user.email} />
+                </div>
               )}
-
-              <p
-                className={
-                  (index % 2 === 0 ? "bg-slate-500 bg-opacity-20" : " ") +
-                  " p-4 my-1"
-                }
-              >
-                {user.role}
-              </p>
             </div>
           );
         })}
@@ -70,3 +61,19 @@ export default async function Atc266Panel() {
     </div>
   );
 }
+
+// const handleSubmit = async (event: any) => {
+//   event.preventDefault(); // Formun varsayılan davranışını engelle
+
+//   const formData = new FormData(event.target);
+//   const email = formData.get("email");
+//   const newRole = formData.get("newRole");
+
+//   try {
+//     await updateUserRole(email as string, newRole as string);
+//     // Başarılı bir şekilde güncellendiğinde yapılacak işlemler buraya eklenebilir
+//   } catch (error) {
+//     console.error("Hata:", error);
+//     // Hata durumunda kullanıcıya bir hata mesajı gösterilebilir
+//   }
+// };

@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -33,6 +35,9 @@ export default function EditPhotoNameForm({
   photoName: string;
 }) {
   // const router = useRouter();
+
+  const router = useRouter();
+
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof EditPhotoNameFormSchema>>({
@@ -67,6 +72,7 @@ export default function EditPhotoNameForm({
           title: "SUCCESS!",
           description: "Photo name updated successfully!",
         });
+        router.refresh();
         // You might want to update the UI here if needed
       } else {
         // Handle failure
