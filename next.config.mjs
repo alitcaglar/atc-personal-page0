@@ -1,4 +1,4 @@
-const withWasm = require("next-plugin-wasm");
+import withWasm from "next-plugin-wasm";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -14,6 +14,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
-
-module.exports = nextConfig;
+export default withWasm(nextConfig);
