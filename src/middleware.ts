@@ -25,4 +25,4 @@ export const config = {
   ],
 };
 
-////bkz auth.js callback
+//bkz auth.js callback
