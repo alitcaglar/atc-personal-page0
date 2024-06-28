@@ -13,8 +13,13 @@ if (!supabaseUrl || !supabaseKey) {
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const connectToDb = async (): Promise<void> => {
-  // Supabase'de ek bir bağlantı kurma gereksinimi yoktur, client'ı oluşturmak yeterlidir
-  console.log("log: connected to Supabase");
+  try {
+    // Supabase bağlantısını yap
+    console.log("Connected to Supabase");
+  } catch (error) {
+    console.error("Error connecting to Supabase:", error);
+    throw error;
+  }
 };
 
 //////////////////////////////////////////////////////////

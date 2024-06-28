@@ -1,38 +1,43 @@
-// pages/api/create-photo.ts
+// api/photo-album-post.ts
+
 import { NextResponse } from "next/server";
 import { connectToDb } from "@/lib/connectToDb";
 import { createPhotoAlbum } from "@/lib/models";
 
 export async function POST(request: Request) {
   try {
+    // Veritabanına bağlan
     await connectToDb();
-    console.log("connected to database for saving photo");
+    console.log("Connected to database for saving photo");
 
-    // Parse the incoming JSON data
+    // Gelen JSON verisini işle
     const data = await request.json();
-    console.log("data:", data);
+    console.log("Data received:", data);
 
-    // Create a new photo album using the data
+    // Yeni fotoğraf albümü oluştur
     const newPhoto = await createPhotoAlbum(data);
 
     if (newPhoto) {
-      // Return success response
+      // Başarı yanıtını döndür
+      console.log("Photo saved successfully:", newPhoto);
       return NextResponse.json({
         success: true,
         message: "Photo saved successfully",
         data: newPhoto,
       });
     } else {
+      // Başarısızlık yanıtını döndür
+      console.error("Failed to save photo. 1");
       return NextResponse.json(
-        { success: false, error: "Failed to save photo" },
-        { status: 500 }
+        { success: false, error: "Failed to save photo 1" }
+        // { status: 500 }
       );
     }
   } catch (error) {
-    // Handle errors
-    console.error("Error saving photo:", error);
+    // Hataları yönet
+    console.error("Error saving photo 2:", error);
     return NextResponse.json(
-      { success: false, error: "Failed to save photo" },
+      { success: false, error: "Failed to save photo 2" },
       { status: 500 }
     );
   }

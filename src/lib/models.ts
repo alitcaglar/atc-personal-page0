@@ -13,25 +13,30 @@ export const photoAlbumTable = "photo_albums";
 export async function createPhotoAlbum(
   photoAlbum: PhotoAlbum
 ): Promise<PhotoAlbum | null> {
-  const { data, error } = await supabase.from(photoAlbumTable).insert([
-    {
-      photoName: photoAlbum.photoName,
-      takenBy: photoAlbum.takenBy,
-      takenYear: photoAlbum.takenYear,
-      photoUrl: photoAlbum.photoUrl,
-    },
-  ]);
+  try {
+    const { data, error } = await supabase.from("photo_albums").insert([
+      {
+        photoName: photoAlbum.photoName,
+        takenBy: photoAlbum.takenBy,
+        takenYear: photoAlbum.takenYear,
+        photoUrl: photoAlbum.photoUrl,
+      },
+    ]);
 
-  if (error) {
-    console.error("Error creating photo album:", error.message);
+    if (error) {
+      console.error("Error creating photo album:", error.message);
+      return null;
+    }
+
+    if (data) {
+      return data[0] as PhotoAlbum;
+    }
+
     return null;
+  } catch (error) {
+    console.error("Error creating photo album:", error);
+    throw error;
   }
-
-  if (data) {
-    return data[0] as PhotoAlbum;
-  }
-
-  return null;
 }
 
 // export interface User {
@@ -66,7 +71,7 @@ export async function createPhotoAlbum(
 
 export async function deletePhotoAlbum(photoName: string): Promise<boolean> {
   const { data, error } = await supabase
-    .from(photoAlbumTable)
+    .from("photo_albums")
     .delete()
     .eq("photoName", photoName);
 
@@ -75,7 +80,8 @@ export async function deletePhotoAlbum(photoName: string): Promise<boolean> {
     return false;
   }
 
-  return data ? true : false;
+  console.log("Supabase delete data:", data);
+  return true;
 }
 
 export async function updatePhotoAlbum(
@@ -91,10 +97,9 @@ export async function updatePhotoAlbum(
     console.error("Error updating photo album:", error.message);
     return false;
   }
-
-  return data ? true : false;
+  console.log("Supabase new data:", data);
+  return true;
 }
-
 // export async function updateUserRole(
 //   email: string,
 //   newRole: string

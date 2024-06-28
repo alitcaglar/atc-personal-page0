@@ -1,26 +1,39 @@
-// pages/api/delete-photo.ts
 import { NextResponse } from "next/server";
 import { deletePhotoAlbum } from "@/lib/models";
 import { connectToDb } from "@/lib/connectToDb";
 
 export async function DELETE(request: Request) {
   try {
+    console.log("Connecting to database...");
     await connectToDb();
+    console.log("Database connection successful.");
 
     // İstekten fotoğraf adını çıkarın
     const { photoName } = await request.json();
+    console.log("Request received with photoName:", photoName);
+
+    if (!photoName) {
+      console.error("Photo name is missing in the request body.");
+      return NextResponse.json(
+        { success: false, error: "Photo name is required" },
+        { status: 400 }
+      );
+    }
 
     // Fotoğrafı veritabanından silin
+    console.log("Attempting to delete photo with name:", photoName);
     const success = await deletePhotoAlbum(photoName);
 
     if (success) {
       // Başarı yanıtını döndür
+      console.log("Photo deleted successfully.");
       return NextResponse.json({
         success: true,
         message: "Photo deleted successfully",
       });
     } else {
       // Başarısızlık yanıtını döndür
+      console.error("Failed to delete photo in the database.");
       return NextResponse.json(
         { success: false, error: "Failed to delete photo" },
         { status: 500 }
