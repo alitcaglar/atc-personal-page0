@@ -13,7 +13,7 @@ import {
 
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { getPhotos } from "@/utils/getPhotos";
+
 import Link from "next/link";
 import EnterUpdateForm from "../Forms/EnterUpdateForm";
 import { MdZoomOutMap } from "react-icons/md";

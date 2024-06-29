@@ -1,44 +1,106 @@
-export default async function Profile() {
-  const session = await auth();
+"use client";
 
-  console.log(session);
-  console.log("*** test console server my-profile ***");
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+const formSchema = z.object({
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters long"),
+});
+
+export default function Profile() {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log("form values:", values);
+    try {
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      console.log("Response status:", response.status);
+      console.log("Response status text:", response.statusText);
+      const responseBody = await response.json();
+      console.log("Response body:", responseBody);
+
+      if (response.ok) {
+        console.log("Success:", values);
+      } else {
+        console.error("Error from server:", responseBody);
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  }
+
   return (
-    <main className="min-h-screen w-full flex flex-col items-center">
-      <p className="m-16 p-2 Text-3xl font-bold bg-gradient-to-r from-teal-500 to-lime-500 bg-clip-text text-transparent text-center">
-        Welcome{" "}
-        <span className="italic">
-          {session?.user?.name ? session?.user?.name : "Guest"}
-        </span>
-      </p>
-      {session?.user?.name ? (
-        <div>
-          <form action={signOutAction}>
-            <button className="m-2 bg-gradient-to-l from-lime-600 to-teal-600 hover:ring-4 transition duration-300 p-8 dark:text-slate-900 text-slate-200 rounded-xl drop-shadow-xl shadow-slate-500 font-bold">
-              Sign Out
-            </button>
+    <div className="flex justify-center items-center min-h-screen ">
+      <div className="border rounded-xl p-8  mt-16">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} method="post">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-lime-600">Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Please enter your email" {...field} />
+                  </FormControl>
+                  <FormDescription></FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-lime-600">Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Please enter your password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription></FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button
+              type="submit"
+              className="bg-gradient-to-r from-lime-600 to-teal-600 hover:ring-2"
+            >
+              Sign In
+            </Button>
           </form>
-        </div>
-      ) : (
-        <div>
-          <div>
-            <form action={signInWithGoogle}>
-              <button className="m-2 bg-gradient-to-l from-lime-600 to-teal-600 hover:ring-4 transition duration-300 p-8 dark:text-slate-900 text-slate-200 rounded-xl drop-shadow-xl shadow-slate-500 font-bold">
-                Sign In with Google
-              </button>
-            </form>
-          </div>
-          <div className="mt-24">
-            <form action={signInWithGithub}>
-              <button className="m-2 bg-gradient-to-l from-lime-600 to-teal-600 hover:ring-4 transition duration-300 p-8 dark:text-slate-900 text-slate-200 rounded-xl drop-shadow-xl shadow-slate-500 font-bold">
-                Sign In with Github
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
-    </main>
+        </Form>
+      </div>
+    </div>
   );
 }
-
-//TODO

@@ -1,8 +1,6 @@
 import Atc266Panel from "@/components/Panel/Atc266Panel";
-import { auth } from "@/lib/auth";
 
 export default async function atc266() {
-  const session = await auth();
   return session?.user?.role === "atc266" ? (
     <Atc266Panel />
   ) : (

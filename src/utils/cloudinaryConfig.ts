@@ -4,9 +4,9 @@ import { v2 as cloudinary } from "cloudinary";
 
 // Cloudinary yapılandırması
 cloudinary.config({
-  cloud_name: "dbjmcooux",
-  api_key: "855641839518657",
-  api_secret: "IAOt1jD7eCkmf5LUAmL7vNS6OFI",
+  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 export default cloudinary;
