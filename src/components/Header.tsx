@@ -9,7 +9,6 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import navLinks from "@/utils/navLinks";
 import HeaderBottom from "./HeaderBottom";
 import { CgProfile } from "react-icons/cg";
-import LoggedIn from "./LoggedIn/LoggedIn";
 
 export default function Header() {
   const pathname = usePathname();
@@ -25,7 +24,11 @@ export default function Header() {
           <p className="text-6xl drop-shadow-md">
             <DiAtom />
           </p>
-          <span className="p-3 font-bold drop-shadow-md">A. T. Caglar</span>
+          <span className="p-3 font-bold drop-shadow-md">
+            <span>Ali</span>
+            <span className="opacity-70">Turabi</span>
+            <span className="opacity-40">Caglar</span>
+          </span>
 
           <span className="sm:hidden font-bold opacity-40 text-lime-600">
             {pathname.replaceAll("-", " ").split("/")[1]}

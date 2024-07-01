@@ -23,69 +23,54 @@ import { z } from "zod";
 
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { TbEye, TbEyeClosed } from "react-icons/tb";
-import { Toaster } from "@/components/ui/toaster";
 
 const formSchema = z.object({
-  email: z.string().email("Invalid email address"),
   password: z.string().min(6, "Password must be at least 6 characters long"),
+  confirmPassword: z
+    .string()
+    .min(6, "Password must be at least 6 characters long"),
 });
 
-export default function Profile() {
+export default function NewPassword() {
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [loginOrSignup, setLoginOrSignup] = useState<"login" | "signup">(
-    "signup"
-  );
 
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
       password: "",
+      confirmPassword: "",
     },
   });
-
-  async function handleSignout() {
-    const response = await fetch("/api/signout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (response.ok) {
-      // Çıkış başarılı olduysa kullanıcıyı giriş sayfasına yönlendir
-      router.refresh();
-    } else {
-      // Hata durumunda uygun şekilde kullanıcıya bilgi verebilirsiniz
-      console.error("Signout failed:", await response.json());
-    }
-  }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log("form values:", values);
     setIsLoading(true);
+
+    if (values.password !== values.confirmPassword) {
+      toast({
+        title: "ERROR",
+        description: "Passwords do not match",
+      });
+      setIsLoading(false);
+      return;
+    }
+    //TODO change
     try {
-      const response = await fetch(`/api/auth/${loginOrSignup}`, {
+      const response = await fetch(`/api/auth/new-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify(values.password),
       });
 
       console.log("Response status:", response.status);
       console.log("Response status text:", response.statusText);
-
-      const contentType = response.headers.get("content-type");
-      if (!contentType || !contentType.includes("application/json")) {
-        throw new Error("Response is not in JSON format");
-      }
-
       const responseBody = await response.json();
       console.log("Response body:", responseBody);
 
@@ -93,9 +78,9 @@ export default function Profile() {
         console.log("Success:", values);
         toast({
           title: "SUCCESS!",
-          description: "✔",
+          description: `Password changed successfully.`,
         });
-        setLoginOrSignup("login");
+        router.push("/");
         form.reset();
       } else {
         toast({
@@ -115,50 +100,14 @@ export default function Profile() {
     }
   }
 
-  //TEST
-  // function handleClick() {
-  //   toast({
-  //     title: "SUCCESS!",
-  //     description: "",
-  //   });
-  // }
-
-  //TEST
-
   return (
     <div className="flex justify-center items-center min-h-screen ">
       <div className="border-2 rounded-xl p-8 mt-16 border-teal-500 shadow-sm shadow-teal-300 bg-slate-500 bg-opacity-20">
         <p className="text-3xl font-bold bg-gradient-to-r from-teal-500 to-lime-500 bg-clip-text text-transparent">
-          {loginOrSignup === "signup" ? "Sign Up" : "Login"}
-        </p>
-        <p
-          className="opacity-30 mb-8 italic cursor-pointer underline-offset-0 underline hover:opacity-50"
-          onClick={
-            loginOrSignup === "signup"
-              ? () => setLoginOrSignup("login")
-              : () => setLoginOrSignup("signup")
-          }
-        >
-          {loginOrSignup === "signup"
-            ? "You have an account?"
-            : "You don't have an account?"}
+          Change password
         </p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} method="post">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Please enter your email" {...field} />
-                  </FormControl>
-                  <FormDescription></FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <FormField
               control={form.control}
               name="password"
@@ -168,6 +117,7 @@ export default function Profile() {
                   <FormControl>
                     <Input
                       placeholder="Please enter your password"
+                      {...field}
                       type={showPassword ? "text" : "password"}
                       {...field}
                     />
@@ -177,33 +127,42 @@ export default function Profile() {
                 </FormItem>
               )}
             />
-
+            <FormField
+              control={form.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Confirm Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Please enter your new password again"
+                      type={showPassword ? "text" : "password"}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription></FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <div
               className="text-3xl cursor-pointer flex justify-center w-8"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <TbEye /> : <TbEyeClosed />}
             </div>
+
             <Button
               type="submit"
               className="bg-gradient-to-r from-lime-600 to-teal-600 hover:ring-2 mt-3"
             >
-              {loginOrSignup === "signup" ? "Sign Up" : "Login"}
+              Reset Password
               {isLoading && (
                 <div className="animate-spin px-3">
                   <AiOutlineLoading3Quarters />
                 </div>
               )}
             </Button>
-            <p
-              onClick={() => router.push("/profile/reset-password")}
-              className="cursor-pointer opacity-30 hover:opacity-50 mt-4"
-            >
-              Reset Password
-            </p>
-            {/* <p onClick={handleSignout} className="cursor-pointer mt-8">
-              Sign Out ***test
-            </p> */}
           </form>
         </Form>
       </div>

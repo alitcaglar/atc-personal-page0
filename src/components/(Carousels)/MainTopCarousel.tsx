@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, cache } from "react";
-import { useSession } from "next-auth/react";
 
 import {
   Carousel,
@@ -55,7 +54,6 @@ export default function MainTopCarousel({ className, ...props }: any) {
 
   //const session = await auth();
 
-  const { data: session, status, update } = useSession();
   if (!photos) return null;
   if (photos) {
     console.log(photos, typeof photos, "***data****", photos.data);

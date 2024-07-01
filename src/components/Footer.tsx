@@ -38,9 +38,10 @@ export default function Footer() {
     <>
       <Drawer>
         <DrawerTrigger>
-          <Button className="w-96 h-16 bg-gradient-to-b from-lime-600 to-teal-500 my-8 text-3xl hover:ring-4">
-            Get in touch <span className="text-6xl rotate-6">!</span>
-          </Button>
+          <div className=" flex items-center justify-center w-96 h-16 bg-gradient-to-b from-lime-600 to-teal-500 my-8 text-3xl hover:ring-4 rounded-xl text-slate-200 dark:text-slate-800">
+            <p>Get in touch</p>
+            <span className="text-6xl rotate-6">!</span>
+          </div>
         </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>

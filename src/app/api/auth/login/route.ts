@@ -1,5 +1,3 @@
-// /api/auth/signup
-
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
@@ -7,11 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const cookieStore = cookies();
-
-    const { email, password } = await req.json(); // Parse JSON body directly
-
-    console.log("Received email:", email);
-    console.log("Received password:", password);
+    const { email, password } = await req.json();
 
     if (!email || !password) {
       console.error("Email and password are required");
@@ -23,17 +17,19 @@ export async function POST(req: NextRequest) {
 
     const supabase = createRouteHandlerClient({ cookies: () => cookieStore });
 
-    const { error: signUpError, data } = await supabase.auth.signUp({
-      email,
-      password,
-    });
+    const { error: signInError, data } = await supabase.auth.signInWithPassword(
+      {
+        email,
+        password,
+      }
+    );
 
-    if (signUpError) {
-      console.error("Supabase signUp error:", signUpError.message);
-      return NextResponse.json({ error: signUpError.message }, { status: 500 });
+    if (signInError) {
+      console.error("Supabase signIn error:", signInError.message);
+      return NextResponse.json({ error: signInError.message }, { status: 500 });
     }
 
-    console.log("Supabase signUp success:", data);
+    console.log("Supabase signIn success:", data);
 
     return NextResponse.json(
       { message: "Authentication successful", data },
