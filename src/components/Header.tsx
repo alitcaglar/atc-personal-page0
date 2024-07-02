@@ -21,13 +21,13 @@ export default function Header() {
           href="/"
           className="flex items-center m-2 ml-3 text-lime-600 dark:text-lime-400 hover:text-teal-600 dark:hover:text-teal-400 hover:transition hover:duration-300"
         >
-          <p className="text-6xl drop-shadow-md">
+          <p className="text-6xl drop-shadow-md opacity-70 ml-4">
             <DiAtom />
           </p>
-          <span className="p-3 font-bold drop-shadow-md">
-            <span>Ali</span>
-            <span className="opacity-70">Turabi</span>
-            <span className="opacity-40">Caglar</span>
+          <span className="p-3 drop-shadow-md">
+            <span className="font-extrabold">Ali</span>
+            <span className="opacity-70 font-bold">Turabi</span>
+            <span className="opacity-40 font-semibold">Caglar</span>
           </span>
 
           <span className="sm:hidden font-bold opacity-40 text-lime-600">

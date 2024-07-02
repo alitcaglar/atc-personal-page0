@@ -1,13 +1,13 @@
 // api/photo-album-post.ts
 
 import { NextResponse } from "next/server";
-import { connectToDb } from "@/lib/connectToDb";
+
 import { createPhotoAlbum } from "@/lib/models";
 
 export async function POST(request: Request) {
   try {
     // Veritabanına bağlan
-    await connectToDb();
+
     console.log("Connected to database for saving photo");
 
     // Gelen JSON verisini işle

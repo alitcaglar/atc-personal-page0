@@ -1,7 +1,7 @@
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
-import { url } from "@/utils/url";
+import { NextResponse } from "next/server";
+//import { url } from "@/utils/url";
 
 export async function POST(req: Request) {
   try {
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
 
     const { data: resetData, error: resetPasswordError } =
       await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${url}profile/new-password`,
+        redirectTo: `http://localhost:3000/profile/new-password`,
       });
 
     if (resetPasswordError) {

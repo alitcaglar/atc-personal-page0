@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 import { useToast } from "@/components/ui/use-toast";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useRouter } from "next/navigation";
 
@@ -23,7 +23,8 @@ import { z } from "zod";
 
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { TbEye, TbEyeClosed } from "react-icons/tb";
-import { Toaster } from "@/components/ui/toaster";
+
+import { fetchSessionData } from "@/utils/fetchSessionData";
 
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -31,7 +32,23 @@ const formSchema = z.object({
 });
 
 export default function Profile() {
+  //session
+
   const router = useRouter();
+
+  const [sessionEmail, setSessionEmail] = useState<any>(null);
+  const [sessionRole, setSessionRole] = useState<any>(null);
+
+  useEffect(() => {
+    fetchSessionData(setSessionEmail, setSessionRole);
+  }, []);
+
+  console.log("Session email and role:", sessionEmail, sessionRole);
+
+  if (sessionEmail !== null || sessionRole !== null) {
+    router.push("/profile/greetings");
+  }
+  //session
 
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);

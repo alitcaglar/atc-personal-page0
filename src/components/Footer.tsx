@@ -20,9 +20,6 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 
-import { Typewriter } from "react-simple-typewriter";
-import { Button } from "./ui/button";
-
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import EmailSendForm from "./Forms/EmailSendForm";
 

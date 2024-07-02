@@ -1,11 +1,9 @@
 import { NextResponse } from "next/server";
 import { deletePhotoAlbum } from "@/lib/models";
-import { connectToDb } from "@/lib/connectToDb";
 
 export async function DELETE(request: Request) {
   try {
     console.log("Connecting to database...");
-    await connectToDb();
     console.log("Database connection successful.");
 
     // İstekten fotoğraf adını çıkarın

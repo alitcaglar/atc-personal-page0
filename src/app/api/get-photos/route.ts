@@ -1,10 +1,9 @@
 // pages/api/get-photos.js
-import { connectToDb, supabase } from "@/lib/connectToDb";
+import { supabase } from "@/lib/connectToDb";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    await connectToDb();
     const { data: photos, error } = await supabase
       .from("photo_albums") // Supabase'deki tablo adı
       .select("*");

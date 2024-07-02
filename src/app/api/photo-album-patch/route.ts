@@ -1,11 +1,10 @@
 // pages/api/update-photo.ts
 import { NextResponse } from "next/server";
-import { connectToDb } from "@/lib/connectToDb";
+
 import { updatePhotoAlbum } from "@/lib/models";
 
 export async function PATCH(request: Request) {
   try {
-    await connectToDb();
     console.log("connected to database for patching");
 
     // Parse the incoming JSON data

@@ -1,26 +1,13 @@
 import { createClient } from "@supabase/supabase-js";
-import dotenv from "dotenv";
 
-dotenv.config();
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+export const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+export const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
   throw new Error("Supabase URL or Key environment variables are not defined");
 }
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
-
-export const connectToDb = async (): Promise<void> => {
-  try {
-    // Supabase bağlantısını yap
-    console.log("Connected to Supabase");
-  } catch (error) {
-    console.error("Error connecting to Supabase:", error);
-    throw error;
-  }
-};
 
 //////////////////////////////////////////////////////////
 

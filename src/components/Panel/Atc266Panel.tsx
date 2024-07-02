@@ -1,24 +1,25 @@
-
-import { connectToDb, supabase } from "@/lib/connectToDb";
-
+import { supabase } from "@/lib/connectToDb";
 
 export default async function Atc266Panel() {
-    
+  // import { unstable_noStore as noStore } from "next/cache";
 
-// import { unstable_noStore as noStore } from "next/cache";
+  async function getUserRoles() {
+    // noStore();
+    try {
+      const { data, error } = await supabase.from("users").select("*");
 
-async function getUserRoles() {
-  // noStore();
-  try {
-    connectToDb();
-    const { data, error } = await supabase.from("users").select("*");
-    
-    data && console.log(data);
-    error && console.log(error);
-   
-    // throw new Error("Failed to fetch photos");
+      data && console.log(data);
+      error && console.log(error);
+
+      // throw new Error("Failed to fetch photos");
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      // return NextResponse.json(
+      //   { success: false, error: "Failed to fetch photos" },
+      //   { status: 500 }
+      // );
+    }
   }
-}
   return (
     <div className="min-h-screen m-16">
       {/* <h1 className="text-3xl font-bold underline m-8">Developer Panel</h1>

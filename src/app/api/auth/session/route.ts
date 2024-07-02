@@ -1,17 +1,30 @@
-// pages/api/get-photos.js
-import { connectToDb, supabase } from "@/lib/connectToDb";
-import { NextResponse } from "next/server";
+//api/auth/session
 
-export async function GET() {
+import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
+import { NextResponse, NextRequest } from "next/server";
+
+export async function GET(req: NextRequest) {
   try {
-    await connectToDb();
-    console.log("*api session sucess*");
+    const res = NextResponse.next();
+    const supabase = createMiddlewareClient({ req, res });
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.getSession();
 
-    return NextResponse.json({ success: true });
+    session &&
+      console.log(
+        "***api/auth/session*** Session email and role:",
+        session.user.email,
+        session.user.role
+      );
+    error && console.log("***api/auth/session***Error:", error);
+
+    return NextResponse.json({ success: true, session });
   } catch (error) {
-    console.error("Error fetching photos:", error);
+    console.error("*Error fetching session:*", error);
     return NextResponse.json(
-      { success: false, error: "Failed to fetch photos" },
+      { success: false, error: "*Failed to fetch session*" },
       { status: 500 }
     );
   }
