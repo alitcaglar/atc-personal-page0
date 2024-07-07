@@ -65,11 +65,12 @@ export default function Introduction() {
       <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
         Delve deeper into the technologies driving innovation with a captivating
         3D effect section highlighting software tools on hover, complemented by
-        an intuitive footer inviting you to connect. Click "Get in touch!" to
-        reveal a drawer showcasing contact details, including an auto-copied
-        email address, WhatsApp contact, and links to GitHub and LinkedIn. For
-        direct communication, utilize the email form powered by Mailgun,
-        ensuring swift and reliable correspondence.
+        an intuitive footer inviting you to connect. Click{" "}
+        <span className="font-semibold">Get in touch!</span> to reveal a drawer
+        showcasing contact details, including an auto-copied email address,
+        WhatsApp contact, and links to GitHub and LinkedIn. For direct
+        communication, utilize the email form powered by Mailgun, ensuring swift
+        and reliable correspondence.
       </p>
 
       <Image
