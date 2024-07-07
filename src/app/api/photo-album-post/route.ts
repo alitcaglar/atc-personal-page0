@@ -12,7 +12,7 @@ interface PhotoAlbum {
   photoUrl: string;
 }
 
-export async function createPhotoAlbum(
+async function createPhotoAlbum(
   photoAlbum: PhotoAlbum
 ): Promise<PhotoAlbum | null> {
   try {

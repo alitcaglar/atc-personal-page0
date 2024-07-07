@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { supabase } from "@/lib/connectToDb";
 
-export async function deletePhotoAlbum(photoName: string): Promise<boolean> {
+async function deletePhotoAlbum(photoName: string): Promise<boolean> {
   const { data, error } = await supabase
     .from("photo_albums")
     .delete()

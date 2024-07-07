@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 import { supabase } from "@/lib/connectToDb";
 
-export async function updatePhotoAlbum(
+async function updatePhotoAlbum(
   photoName: string,
   newPhotoName: string
 ): Promise<boolean> {
