@@ -27,11 +27,7 @@ export default function EnterUpdateForm() {
                 authorized access only{" "}
               </i>
             </DialogTitle>
-            <DialogDescription>
-              {
-                /*session?.user?.role !== "user" && session?.user && */ <UploadPhotoForm />
-              }
-            </DialogDescription>
+            <DialogDescription>{<UploadPhotoForm />}</DialogDescription>
           </DialogHeader>
         </DialogContent>
       </Dialog>

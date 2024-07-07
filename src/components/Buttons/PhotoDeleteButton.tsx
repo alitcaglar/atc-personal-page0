@@ -3,7 +3,7 @@
 import { MdDeleteForever } from "react-icons/md";
 import { toast } from "../ui/use-toast";
 import { useRouter } from "next/navigation";
-import { Toaster } from "@/components/ui/toaster";
+import { useState, useEffect } from "react";
 
 import {
   AlertDialog,
@@ -17,6 +17,8 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
+import { fetchSessionDataCSR } from "@/utils/fetchSessionData";
+
 export default function PhotoDeleteButton({
   alertDialog,
   photoName,
@@ -24,6 +26,13 @@ export default function PhotoDeleteButton({
   alertDialog: string;
   photoName: string;
 }) {
+  const [sessionEmail, setSessionEmail] = useState<any>(null);
+  const [sessionRole, setSessionRole] = useState<any>(null);
+
+  useEffect(() => {
+    fetchSessionDataCSR(setSessionEmail, setSessionRole);
+  }, []);
+
   const router = useRouter();
 
   const handleDelete = async () => {
@@ -77,7 +86,9 @@ export default function PhotoDeleteButton({
           <AlertDialogCancel>Cancel.</AlertDialogCancel>
           <AlertDialogAction
             className="bg-gradient-to-l from-lime-500 to-teal-500 hover:ring-2 transition"
-            onClick={handleDelete}
+            onClick={
+              !sessionEmail ? () => router.push("/profile") : handleDelete
+            }
           >
             Delete
           </AlertDialogAction>

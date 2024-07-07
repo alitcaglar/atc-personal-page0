@@ -5,10 +5,8 @@ const nextConfig = {
       "fastly.picsum.photos",
       "res.cloudinary.com",
       "avatars.githubusercontent.com",
+      "free-images.com",
     ],
-  },
-  env: {
-    MONGO_URI: process.env.MONGO_URI,
   },
 };
 

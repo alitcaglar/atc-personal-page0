@@ -1,7 +1,24 @@
-// pages/api/update-photo.ts
+// pages/api/photo-album-patch
 import { NextResponse } from "next/server";
 
-import { updatePhotoAlbum } from "@/lib/models";
+import { supabase } from "@/lib/connectToDb";
+
+export async function updatePhotoAlbum(
+  photoName: string,
+  newPhotoName: string
+): Promise<boolean> {
+  const { data, error } = await supabase
+    .from("photo_albums")
+    .update({ photoName: newPhotoName })
+    .eq("photoName", photoName);
+
+  if (error) {
+    console.error("Error updating photo album:", error.message);
+    return false;
+  }
+  console.log("Supabase new data:", data);
+  return true;
+}
 
 export async function PATCH(request: Request) {
   try {

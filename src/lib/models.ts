@@ -1,43 +1,4 @@
-import { supabase } from "@/lib/connectToDb";
-
-export interface PhotoAlbum {
-  id: number;
-  photoName: string;
-  takenBy: string;
-  takenYear: string;
-  photoUrl: string;
-}
-
-export const photoAlbumTable = "photo_albums";
-
-export async function createPhotoAlbum(
-  photoAlbum: PhotoAlbum
-): Promise<PhotoAlbum | null> {
-  try {
-    const { data, error } = await supabase.from("photo_albums").insert([
-      {
-        photoName: photoAlbum.photoName,
-        takenBy: photoAlbum.takenBy,
-        takenYear: photoAlbum.takenYear,
-        photoUrl: photoAlbum.photoUrl,
-      },
-    ]);
-
-    if (error) {
-      console.error("Error creating photo album:", error.message);
-      return null;
-    }
-
-    if (data) {
-      return data[0] as PhotoAlbum;
-    }
-
-    return null;
-  } catch (error) {
-    console.error("Error creating photo album:", error);
-    throw error;
-  }
-}
+//out of work
 
 // export interface User {
 //   id: number; // PostgreSQL'de genellikle "id" alanı otomatik artan bir tamsayıdır
@@ -69,37 +30,6 @@ export async function createPhotoAlbum(
 //   return null;
 // }
 
-export async function deletePhotoAlbum(photoName: string): Promise<boolean> {
-  const { data, error } = await supabase
-    .from("photo_albums")
-    .delete()
-    .eq("photoName", photoName);
-
-  if (error) {
-    console.error("Error deleting photo album:", error.message);
-    return false;
-  }
-
-  console.log("Supabase delete data:", data);
-  return true;
-}
-
-export async function updatePhotoAlbum(
-  photoName: string,
-  newPhotoName: string
-): Promise<boolean> {
-  const { data, error } = await supabase
-    .from(photoAlbumTable)
-    .update({ photoName: newPhotoName })
-    .eq("photoName", photoName);
-
-  if (error) {
-    console.error("Error updating photo album:", error.message);
-    return false;
-  }
-  console.log("Supabase new data:", data);
-  return true;
-}
 // export async function updateUserRole(
 //   email: string,
 //   newRole: string

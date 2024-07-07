@@ -9,7 +9,12 @@ export async function POST(req: NextRequest) {
 
   const supabase = createRouteHandlerClient({ cookies: () => cookieStore });
 
-  const response = await supabase.auth.signOut();
-
-  return NextResponse.redirect(url.origin, { status: 301 });
+  try {
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
+    return NextResponse.redirect(url.origin, { status: 301 });
+  } catch (error) {
+    console.error("Sign out error:", error);
+    return NextResponse.json({ error: "Failed to sign out" }, { status: 500 });
+  }
 }

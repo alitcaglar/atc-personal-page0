@@ -3,20 +3,41 @@
 import { DiAtom } from "react-icons/di";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import ThemeSwitcher from "./ThemeSwitcher";
 import navLinks from "@/utils/navLinks";
 import HeaderBottom from "./HeaderBottom";
 import { CgProfile } from "react-icons/cg";
+import { fetchSessionDataCSR } from "@/utils/fetchSessionData";
 
 export default function Header() {
+  //session
+
+  const [sessionEmail, setSessionEmail] = useState<any>(null);
+  const [sessionRole, setSessionRole] = useState<any>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [openNav, setOpenNav] = useState(false);
   const pathname = usePathname();
 
-  const [openNav, setOpenNav] = useState(false);
+  useEffect(() => {
+    fetchSessionDataCSR(setSessionEmail, setSessionRole);
+    console.log("*header session fetched*");
+
+    if (sessionEmail !== null || sessionRole !== null) {
+      setIsLoggedIn(true);
+      console.log("Is logged in:", isLoggedIn);
+    } else {
+      setIsLoggedIn(false);
+      console.log("Is logged in:", isLoggedIn);
+    }
+  }, [sessionEmail, sessionRole, isLoggedIn, pathname]);
+
+  //session
+
   return (
     <>
-      <header className="h-[73px] flex justify-between backdrop-blur-sm fixed top-0 left-0 right-0 z-10 bg-slate-50 bg-opacity-70 dark:bg-slate-950 dark:bg-opacity-60">
+      <header className="h-[73px] flex justify-between backdrop-blur-sm fixed top-0 left-0 right-0 bg-slate-50 bg-opacity-40 dark:bg-slate-950 dark:bg-opacity-60 z-30">
         <Link
           href="/"
           className="flex items-center m-2 ml-3 text-lime-600 dark:text-lime-400 hover:text-teal-600 dark:hover:text-teal-400 hover:transition hover:duration-300"
@@ -28,6 +49,7 @@ export default function Header() {
             <span className="font-extrabold">Ali</span>
             <span className="opacity-70 font-bold">Turabi</span>
             <span className="opacity-40 font-semibold">Caglar</span>
+            <span className="opacity-20 font-semibold italic"> beta v.0</span>
           </span>
 
           <span className="sm:hidden font-bold opacity-40 text-lime-600">

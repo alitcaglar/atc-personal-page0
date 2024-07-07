@@ -14,11 +14,11 @@ export async function GET(req: NextRequest) {
 
     session &&
       console.log(
-        "***api/auth/session*** Session email and role:",
+        "*api/auth/session* Session email and role:",
         session.user.email,
         session.user.role
       );
-    error && console.log("***api/auth/session***Error:", error);
+    error && console.log("*api/auth/session* Error:", error);
 
     return NextResponse.json({ success: true, session });
   } catch (error) {

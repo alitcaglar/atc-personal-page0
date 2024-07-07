@@ -2,15 +2,47 @@
 
 import { NextResponse } from "next/server";
 
-import { createPhotoAlbum } from "@/lib/models";
+import { supabase } from "@/lib/connectToDb";
+
+interface PhotoAlbum {
+  id: number;
+  photoName: string;
+  takenBy: string;
+  takenYear: string;
+  photoUrl: string;
+}
+
+export async function createPhotoAlbum(
+  photoAlbum: PhotoAlbum
+): Promise<PhotoAlbum | null> {
+  try {
+    const { data, error } = await supabase.from("photo_albums").insert([
+      {
+        photoName: photoAlbum.photoName,
+        takenBy: photoAlbum.takenBy,
+        takenYear: photoAlbum.takenYear,
+        photoUrl: photoAlbum.photoUrl,
+      },
+    ]);
+
+    if (error) {
+      console.error("Error creating photo album:", error.message);
+      return null;
+    }
+
+    if (data) {
+      return data[0] as PhotoAlbum;
+    }
+
+    return null;
+  } catch (error) {
+    console.error("Error creating photo album:", error);
+    throw error;
+  }
+}
 
 export async function POST(request: Request) {
   try {
-    // Veritabanına bağlan
-
-    console.log("Connected to database for saving photo");
-
-    // Gelen JSON verisini işle
     const data = await request.json();
     console.log("Data received:", data);
 

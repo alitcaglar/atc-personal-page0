@@ -17,7 +17,6 @@ import { uploadToCloudinary } from "@/utils/uploadToCloudinary";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { useState, useEffect } from "react";
-import { Toaster } from "@/components/ui/toaster";
 
 //zod schema
 
@@ -39,8 +38,17 @@ const uploadPhotoFormSchema = z.object({
   photoUrl: z.string().url({ message: "Photo URL must be a valid URL." }),
 });
 
+import { fetchSessionDataCSR } from "@/utils/fetchSessionData";
+
 //function
 export default function UploadPhotoForm() {
+  const [sessionEmail, setSessionEmail] = useState<any>(null);
+  const [sessionRole, setSessionRole] = useState<any>(null);
+
+  useEffect(() => {
+    fetchSessionDataCSR(setSessionEmail, setSessionRole);
+  }, []);
+
   const router = useRouter();
   const { toast } = useToast();
   // const handleFormSubmit = (data: z.infer<typeof uploadPhotoFormSchema>) => {
@@ -83,7 +91,7 @@ export default function UploadPhotoForm() {
     } catch (error) {
       console.error("Error uploading photo to Cloudinary:", error);
     }
-  }
+  } ///////////////////handleFileUpload//end
 
   function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files && event.target.files[0];
@@ -228,7 +236,9 @@ export default function UploadPhotoForm() {
               className="m-2 hover:cursor-pointer"
             />
             <Button
-              onClick={handleFileUpload}
+              onClick={
+                !sessionEmail ? () => router.push("/profile") : handleFileUpload
+              }
               className={
                 "m-2 bg-gradient-to-r from-lime-600 to-teal-600 hover:ring-2 transition duration-300"
               }

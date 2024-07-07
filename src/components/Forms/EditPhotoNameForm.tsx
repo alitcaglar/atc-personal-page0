@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -22,6 +22,8 @@ import { Input } from "@/components/ui/input";
 
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
+import { fetchSessionDataCSR } from "@/utils/fetchSessionData";
+
 const EditPhotoNameFormSchema = z.object({
   newPhotoName: z.string().min(2, {
     message: "Photo name must be at least 2 characters.",
@@ -34,6 +36,13 @@ export default function EditPhotoNameForm({
 }: {
   photoName: string;
 }) {
+  const [sessionEmail, setSessionEmail] = useState<any>(null);
+  const [sessionRole, setSessionRole] = useState<any>(null);
+
+  useEffect(() => {
+    fetchSessionDataCSR(setSessionEmail, setSessionRole);
+  }, []);
+
   // const router = useRouter();
 
   const router = useRouter();
@@ -107,18 +116,24 @@ export default function EditPhotoNameForm({
               </FormItem>
             )}
           />
-          <Button
-            type="submit"
-            className="bg-gradient-to-r from-lime-600 to-teal-600 hover:from-lime-700 hover:to-teal-700"
-          >
-            {isLoading ? (
-              <div className="animate-spin px-3">
-                <AiOutlineLoading3Quarters />
-              </div>
-            ) : (
-              "Update"
-            )}
-          </Button>
+          {!sessionEmail ? (
+            <Button type="button" disabled>
+              Please log in
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              className="bg-gradient-to-r from-lime-600 to-teal-600 hover:from-lime-700 hover:to-teal-700"
+            >
+              {isLoading ? (
+                <div className="animate-spin px-3">
+                  <AiOutlineLoading3Quarters />
+                </div>
+              ) : (
+                "Update"
+              )}
+            </Button>
+          )}
         </form>
       </Form>
     </>

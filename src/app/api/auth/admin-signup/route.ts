@@ -28,17 +28,17 @@ export async function POST(req: NextRequest) {
       password,
       options: {
         data: {
-          role: "user",
+          role: "admin",
         },
       },
     });
 
     if (signUpError) {
-      console.error("Supabase signUp error:", signUpError.message);
+      console.error("Supabase admin signUp error:", signUpError.message);
       return NextResponse.json({ error: signUpError.message }, { status: 500 });
     }
 
-    console.log("Supabase signUp success:", data);
+    console.log("Supabase admin signUp success:", data);
 
     return NextResponse.json(
       { message: "Authentication successful", data },

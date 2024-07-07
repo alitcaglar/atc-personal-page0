@@ -1,5 +1,21 @@
 import { NextResponse } from "next/server";
-import { deletePhotoAlbum } from "@/lib/models";
+
+import { supabase } from "@/lib/connectToDb";
+
+export async function deletePhotoAlbum(photoName: string): Promise<boolean> {
+  const { data, error } = await supabase
+    .from("photo_albums")
+    .delete()
+    .eq("photoName", photoName);
+
+  if (error) {
+    console.error("Error deleting photo album:", error.message);
+    return false;
+  }
+
+  console.log("Supabase delete data:", data);
+  return true;
+}
 
 export async function DELETE(request: Request) {
   try {
