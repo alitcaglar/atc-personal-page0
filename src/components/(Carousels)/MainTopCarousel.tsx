@@ -33,6 +33,16 @@ export default function MainTopCarousel({ className, ...props }: any) {
         }
         const data = await res.json();
         setPhotos(data);
+
+        // Log data after fetching and setting photos
+        console.log(
+          "log getPhotos ::: photos ::",
+          data,
+          "type::",
+          typeof data,
+          "length::",
+          data.length
+        );
       } catch (error) {
         console.error(error);
       }
@@ -42,15 +52,6 @@ export default function MainTopCarousel({ className, ...props }: any) {
 
     // Avoid continuous fetch by ensuring dependencies are properly managed
   }, []);
-
-  console.log(
-    "log getPhotos ::: photos ::",
-    photos,
-    "type::",
-    typeof photos,
-    "length::",
-    photos?.length
-  );
 
   //const session = await auth();
 

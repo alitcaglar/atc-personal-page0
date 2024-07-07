@@ -7,6 +7,7 @@ import { LuMailCheck } from "react-icons/lu";
 import { IoLogoWhatsapp } from "react-icons/io5";
 import { IoLogoGithub } from "react-icons/io5";
 import { FaLinkedin } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa6";
 import Link from "next/link";
 
 import {
@@ -79,13 +80,13 @@ export default function Footer() {
                 <div>GitHub</div>
               </Link>
               <Link
-                href="https://www.linkedin.com/"
+                href="https://www.instagram.com/alitcaglar"
                 className="flex items-center m-4 hover:translate-x-[1px] hover:translate-y-1 transition "
               >
-                <div className="text-6xl text-blue-600 m-1">
-                  <FaLinkedin />
+                <div className="text-6xl m-1">
+                  <FaInstagram />
                 </div>
-                <div>LinkedIn</div>
+                <div>Instagram</div>
               </Link>
             </div>
 
