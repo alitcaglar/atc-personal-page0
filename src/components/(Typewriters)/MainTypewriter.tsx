@@ -6,7 +6,7 @@ import { Typewriter } from "react-simple-typewriter";
 export default function MainTypewriter() {
   return (
     <main>
-      <div className="App text-6xl m-8 w-96 h-[45rem] bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent">
+      <div className="App text-6xl m-8 w-72 h-[45rem] bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent">
         <Typewriter
           words={[
             "Eat(); Sleep(); Code();  Repeat!",

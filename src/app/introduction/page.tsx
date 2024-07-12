@@ -16,7 +16,7 @@ export default function Introduction() {
         alt="developer desk"
         width={500}
         height={150}
-        className="m-8 rounded-3xl"
+        className="m-8 sm:rounded-3xl"
       ></Image>
       <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
         <span className="font-semibold">Ali Turabi Caglar Personal Page </span>
@@ -32,7 +32,7 @@ export default function Introduction() {
         alt="nuclear power plant"
         width={500}
         height={150}
-        className="m-8 rounded-3xl"
+        className="m-8 sm:rounded-3xl"
       ></Image>
 
       <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
@@ -49,7 +49,7 @@ export default function Introduction() {
         alt="cyber security padlock"
         width={500}
         height={150}
-        className="m-8 rounded-3xl"
+        className="m-8 sm:rounded-3xl"
       ></Image>
 
       <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
@@ -68,7 +68,7 @@ export default function Introduction() {
         alt="blank photos"
         width={500}
         height={150}
-        className="m-8 rounded-3xl"
+        className="m-8 sm:rounded-3xl"
       ></Image>
 
       <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
@@ -87,7 +87,7 @@ export default function Introduction() {
         alt="art gallery painting"
         width={500}
         height={150}
-        className="m-8 rounded-3xl"
+        className="m-8 sm:rounded-3xl"
       ></Image>
 
       <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
@@ -101,7 +101,7 @@ export default function Introduction() {
         alt="motion abstraction"
         width={500}
         height={150}
-        className="m-8 rounded-3xl"
+        className="m-8 sm:rounded-3xl"
       ></Image>
     </main>
   );
