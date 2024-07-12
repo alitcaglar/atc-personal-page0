@@ -59,7 +59,7 @@ export default function Greetings(sessionEmail: any, sessionRole: any) {
           </div>
         )}
       </Button>
-      <div className="flex justify-center items-center min-h-screen text-6xl m-8  bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent">
+      <div className="flex justify-center w-72 items-center min-h-screen text-6xl m-8  bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent">
         <Typewriter
           words={[`Greetings!`, `Your email is  ${sessionEmail.sessionEmail}`]}
           loop={999}

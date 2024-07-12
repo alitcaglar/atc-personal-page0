@@ -26,13 +26,13 @@ import {
 
 export default function Emblems() {
   return (
-    <div className="overflow-hidden">
+    <div className="m-4 z-50">
       <Tilt>
-        <p className="text-2xl text-slate-500 text-center mb-4">
+        <p className="text-2xl text-slate-500 text-center mb-4 mt-8">
           Some of{" "}
-          <span className="text-lime-600 dark:text-teal-500 text-3xl">
+          <p className="text-lime-600 dark:text-teal-500 text-3xl">
             software technologies
-          </span>{" "}
+          </p>{" "}
           I use
         </p>
         <div className="flex flex-wrap justify-center items-stretch">
@@ -41,7 +41,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <RiSupabaseLine />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 Supabase: Open-source Firebase alternative. Supabase Auth:
                 Secure, scalable authentication for developers` projects.
               </HoverCardContent>
@@ -52,7 +52,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <FaHtml5 />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 HTML: Markup language for web content.
               </HoverCardContent>
             </div>
@@ -62,7 +62,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <IoLogoJavascript />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 JavaScript : Dynamic programming language for web development.
               </HoverCardContent>
             </div>
@@ -72,7 +72,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <SiReacthookform />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 React Hook Form : Library for managing forms in React
                 applications.
               </HoverCardContent>
@@ -83,7 +83,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <SiNextdotjs />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 NextJS : The React Framework created and maintained by @vercel.
               </HoverCardContent>
             </div>
@@ -93,7 +93,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <FaGit />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 Git :Distributed version control system for collaborative
                 development.
               </HoverCardContent>
@@ -104,7 +104,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <FaGithub />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 Github : Web-based platform for hosting Git repositories.
               </HoverCardContent>
             </div>
@@ -114,7 +114,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <FaNpm />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 NPM : JavaScript package manager for managing dependencies
                 easily.
               </HoverCardContent>
@@ -125,7 +125,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <FaReact />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 React : Declarative UI library for building interactive web
                 applications.
               </HoverCardContent>
@@ -136,7 +136,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <RiTailwindCssFill />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 TailwindCSS : Utility-first CSS framework for rapid web
                 development.
               </HoverCardContent>
@@ -147,7 +147,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <FaCss3 />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 CSS3 : Styling language with animations and responsive design.
               </HoverCardContent>
             </div>
@@ -157,7 +157,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <SiShadcnui />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 Shadcn.UI :Component library for building accessible web
                 applications.
               </HoverCardContent>
@@ -168,7 +168,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <SiCloudinary />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 Cloudinary : Cloud-based media management service for web
                 developers.
               </HoverCardContent>
@@ -179,7 +179,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <SiZod />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 Zod : TypeScript-first schema declaration and validation
                 library.
               </HoverCardContent>
@@ -190,7 +190,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <SiTypescript />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 Typescript : Strongly typed programming language that builds on
                 JavaScript.
               </HoverCardContent>
@@ -201,7 +201,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <TbBrandVercel />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 Vercel: The platform for developers, providing speed,
                 reliability, and simplicity.
               </HoverCardContent>
@@ -212,7 +212,7 @@ export default function Emblems() {
               <HoverCardTrigger>
                 <SiMailgun />
               </HoverCardTrigger>
-              <HoverCardContent className="text-3xl">
+              <HoverCardContent className="text-lg">
                 Mailgun: Powerful email API service for sending, receiving, and
                 tracking emails effortlessly.
               </HoverCardContent>

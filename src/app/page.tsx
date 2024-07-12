@@ -8,7 +8,6 @@ export default function Home() {
     <main className="flex min-h-screen flex-wrap items-center justify-around">
       <MainTypewriter />
       <MainTopCarousel />
-
       <div className="bg-gradient-to-l from-transparent via-transparent to-teal-600 h-8 w-full left-0 my-5"></div>
       <div className="sm:p-48">
         <Emblems />

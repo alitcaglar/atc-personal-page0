@@ -26,6 +26,7 @@ import { TbEye, TbEyeClosed } from "react-icons/tb";
 
 import { fetchSessionDataCSR } from "@/utils/fetchSessionData";
 import Greetings from "@/components/Greetings/Greetings";
+import { Typewriter } from "react-simple-typewriter";
 
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -133,12 +134,24 @@ export default function Profile() {
     <Greetings sessionEmail={sessionEmail} sessionRole={sessionRole} />
   ) : (
     <div className="flex justify-center items-center min-h-screen ">
-      <div className="border-2 rounded-xl p-8 mt-16 border-teal-500 shadow-sm shadow-teal-300 bg-slate-500 bg-opacity-20">
-        <p className="text-3xl font-bold bg-gradient-to-r from-teal-500 to-lime-500 bg-clip-text text-transparent">
-          {loginOrSignup === "signup" ? "Sign Up" : "Login"}
+      <div className="border-2 rounded-xl p-8 mt-16 border-teal-500 shadow-sm shadow-teal-300 bg-slate-500 bg-opacity-20 w-[400px] h-[450px]">
+        <p className="text-3xl font-bold bg-gradient-to-r from-teal-500 to-lime-500 bg-clip-text text-transparent ">
+          {loginOrSignup === "signup" ? (
+            <Typewriter
+              words={["Sign Up"]}
+              cursor
+              cursorStyle="|"
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={1000}
+            />
+          ) : (
+            "Login"
+          )}
         </p>
+
         <p
-          className="opacity-30 mb-8 italic cursor-pointer underline-offset-0 underline hover:opacity-50"
+          className="opacity-30 mb-8 italic cursor-pointer underline-offset-0 underline hover:opacity-50 "
           onClick={
             loginOrSignup === "signup"
               ? () => setLoginOrSignup("login")
@@ -149,8 +162,13 @@ export default function Profile() {
             ? "You have an account?"
             : "You don't have an account?"}
         </p>
-        {loginOrSignup === "login" && (
-          <p className="opacity-20"> atc266test@gmail.com / 12345678</p>
+        {loginOrSignup === "login" ? (
+          <p className="opacity-20 transition-all duration-1000">
+            {" "}
+            atc266test@gmail.com - 12345678
+          </p>
+        ) : (
+          <p className="opacity-0"> atc266test@gmail.com - 12345678</p>
         )}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} method="post">

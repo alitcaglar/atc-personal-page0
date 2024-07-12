@@ -96,6 +96,10 @@ export default function Footer() {
 
               <p className="p-4 w-full text-center">
                 All copyrights reserved to Ali Turabi Caglar©
+                <span className="opacity-20 font-semibold italic">
+                  {" "}
+                  beta v.0
+                </span>
               </p>
               <p className="p-4">Mersin / Turkiye</p>
               <p className="p-4">2024</p>

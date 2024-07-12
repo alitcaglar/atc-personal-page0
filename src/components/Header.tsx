@@ -1,15 +1,23 @@
 "use client";
 
 import { DiAtom } from "react-icons/di";
+import { CiMenuBurger } from "react-icons/ci";
+import { CgProfile } from "react-icons/cg";
+
 import Link from "next/link";
+
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { CiMenuBurger } from "react-icons/ci";
+
 import ThemeSwitcher from "./ThemeSwitcher";
+
 import navLinks from "@/utils/navLinks";
+
 import HeaderBottom from "./HeaderBottom";
-import { CgProfile } from "react-icons/cg";
+
 import { fetchSessionDataCSR } from "@/utils/fetchSessionData";
+
+import { Separator } from "@/components/ui/separator";
 
 export default function Header() {
   //session
@@ -49,10 +57,9 @@ export default function Header() {
             <span className="font-extrabold">Ali</span>
             <span className="opacity-70 font-bold">Turabi</span>
             <span className="opacity-40 font-semibold">Caglar</span>
-            <span className="opacity-20 font-semibold italic"> beta v.0</span>
           </span>
 
-          <span className="sm:hidden font-bold opacity-40 text-lime-600">
+          <span className="sm:hidden font-bold opacity-10 text-lime-600">
             {pathname.replaceAll("-", " ").split("/")[1]}
           </span>
         </Link>
@@ -68,10 +75,10 @@ export default function Header() {
           </button>
           <ul
             className={
-              "sm:flex items-center mr-3" +
+              "sm:flex items-center transition-all duration-500 ease-in-out overflow-hidden pt-1 sm:pt-0" +
               (openNav
-                ? "left-4 fixed top-[73px] right-0 px-8 drop-shadow-lg rounded-lg w-full transition bg-gradient-radial bg-slate-200 dark:bg-slate-900 opacity-90 backdrop-blur-md"
-                : " hidden")
+                ? " left-0 fixed top-[73px] right-0 px-8 drop-shadow-lg rounded-lg w-full transition bg-gradient-radial bg-slate-200 dark:bg-slate-900 opacity-90 backdrop-blur-md max-h-56 pt-3"
+                : " left-0 fixed top-[73px] right-0 px-8 drop-shadow-lg rounded-lg w-full transition bg-gradient-radial bg-slate-200 dark:bg-slate-900 opacity-90 backdrop-blur-md max-h-0 overflow-hidden")
             }
           >
             {navLinks.map((link, index) => {
@@ -80,7 +87,7 @@ export default function Header() {
                 <li
                   className={
                     isActive
-                      ? "p-2  font-bold bg-gradient-to-r from-teal-500 to-lime-500 bg-clip-text text-transparent text-center"
+                      ? "p-2  font-bold bg-gradient-to-r from-teal-500 to-lime-500 bg-clip-text text-transparent text-center "
                       : "p-2 font-bold text-slate-500  hover:bg-gradient-to-r hover:from-teal-500 hover:to-lime-500 hover:bg-clip-text hover:text-transparent hover:transition hover:ease-in-out hover:duration-300 text-center hover:drop-shadow-md "
                   }
                   key={index}
@@ -88,6 +95,7 @@ export default function Header() {
                   <Link href={link.path} onClick={() => setOpenNav(false)}>
                     {link.title}
                   </Link>
+                  <Separator className="mt-2 overflow-hidden" />
                 </li>
               );
             })}
@@ -102,9 +110,11 @@ export default function Header() {
                 <CgProfile />
               </Link>
             </li>
+            <Separator className="mt-2 overflow-hidden" />
 
             <li>
               <ThemeSwitcher />
+              <Separator className="mt-2 overflow-hidden" />
             </li>
             <li className="mx-4"></li>
           </ul>
