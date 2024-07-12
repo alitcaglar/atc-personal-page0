@@ -33,15 +33,15 @@ export default function Footer() {
   };
 
   return (
-    <>
+    <div className="">
       <Drawer>
         <DrawerTrigger>
-          <div className=" flex items-center justify-center w-96 h-16 bg-gradient-to-b from-lime-600 to-teal-500 my-8 text-3xl hover:ring-4 rounded-xl text-slate-200 dark:text-slate-800">
+          <div className=" flex items-center justify-center w-96 bg-gradient-to-b from-lime-600 to-teal-500 mb-8 text-3xl hover:ring-4 rounded-xl text-slate-200 dark:text-slate-800 sticky">
             <p>Get in touch</p>
             <span className="text-6xl rotate-6">!</span>
           </div>
         </DrawerTrigger>
-        <DrawerContent>
+        <DrawerContent className="">
           <DrawerHeader>
             <DrawerTitle></DrawerTitle>
             <DrawerDescription>
@@ -103,7 +103,7 @@ export default function Footer() {
           </footer>
         </DrawerContent>
       </Drawer>
-    </>
+    </div>
   );
 }
 //  <div className="w-full bg-gradient-to-l from-transparent via-lime-500 to-transparent h-[2px] bg-contain z-10"></div>

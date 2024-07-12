@@ -27,7 +27,7 @@ export default function RootLayout({
         className={
           inter.className +
           " " +
-          "bg-gradient-to-b from-slate-100 to-slate-200 dark:from-slate-950 dark:to-slate-900"
+          "bg-gradient-to-b from-slate-100 to-slate-200 dark:from-slate-950 dark:to-slate-900 overflow-x-hidden"
         }
       >
         <Providers>
