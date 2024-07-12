@@ -97,6 +97,13 @@ export default function Profile() {
         form.reset();
         router.push("/");
       }
+
+      if (!response.ok) {
+        toast({
+          title: "SUCCESS!",
+          description: "An Error occured try again later",
+        });
+      }
     } catch (error) {
       toast({
         title: "ERROR",

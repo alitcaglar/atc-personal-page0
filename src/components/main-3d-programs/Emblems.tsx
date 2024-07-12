@@ -26,7 +26,7 @@ import {
 
 export default function Emblems() {
   return (
-    <>
+    <div className="overflow-hidden">
       <Tilt>
         <p className="text-2xl text-slate-500 text-center mb-4">
           Some of{" "}
@@ -220,6 +220,6 @@ export default function Emblems() {
           </HoverCard>
         </div>
       </Tilt>
-    </>
+    </div>
   );
 }

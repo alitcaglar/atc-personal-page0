@@ -57,14 +57,14 @@ export default function MainTopCarousel({ className, ...props }: any) {
 
   if (!photos) return null;
   if (photos) {
-    console.log(photos, typeof photos, "***data****", photos.data);
+    console.log(photos, typeof photos, "*photos.data*", photos.data);
 
     //const maxFivePhotos =
     //   photos.length > 5 ? [...photos].slice(-5) : [...photos];
     return (
       <Carousel
         className={cn(
-          "md:mx-10 md:my-28 mx-4 my-4 md:w-5/12 w-full  ",
+          "md:mx-10 md:my-28 mx-4 my-4 md:w-5/12 w-full m-4 overflow-hidden",
           className
         )}
       >

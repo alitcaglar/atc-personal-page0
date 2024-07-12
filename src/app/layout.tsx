@@ -12,7 +12,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Ali Turabi Caglar Personal Page",
-  description: "Personal Page of Ali Turabi Caglar",
+  description:
+    "Personal Page of Ali Turabi Caglar | Software Engineer | Full-Stack | Software Developer | Web Developer | Next.js | React | TypeScript | JavaScript | HTML | CSS | Tailwind | Vercel | GitHub ",
 };
 
 export default function RootLayout({
