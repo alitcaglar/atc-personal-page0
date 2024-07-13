@@ -11,6 +11,8 @@ import HeaderBottom from "./HeaderBottom";
 import { CgProfile } from "react-icons/cg";
 import { fetchSessionDataCSR } from "@/utils/fetchSessionData";
 
+import { Separator } from "@/components/ui/separator";
+
 export default function Header() {
   //session
 
@@ -68,10 +70,10 @@ export default function Header() {
           </button>
           <ul
             className={
-              "sm:flex items-center mr-3" +
+              "sm:flex items-center mr-3 overflow-hidden " +
               (openNav
-                ? "left-4 fixed top-[73px] right-0 px-8 drop-shadow-lg rounded-lg w-full transition bg-gradient-radial bg-slate-200 dark:bg-slate-900 opacity-90 backdrop-blur-md"
-                : " hidden")
+                ? "left-0 fixed top-[73px] right-0 px-8 drop-shadow-lg rounded-lg w-full bg-gradient-radial bg-slate-200 dark:bg-slate-900 opacity-90 backdrop-blur-md max-h-56 transition-all duration-500 pt-2"
+                : " max-h-0 max-w-0 absolute")
             }
           >
             {navLinks.map((link, index) => {
@@ -88,6 +90,7 @@ export default function Header() {
                   <Link href={link.path} onClick={() => setOpenNav(false)}>
                     {link.title}
                   </Link>
+                  <Separator className="mt-2" />
                 </li>
               );
             })}
