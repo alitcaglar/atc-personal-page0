@@ -73,6 +73,7 @@ export default function EditPhotoNameForm({
           photoName: photoName,
         }),
       });
+      const responseBody = await response.json();
       console.log("Form submission method:", response.headers.get("method"));
       if (response.ok) {
         // Handle success
@@ -86,6 +87,10 @@ export default function EditPhotoNameForm({
       } else {
         // Handle failure
         console.error("Failed to update photo name");
+        toast({
+          title: `${responseBody.error}`,
+          description: "",
+        });
       }
     } catch (error) {
       console.error("An error occurred:", error);

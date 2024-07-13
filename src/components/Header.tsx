@@ -51,7 +51,6 @@ export default function Header() {
             <span className="font-extrabold">Ali</span>
             <span className="opacity-70 font-bold">Turabi</span>
             <span className="opacity-40 font-semibold">Caglar</span>
-            <span className="opacity-20 font-semibold italic"> beta v.0</span>
           </span>
 
           <span className="sm:hidden font-bold opacity-40 text-lime-600">
@@ -62,7 +61,7 @@ export default function Header() {
           <button
             onClick={() => setOpenNav(!openNav)}
             className={
-              "sm:hidden text-3xl transition duration-300 mr-12" +
+              "sm:hidden text-3xl transition duration-300 mr-12 absolute -right-2" +
               (openNav ? " text-teal-500" : " text-lime-800")
             }
           >
@@ -72,8 +71,8 @@ export default function Header() {
             className={
               "sm:flex items-center mr-3 overflow-hidden " +
               (openNav
-                ? "left-0 fixed top-[73px] right-0 px-8 drop-shadow-lg rounded-lg w-full bg-gradient-radial bg-slate-200 dark:bg-slate-900 opacity-90 backdrop-blur-md max-h-56 transition-all duration-500 pt-2"
-                : " max-h-0 max-w-0 absolute")
+                ? "left-0 fixed top-[73px] right-0 px-8 drop-shadow-lg rounded-lg w-full bg-gradient-radial bg-slate-200 dark:bg-slate-900 opacity-90 backdrop-blur-md h-56 transition-all duration-500 pt-2"
+                : "sm:h-auto h-0 ")
             }
           >
             {navLinks.map((link, index) => {
@@ -90,7 +89,7 @@ export default function Header() {
                   <Link href={link.path} onClick={() => setOpenNav(false)}>
                     {link.title}
                   </Link>
-                  <Separator className="mt-2" />
+                  {openNav && <Separator className="mt-2" />}
                 </li>
               );
             })}

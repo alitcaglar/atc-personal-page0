@@ -130,6 +130,8 @@ export default function UploadPhotoForm() {
         },
         body: JSON.stringify(values),
       });
+
+      const responseBody = await response.json();
       console.log("Form submission method:", response.headers.get("method"));
 
       if (response.ok) {
@@ -144,6 +146,10 @@ export default function UploadPhotoForm() {
         router.refresh();
       } else {
         console.error("Failed to save photo");
+        toast({
+          title: `${responseBody.error}`,
+          description: " ",
+        });
       }
     } catch (error) {
       console.error("An error occurred:", error);

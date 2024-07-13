@@ -47,6 +47,8 @@ export default function PhotoDeleteButton({
         body: JSON.stringify({ photoName }),
       });
 
+      const responseBody = await response.json();
+
       if (response.ok) {
         toast({
           title: "SUCCESS!",
@@ -58,7 +60,7 @@ export default function PhotoDeleteButton({
         console.error("Failed to delete photo");
         toast({
           title: "ERROR!",
-          description: "Failed to delete photo.",
+          description: `Failed to delete photo: ${responseBody.error}`,
         });
       }
     } catch (error) {

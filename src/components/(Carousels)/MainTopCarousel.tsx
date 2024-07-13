@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, cache } from "react";
+import { useEffect, useState } from "react";
 
 import {
   Carousel,
@@ -18,6 +18,7 @@ import EnterUpdateForm from "../Forms/EnterUpdateForm";
 import { MdZoomOutMap } from "react-icons/md";
 import PhotoEditButton from "../Buttons/PhotoEditButton";
 import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
+import { toast } from "../ui/use-toast";
 
 //import { auth } from "@/lib/auth";
 
@@ -28,20 +29,24 @@ export default function MainTopCarousel({ className, ...props }: any) {
     const fetchPhotos = async () => {
       try {
         const res = await fetch("/api/get-photos");
+        const responseBody = await res.json();
+        setPhotos(responseBody);
         if (!res.ok) {
+          toast({
+            title: `${responseBody.error}`,
+            description: " ",
+          });
           throw new Error("Network response was not ok");
         }
-        const data = await res.json();
-        setPhotos(data);
 
-        // Log data after fetching and setting photos
+        // Log responseBody after fetching and setting photos
         console.log(
           "log getPhotos ::: photos ::",
-          data,
+          responseBody,
           "type::",
-          typeof data,
+          typeof responseBody,
           "length::",
-          data.length
+          responseBody.length
         );
       } catch (error) {
         console.error(error);
