@@ -48,24 +48,24 @@ export default function Greetings(sessionEmail: any, sessionRole: any) {
 
   return (
     <main className="flex-row justify-center items-center">
-      <Button
-        onClick={handleLogout}
-        className="max-w-96 w-full opacity-80 mt-12 rounded-l-none rounded-r-xl"
-      >
-        Logout
-        {isLoading && (
-          <div className="animate-spin px-3">
-            <AiOutlineLoading3Quarters />
-          </div>
-        )}
-      </Button>
-      <div className="flex justify-center items-center min-h-screen text-6xl m-8  bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent">
+      <div className="flex flex-row justify-center items-center w-screen">
+        <Button
+          onClick={handleLogout}
+          className=" flex items-center justify-center w-96 bg-gradient-to-b from-lime-600 to-teal-500 mb-8 text-3xl hover:ring-4 rounded-xl text-slate-200 dark:text-slate-800 sticky mt-12"
+        >
+          Sign Out
+        </Button>
+      </div>
+      <div className="flex justify-center items-center min-h-screen text-3xl m-8  bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent w-5/6">
         <Typewriter
-          words={[`Greetings!`, `Your email is  ${sessionEmail.sessionEmail}`]}
+          words={[
+            `Greetings! You are logged in.`,
+            ` Your email is ${sessionEmail.sessionEmail}`,
+          ]}
           loop={999}
           cursor
           cursorStyle="|"
-          typeSpeed={70}
+          typeSpeed={90}
           deleteSpeed={50}
           delaySpeed={1000}
         />

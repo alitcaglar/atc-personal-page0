@@ -95,7 +95,7 @@ export default function Profile() {
           description: `${
             loginOrSignup === "login"
               ? "Logged in successfully"
-              : "Signed up successfully"
+              : "Signed up successfully. Please check your email to confirm your account."
           }`,
         });
         setLoginOrSignup("login");

@@ -4,9 +4,10 @@ export default function Introduction() {
   return (
     <main className="flex flex-col items-center">
       <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
-        Welcome to my personal page! I am a nuclear energy engineer living in
-        Turkey, with a keen interest in full-stack development. I am fluent in
-        English and Russian, and Turkish is my native language. I am open to
+        <span className="opacity-0">000</span>
+        Welcome to my personal page! I am a full-stack software engineer living
+        in Turkey, with a background in nuclear energy engineering. I am fluent
+        in English and Russian, and Turkish is my native language. I am open to
         relocation opportunities and am excited to showcase my work and
         capabilities here. Explore my projects, learn more about me, and feel
         free to get in touch!
@@ -19,7 +20,9 @@ export default function Introduction() {
         className="m-8 sm:rounded-3xl"
       ></Image>
       <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
-        <span className="font-semibold">Ali Turabi Caglar Personal Page </span>
+        <span className="font-semibold">
+          <span className="opacity-0">000</span> Ali Turabi Caglar Personal Page{" "}
+        </span>
         meticulously crafted with TypeScript to ensure robustness and clarity in
         every line of code. Built with Next.js, this site leverages server-side
         rendering and static site generation to provide optimal performance and
@@ -36,6 +39,7 @@ export default function Introduction() {
       ></Image>
 
       <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
+        <span className="opacity-0">000</span>
         Navigate effortlessly through /my-project to explore upcoming ventures,
         /introduction for personal insights, and a profile section offering
         secure login, signup, and signout functionalities. Experience seamless
@@ -53,6 +57,7 @@ export default function Introduction() {
       ></Image>
 
       <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
+        <span className="opacity-0">000</span>
         Enhance your viewing experience with a versatile dark/light mode
         switcher seamlessly integrated into the navigation, harmoniously
         supported by Shadcn UI throughout the site. Engage with a homepage
@@ -72,6 +77,7 @@ export default function Introduction() {
       ></Image>
 
       <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
+        <span className="opacity-0">000</span>
         Delve deeper into the technologies driving innovation with a captivating
         3D effect section highlighting software tools on hover, complemented by
         an intuitive footer inviting you to connect. Click{" "}
@@ -91,6 +97,7 @@ export default function Introduction() {
       ></Image>
 
       <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
+        <span className="opacity-0">000</span>
         Explore the Ali Turabi Caglar Personal Page, version-controlled using
         Git and GitHub, where creativity meets functionality with every
         interaction.
