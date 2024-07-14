@@ -2,10 +2,12 @@ import MainTypewriter from "@/components/(Typewriters)/MainTypewriter";
 import MainTopCarousel from "@/components/(Carousels)/MainTopCarousel";
 import Emblems from "@/components/main-3d-programs/Emblems";
 import Footer from "@/components/Footer";
+import BackgroundSliderComponent from "@/components/BackgroundSlider/BackgroundSliderComponent";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-wrap items-center justify-around">
+    <main className=" relative flex min-h-screen flex-wrap items-center justify-around overflow-hidden">
+      {/* <BackgroundSliderComponent /> */}
       <MainTypewriter />
       <MainTopCarousel />
 

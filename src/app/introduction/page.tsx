@@ -37,25 +37,6 @@ export default function Introduction() {
         height={150}
         className="m-8 sm:rounded-3xl"
       ></Image>
-
-      <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
-        <span className="opacity-0">000</span>
-        Navigate effortlessly through /my-project to explore upcoming ventures,
-        /introduction for personal insights, and a profile section offering
-        secure login, signup, and signout functionalities. Experience seamless
-        user interactions with forms that adapt intuitively based on session
-        status, complete with email-verified password resets and robust Supabase
-        Auth integration ensuring data security.
-      </p>
-
-      <Image
-        src="https://free-images.com/lg/b9ef/computer_security_padlock_hacker.jpg"
-        alt="cyber security padlock"
-        width={500}
-        height={150}
-        className="m-8 sm:rounded-3xl"
-      ></Image>
-
       <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
         <span className="opacity-0">000</span>
         Enhance your viewing experience with a versatile dark/light mode
@@ -69,6 +50,22 @@ export default function Introduction() {
       </p>
 
       <Image
+        src="https://free-images.com/lg/b9ef/computer_security_padlock_hacker.jpg"
+        alt="cyber security padlock"
+        width={500}
+        height={150}
+        className="m-8 sm:rounded-3xl"
+      ></Image>
+      <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
+        <span className="opacity-0">000</span>
+        The <span className="font-semibold">My Projects</span> page allows you
+        to explore upcoming projects. With a user-friendly interface, you can
+        easily review your ventures. Additionally, secure login, signup, and
+        signout functionalities enhance your user experience. Thanks to Supabase
+        Auth integration, your data is safeguarded, and dynamic form handling
+        based on session status improves user interactions.
+      </p>
+      <Image
         src="https://free-images.com/lg/2239/blank_photos_hanging_on_0.jpg"
         alt="blank photos"
         width={500}
@@ -78,14 +75,12 @@ export default function Introduction() {
 
       <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
         <span className="opacity-0">000</span>
-        Delve deeper into the technologies driving innovation with a captivating
-        3D effect section highlighting software tools on hover, complemented by
-        an intuitive footer inviting you to connect. Click{" "}
-        <span className="font-semibold">Get in touch!</span> to reveal a drawer
-        showcasing contact details, including an auto-copied email address,
-        WhatsApp contact, and links to GitHub and LinkedIn. For direct
-        communication, utilize the email form powered by Mailgun, ensuring swift
-        and reliable correspondence.
+        The <span className="font-semibold">Introduction</span> page presents
+        personal information and details about the site. It features a versatile
+        dark/light mode switch supported by Shadcn UI. The homepage showcases an
+        engaging typewriter effect introduction and a dynamic photo album,
+        seamlessly managed through Supabase and Cloudinary via Next.js API
+        routes.
       </p>
 
       <Image
@@ -98,9 +93,10 @@ export default function Introduction() {
 
       <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
         <span className="opacity-0">000</span>
-        Explore the Ali Turabi Caglar Personal Page, version-controlled using
-        Git and GitHub, where creativity meets functionality with every
-        interaction.
+        The <span className="font-semibold">Profile</span> page provides
+        exclusive control buttons for authenticated users only. CRUD operations
+        are securely handled using Supabase Auth and Next.js middleware,
+        empowering user interactions through well-designed functionalities.
       </p>
 
       <Image
@@ -110,6 +106,21 @@ export default function Introduction() {
         height={150}
         className="m-8 sm:rounded-3xl"
       ></Image>
+
+      <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
+        <span className="opacity-0">000</span>
+        The page highlights software tools with captivating 3D effects,
+        complemented by a footer inviting users to connect. Clicking the
+        <span className="font-semibold"> Get in touch!</span> button reveals a
+        drawer with contact information, including an auto-copied email address,
+        WhatsApp number, and links to GitHub and LinkedIn. Additionally, an
+        email form powered by Mailgun ensures swift and reliable communication.
+      </p>
+      <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
+        <span className="opacity-0">000</span>
+        Explore the Ali Turabi Caglar Personal Page, version-controlled with Git
+        and GitHub, where creativity meets functionality in every interaction.
+      </p>
     </main>
   );
 }

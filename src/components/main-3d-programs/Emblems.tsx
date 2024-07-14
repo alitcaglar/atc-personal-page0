@@ -26,7 +26,7 @@ import {
 
 export default function Emblems() {
   return (
-    <div className="overflow-hidden">
+    <div className="">
       <Tilt>
         <p className="text-2xl text-slate-500 text-center mb-4 mt-5">
           Some of{" "}
