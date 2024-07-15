@@ -61,8 +61,8 @@ export default function Header() {
           <button
             onClick={() => setOpenNav(!openNav)}
             className={
-              "sm:hidden text-3xl transition duration-300 mr-12 absolute -right-2" +
-              (openNav ? " text-teal-500" : " text-lime-800")
+              "sm:hidden text-3xl transition-all duration-300 active:translate-y-2 mr-12 absolute -right-2" +
+              (openNav ? " text-teal-500" : " text-slate-500")
             }
           >
             <CiMenuBurger />
