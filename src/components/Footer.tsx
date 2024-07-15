@@ -36,16 +36,18 @@ export default function Footer() {
     <div className="">
       <Drawer>
         <DrawerTrigger>
-          <div className=" flex items-center justify-center w-96 bg-gradient-to-b from-lime-600 to-teal-500 mb-8 text-3xl hover:ring-4 rounded-xl text-slate-200 dark:text-slate-800 sticky">
+          <div className=" flex items-center justify-center w-96 bg-gradient-to-b from-lime-600 to-teal-500 mb-8 text-3xl hover:ring-4 rounded-xl text-slate-200 dark:text-slate-800">
             <p>Get in touch</p>
             <span className="text-6xl rotate-6">!</span>
           </div>
         </DrawerTrigger>
-        <DrawerContent className="">
+        <DrawerContent className="backdrop-blur-sm bg-transparent bg-slate-200 bg-opacity-40 dark:bg-slate-800 dark:bg-opacity-30 ">
           <DrawerHeader>
             <DrawerTitle></DrawerTitle>
             <DrawerDescription>
-              <p className="text-3xl font-bold text-center">Drop me a line!</p>
+              <p className="text-3xl font-bold text-center dark:text-slate-50 text-slate-950">
+                Drop me a line!
+              </p>
             </DrawerDescription>
           </DrawerHeader>
           <footer className="grid sm:grid-cols-3 gap-2 p-8">

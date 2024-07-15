@@ -6,7 +6,7 @@ import BackgroundSlider from "react-background-slider";
 export default function BackgroundSliderComponent() {
   return (
     <div
-      className="absolute bg-cover bg-center w-full h-full top-0 -z-10  mix-blend-overlay"
+      className="absolute bg-cover bg-center w-full h-full top-0 -z-10 opacity-20"
       // style={{
       //   backgroundImage:
       //     "url('https://images.pexels.com/photos/11751212/pexels-photo-11751212.jpeg')",

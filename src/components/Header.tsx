@@ -39,7 +39,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="h-[73px] flex justify-between backdrop-blur-sm fixed top-0 left-0 right-0 bg-slate-50 bg-opacity-40 dark:bg-slate-950 dark:bg-opacity-60 z-30">
+      <header className="h-[73px] flex justify-between backdrop-blur-sm fixed top-0 left-0 right-0 bg-slate-200 bg-opacity-40 dark:bg-slate-800 dark:bg-opacity-60 z-30">
         <Link
           href="/"
           className="flex items-center m-2 ml-3 text-lime-600 dark:text-lime-400 hover:text-teal-600 dark:hover:text-teal-400 hover:transition hover:duration-300"
