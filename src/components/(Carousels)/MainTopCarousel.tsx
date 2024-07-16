@@ -31,7 +31,7 @@ export default function MainTopCarousel({ className, ...props }: any) {
   const [sessionEmail, setSessionEmail] = useState<any>(null);
   const [sessionRole, setSessionRole] = useState<any>(null);
 
-  //session
+  //session//
 
   const [photos, setPhotos] = useState<any>(null);
 
