@@ -52,9 +52,9 @@ export default function PhotoDeleteButton({
       if (response.ok) {
         toast({
           title: "SUCCESS!",
-          description: "Deleted photo successfully!",
+          description: "Deleted photo successfully! Please refresh the page",
         });
-        console.log("Photo deleted successfully");
+        console.log("Photo deleted successfully refresh page");
         router.refresh(); // Refresh the page to reflect the deletion
       } else {
         console.error("Failed to delete photo");

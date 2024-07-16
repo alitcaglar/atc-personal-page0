@@ -19,13 +19,24 @@ import { MdZoomOutMap } from "react-icons/md";
 import PhotoEditButton from "../Buttons/PhotoEditButton";
 import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
 import { toast } from "../ui/use-toast";
-
-//import { auth } from "@/lib/auth";
+import { supabase } from "@/lib/connectToDb";
+import { fetchSessionDataCSR } from "@/utils/fetchSessionData";
+import { useRouter } from "next/navigation";
 
 export default function MainTopCarousel({ className, ...props }: any) {
+  //session
+
+  const router = useRouter();
+
+  const [sessionEmail, setSessionEmail] = useState<any>(null);
+  const [sessionRole, setSessionRole] = useState<any>(null);
+
+  //session
+
   const [photos, setPhotos] = useState<any>(null);
 
   useEffect(() => {
+    fetchSessionDataCSR(setSessionEmail, setSessionRole);
     const fetchPhotos = async () => {
       try {
         const res = await fetch("/api/get-photos");
@@ -55,7 +66,53 @@ export default function MainTopCarousel({ className, ...props }: any) {
 
     fetchPhotos(); // Initial fetch
 
-    // Avoid continuous fetch by ensuring dependencies are properly managed
+    //realtime listener
+    const handleInserts = (payload: any) => {
+      console.log("New photo inserted!", payload.new);
+      setPhotos((prevPhotos: any) => [...prevPhotos, payload.new]);
+    };
+
+    const handleUpdates = (payload: any) => {
+      console.log("Photo updated!", payload.new);
+      setPhotos((prevPhotos: any) =>
+        prevPhotos.map((photo: any) =>
+          photo.id === payload.new.id ? payload.new : photo
+        )
+      );
+    };
+
+    const handleDeletes = (payload: any) => {
+      console.log("Photo deleted!", payload.old);
+      setPhotos((prevPhotos: any) =>
+        prevPhotos.filter((photo: any) => photo.id !== payload.old.id)
+      );
+    };
+
+    const subscription = supabase
+      .channel("public:photos")
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "photos" },
+        handleInserts
+      )
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "photos" },
+        handleUpdates
+      )
+      .on(
+        "postgres_changes",
+        { event: "DELETE", schema: "public", table: "photos" },
+        handleDeletes
+      )
+      .subscribe();
+
+    // Clean up subscription on unmount
+    return () => {
+      subscription.unsubscribe();
+    };
+
+    //realtime listener
   }, []);
 
   //const session = await auth();
@@ -85,9 +142,7 @@ export default function MainTopCarousel({ className, ...props }: any) {
                 <p className="mb-2 text-lg opacity-50 text-slate-500">
                   by {photo.takenBy} in {photo.takenYear}
                 </p>
-
                 <div className="w-full bg-gradient-to-l from-transparent via-lime-500 to-transparent h-1"></div>
-
                 <Image
                   src={photo.photoUrl}
                   alt={photo.photoName}
@@ -96,35 +151,46 @@ export default function MainTopCarousel({ className, ...props }: any) {
                   height={500}
                 />
                 <div className="w-full bg-gradient-to-l from-transparent via-lime-500 to-transparent h-1"></div>
-
-                <div className="m-2 flex justify-around items-center text-3xl text-slate-500 opacity-70 animate-pulse">
-                  <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
-                    <EnterUpdateForm />
-                  </div>
-
-                  <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
-                    <PhotoEditButton photoName={photo.photoName} />
-                  </div>
-
-                  {
-                    /*session?.user?.role !== "user" && session?.user && */ <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
-                      <PhotoDeleteButton
-                        alertDialog="You are about to delete this photo"
-                        photoName={photo.photoName}
-                      />
-                    </div>
-                  }
-
-                  <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
+                {/* TODO session control */}
+                {!sessionEmail ? (
+                  <div>
                     <Link
-                      href={`/app-photos/${photo.photoUrl
-                        .replaceAll("/", "slsh")
-                        .replaceAll(".", "dott")}`}
+                      href="/profile"
+                      className="flex justify-center items-center m-2 ml-3 text-lime-600 dark:text-lime-400 hover:text-teal-600 dark:hover:text-teal-400 hover:transition hover:duration-300 opacity-80"
                     >
-                      <MdZoomOutMap />
+                      Please login to use CRUD freatures
                     </Link>
                   </div>
-                </div>
+                ) : (
+                  <div className="m-2 flex justify-around items-center text-3xl text-slate-500 opacity-70 animate-pulse">
+                    <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
+                      <EnterUpdateForm />
+                    </div>
+
+                    <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
+                      <PhotoEditButton photoName={photo.photoName} />
+                    </div>
+
+                    {
+                      /*session?.user?.role !== "user" && session?.user && */ <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
+                        <PhotoDeleteButton
+                          alertDialog="You are about to delete this photo"
+                          photoName={photo.photoName}
+                        />
+                      </div>
+                    }
+
+                    <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
+                      <Link
+                        href={`/app-photos/${photo.photoUrl
+                          .replaceAll("/", "slsh")
+                          .replaceAll(".", "dott")}`}
+                      >
+                        <MdZoomOutMap />
+                      </Link>
+                    </div>
+                  </div>
+                )}
               </CarouselItem>
             );
           })}

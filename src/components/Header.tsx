@@ -67,6 +67,24 @@ export default function Header() {
           >
             <CiMenuBurger />
           </button>
+          <ul className="flex items-center translate-x-12">
+            <li
+              className={
+                pathname.startsWith("/profile")
+                  ? "p-2 text-teal-500  text-3xl flex justify-center items-center" +
+                    (openNav && " hidden")
+                  : "p-2  text-slate-500  hover:text-teal-500 text-3xl hover:transition hover:ease-in-out hover:duration-300    flex justify-center items-center" +
+                    (openNav && " hidden")
+              }
+            >
+              <Link href="/profile" onClick={() => setOpenNav(false)}>
+                <CgProfile />
+              </Link>
+            </li>
+            <li className={openNav ? " hidden" : " "}>
+              <ThemeSwitcher />
+            </li>
+          </ul>
           <ul
             className={
               "sm:flex items-center mr-3 overflow-hidden " +

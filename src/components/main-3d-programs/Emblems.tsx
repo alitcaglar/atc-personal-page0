@@ -30,9 +30,9 @@ export default function Emblems() {
       <Tilt>
         <p className="text-2xl text-slate-500 text-center mb-4 mt-5">
           Some of{" "}
-          <p className="text-lime-600 dark:text-teal-500 text-3xl">
+          <div className="text-lime-600 dark:text-teal-500 text-3xl">
             software technologies
-          </p>{" "}
+          </div>{" "}
           I use
         </p>
         <div className="flex flex-wrap justify-center items-stretch">
