@@ -68,6 +68,18 @@ export default function MainTopCarousel({ className, ...props }: any) {
 
     //realtime listener
 
+    const fetchPhotosRealtime = supabase
+      .channel("public:photos")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "photos" },
+        (payload: any) => {
+          console.log("*payload*", payload);
+          fetchPhotos();
+        }
+      )
+      .subscribe();
+
     //realtime listener
   }, []);
 
