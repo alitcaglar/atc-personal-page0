@@ -67,50 +67,6 @@ export default function MainTopCarousel({ className, ...props }: any) {
     fetchPhotos(); // Initial fetch
 
     //realtime listener
-    const handleInserts = (payload: any) => {
-      console.log("New photo inserted!", payload.new);
-      setPhotos((prevPhotos: any) => [...prevPhotos, payload.new]);
-    };
-
-    const handleUpdates = (payload: any) => {
-      console.log("Photo updated!", payload.new);
-      setPhotos((prevPhotos: any) =>
-        prevPhotos.map((photo: any) =>
-          photo.id === payload.new.id ? payload.new : photo
-        )
-      );
-    };
-
-    const handleDeletes = (payload: any) => {
-      console.log("Photo deleted!", payload.old);
-      setPhotos((prevPhotos: any) =>
-        prevPhotos.filter((photo: any) => photo.id !== payload.old.id)
-      );
-    };
-
-    const subscription = supabase
-      .channel("public:photos")
-      .on(
-        "postgres_changes",
-        { event: "INSERT", schema: "public", table: "photos" },
-        handleInserts
-      )
-      .on(
-        "postgres_changes",
-        { event: "UPDATE", schema: "public", table: "photos" },
-        handleUpdates
-      )
-      .on(
-        "postgres_changes",
-        { event: "DELETE", schema: "public", table: "photos" },
-        handleDeletes
-      )
-      .subscribe();
-
-    // Clean up subscription on unmount
-    return () => {
-      subscription.unsubscribe();
-    };
 
     //realtime listener
   }, []);
@@ -158,7 +114,7 @@ export default function MainTopCarousel({ className, ...props }: any) {
                       href="/profile"
                       className="flex justify-center items-center m-2 ml-3 text-lime-600 dark:text-lime-400 hover:text-teal-600 dark:hover:text-teal-400 hover:transition hover:duration-300 opacity-80"
                     >
-                      Please login to use CRUD freatures
+                      Please login to use CRUD features
                     </Link>
                   </div>
                 ) : (

@@ -16,26 +16,27 @@ import { Separator } from "@/components/ui/separator";
 export default function Header() {
   //session
 
-  const [sessionEmail, setSessionEmail] = useState<any>(null);
-  const [sessionRole, setSessionRole] = useState<any>(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [openNav, setOpenNav] = useState(false);
-  const pathname = usePathname();
+  // const [sessionEmail, setSessionEmail] = useState<any>(null);
+  // const [sessionRole, setSessionRole] = useState<any>(null);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    fetchSessionDataCSR(setSessionEmail, setSessionRole);
-    console.log("*header session fetched*");
+  // useEffect(() => {
+  //   fetchSessionDataCSR(setSessionEmail, setSessionRole);
+  //   console.log("*header session fetched*");
 
-    if (sessionEmail !== null || sessionRole !== null) {
-      setIsLoggedIn(true);
-      console.log("Is logged in:", isLoggedIn);
-    } else {
-      setIsLoggedIn(false);
-      console.log("Is logged in:", isLoggedIn);
-    }
-  }, [sessionEmail, sessionRole, isLoggedIn, pathname]);
+  //   if (sessionEmail !== null || sessionRole !== null) {
+  //     setIsLoggedIn(true);
+  //     console.log("Is logged in:", isLoggedIn);
+  //   } else {
+  //     setIsLoggedIn(false);
+  //     console.log("Is logged in:", isLoggedIn);
+  //   }
+  // }, [sessionEmail, sessionRole, isLoggedIn, pathname]);
 
   //session
+
+  const [openNav, setOpenNav] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
@@ -72,16 +73,16 @@ export default function Header() {
               className={
                 pathname.startsWith("/profile")
                   ? "p-2 text-teal-500  text-3xl flex justify-center items-center" +
-                    (openNav && " hidden")
+                    (openNav ? " hidden" : " sm:hidden")
                   : "p-2  text-slate-500  hover:text-teal-500 text-3xl hover:transition hover:ease-in-out hover:duration-300    flex justify-center items-center" +
-                    (openNav && " hidden")
+                    (openNav ? " hidden" : " sm:hidden")
               }
             >
               <Link href="/profile" onClick={() => setOpenNav(false)}>
                 <CgProfile />
               </Link>
             </li>
-            <li className={openNav ? " hidden" : " "}>
+            <li className={openNav ? " hidden" : " sm:hidden"}>
               <ThemeSwitcher />
             </li>
           </ul>
