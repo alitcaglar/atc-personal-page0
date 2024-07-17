@@ -52,8 +52,8 @@ export default function MainTopCarousel({ className, ...props }: any) {
         "postgres_changes",
         { event: "*", schema: "public", table: "photo_albums" },
         (payload) => {
-          console.log("Change received!**payload**", payload);
           fetchPhotos(); // Re-fetch photos on any changes
+          // console.log("Change received!**payload**", payload);
         }
       )
       .subscribe((status: any) => {
