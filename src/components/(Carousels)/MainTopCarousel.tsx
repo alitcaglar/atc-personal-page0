@@ -24,6 +24,33 @@ import { fetchSessionDataCSR } from "@/utils/fetchSessionData";
 import { useRouter } from "next/navigation";
 
 export default function MainTopCarousel({ className, ...props }: any) {
+  const fetchPhotos = async () => {
+    try {
+      const res = await fetch("/api/get-photos");
+      const responseBody = await res.json();
+      setPhotos(responseBody);
+      if (!res.ok) {
+        toast({
+          title: `${responseBody.error}`,
+          description: " ",
+        });
+        throw new Error("Network response was not ok");
+      }
+
+      // Log responseBody after fetching and setting photos
+      // console.log(
+      //   "log getPhotos ::: photos ::",
+      //   responseBody,
+      //   "type::",
+      //   typeof responseBody,
+      //   "length::",
+      //   responseBody.length
+      // );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   //session
 
   const router = useRouter();
@@ -33,64 +60,36 @@ export default function MainTopCarousel({ className, ...props }: any) {
 
   //session//
 
+  // Realtime subscription
+  const subscription = supabase
+    .channel("photo_albums")
+    .on(
+      "postgres_changes",
+      { event: "*", schema: "public", table: "photo_albums" },
+      (payload) => {
+        console.log("Change received!**payload**", payload);
+        fetchPhotos(); // Re-fetch photos on any changes
+      }
+    )
+    .subscribe((status: any) => {
+      if (status === "SUBSCRIBED") {
+        console.log("Subscribed to photo_albums changes");
+      }
+    });
+
+  // return () => {
+  //   supabase.removeChannel(subscription);
+  //   console.log("Unsubscribed from photo_albums changes");
+  // };
+  // Realtime subscription//
+
   const [photos, setPhotos] = useState<any>(null);
 
   fetchSessionDataCSR(setSessionEmail, setSessionRole);
 
   useEffect(() => {
-    const fetchPhotos = async () => {
-      try {
-        const res = await fetch("/api/get-photos");
-        const responseBody = await res.json();
-        setPhotos(responseBody);
-        if (!res.ok) {
-          toast({
-            title: `${responseBody.error}`,
-            description: " ",
-          });
-          throw new Error("Network response was not ok");
-        }
-
-        // Log responseBody after fetching and setting photos
-        // console.log(
-        //   "log getPhotos ::: photos ::",
-        //   responseBody,
-        //   "type::",
-        //   typeof responseBody,
-        //   "length::",
-        //   responseBody.length
-        // );
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     fetchPhotos(); // Initial fetch
-
-    // Realtime subscription
-    const subscription = supabase
-      .channel("photo_albums")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "photo_albums" },
-        (payload) => {
-          console.log("Change received!**payload**", payload);
-          fetchPhotos(); // Re-fetch photos on any changes
-        }
-      )
-      .subscribe((status: any) => {
-        if (status === "SUBSCRIBED") {
-          console.log("Subscribed to photo_albums changes");
-        }
-      });
-
-    // return () => {
-    //   supabase.removeChannel(subscription);
-    //   console.log("Unsubscribed from photo_albums changes");
-    // };
   }, []);
-
-  /// Realtime subscription//
 
   if (!photos) return null;
   if (photos) {
