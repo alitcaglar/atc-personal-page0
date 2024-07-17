@@ -80,7 +80,7 @@ export default function MainTopCarousel({ className, ...props }: any) {
       });
 
     fetchSessionDataCSR(setSessionEmail, setSessionRole);
-    fetchPhotos(); // Initial fetch
+    fetchPhotos(); //// Initial fetch
 
     return () => {
       supabase.removeChannel(subscription);
