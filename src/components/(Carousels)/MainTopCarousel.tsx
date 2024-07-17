@@ -53,24 +53,7 @@ export default function MainTopCarousel({ className, ...props }: any) {
         { event: "*", schema: "public", table: "photo_albums" },
         (payload) => {
           console.log("Change received!**payload**", payload);
-          (async () => {
-            try {
-              const res = await fetch("/api/get-photos");
-              const responseBody = await res.json();
-              if (res.ok) {
-                setPhotos(responseBody);
-                console.log("***photos fetched ***");
-              } else {
-                toast({
-                  title: `${responseBody.error}`,
-                  description: " ",
-                });
-                throw new Error("Network response was not ok");
-              }
-            } catch (error) {
-              console.error(error);
-            }
-          })();
+          fetchPhotos(); // Re-fetch photos on any changes
         }
       )
       .subscribe((status: any) => {
@@ -80,7 +63,7 @@ export default function MainTopCarousel({ className, ...props }: any) {
       });
 
     fetchSessionDataCSR(setSessionEmail, setSessionRole);
-    fetchPhotos(); //// Initial fetch
+    fetchPhotos(); // Initial fetch
 
     return () => {
       supabase.removeChannel(subscription);
