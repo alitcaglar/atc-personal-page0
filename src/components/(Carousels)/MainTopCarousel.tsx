@@ -30,8 +30,9 @@ export default function MainTopCarousel({ className, ...props }: any) {
     try {
       const res = await fetch("/api/get-photos");
       const responseBody = await res.json();
-      setPhotos(responseBody);
-      if (!res.ok) {
+      if (res.ok) {
+        setPhotos(responseBody);
+      } else {
         toast({
           title: `${responseBody.error}`,
           description: " ",
