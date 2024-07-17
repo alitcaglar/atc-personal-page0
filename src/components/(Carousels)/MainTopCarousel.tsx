@@ -37,8 +37,6 @@ export default function MainTopCarousel({ className, ...props }: any) {
 
   fetchSessionDataCSR(setSessionEmail, setSessionRole);
 
-  const handleAll = (payload: any) => {};
-
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
@@ -80,11 +78,16 @@ export default function MainTopCarousel({ className, ...props }: any) {
           fetchPhotos(); // Re-fetch photos on any changes
         }
       )
-      .subscribe();
+      .subscribe((status: any) => {
+        if (status === "SUBSCRIBED") {
+          console.log("Subscribed to photo_albums changes");
+        }
+      });
 
-    return () => {
-      supabase.removeChannel(subscription);
-    };
+    // return () => {
+    //   supabase.removeChannel(subscription);
+    //   console.log("Unsubscribed from photo_albums changes");
+    // };
   }, []);
 
   /// Realtime subscription//
