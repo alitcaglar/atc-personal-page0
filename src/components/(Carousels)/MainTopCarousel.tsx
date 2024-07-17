@@ -35,8 +35,11 @@ export default function MainTopCarousel({ className, ...props }: any) {
 
   const [photos, setPhotos] = useState<any>(null);
 
+  fetchSessionDataCSR(setSessionEmail, setSessionRole);
+
+  const handleAll = (payload: any) => {};
+
   useEffect(() => {
-    fetchSessionDataCSR(setSessionEmail, setSessionRole);
     const fetchPhotos = async () => {
       try {
         const res = await fetch("/api/get-photos");
@@ -51,14 +54,14 @@ export default function MainTopCarousel({ className, ...props }: any) {
         }
 
         // Log responseBody after fetching and setting photos
-        console.log(
-          "log getPhotos ::: photos ::",
-          responseBody,
-          "type::",
-          typeof responseBody,
-          "length::",
-          responseBody.length
-        );
+        // console.log(
+        //   "log getPhotos ::: photos ::",
+        //   responseBody,
+        //   "type::",
+        //   typeof responseBody,
+        //   "length::",
+        //   responseBody.length
+        // );
       } catch (error) {
         console.error(error);
       }
@@ -66,16 +69,29 @@ export default function MainTopCarousel({ className, ...props }: any) {
 
     fetchPhotos(); // Initial fetch
 
-    //realtime listener
+    // Realtime subscription
+    const subscription = supabase
+      .channel("photo_albums")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "photo_albums" },
+        (payload) => {
+          console.log("Change received!**payload**", payload);
+          fetchPhotos(); // Re-fetch photos on any changes
+        }
+      )
+      .subscribe();
 
-    //realtime listener
+    return () => {
+      supabase.removeChannel(subscription);
+    };
   }, []);
 
-  //const session = await auth();
+  /// Realtime subscription//
 
   if (!photos) return null;
   if (photos) {
-    console.log(photos, typeof photos, "*photos.data*", photos.data);
+    // console.log(photos, typeof photos, "*photos.data*", photos.data);
 
     //const maxFivePhotos =
     //   photos.length > 5 ? [...photos].slice(-5) : [...photos];

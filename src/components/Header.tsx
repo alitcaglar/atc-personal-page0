@@ -68,7 +68,7 @@ export default function Header() {
           >
             <CiMenuBurger />
           </button>
-          <ul className="flex items-center translate-x-12">
+          {/* <ul className="flex items-center translate-x-12">
             <li
               className={
                 pathname.startsWith("/profile")
@@ -85,7 +85,7 @@ export default function Header() {
             <li className={openNav ? " hidden" : " sm:hidden"}>
               <ThemeSwitcher />
             </li>
-          </ul>
+          </ul> */}
           <ul
             className={
               "sm:flex items-center mr-3 overflow-hidden " +

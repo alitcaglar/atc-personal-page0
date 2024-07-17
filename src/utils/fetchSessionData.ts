@@ -14,7 +14,7 @@ export const fetchSessionDataCSR = async (
       throw new Error("Session Network response was not ok");
     }
     const data = await res.json();
-    console.log("Session:", data);
+    // console.log("Session:", data);
     if (data && data.session && data.session.user) {
       setSessionEmail(data.session.user.email);
       setSessionRole(data.session.user.role);

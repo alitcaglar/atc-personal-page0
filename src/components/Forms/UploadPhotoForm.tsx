@@ -141,7 +141,7 @@ export default function UploadPhotoForm() {
         console.log(values);
         toast({
           title: "SUCCESS!",
-          description: "Photo added successfully!",
+          description: "Added photo successfully!",
         });
         router.refresh();
       } else {
