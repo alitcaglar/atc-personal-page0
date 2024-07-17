@@ -32,6 +32,7 @@ export default function MainTopCarousel({ className, ...props }: any) {
       const responseBody = await res.json();
       if (res.ok) {
         setPhotos(responseBody);
+        console.log("***photos fetched ***");
       } else {
         toast({
           title: `${responseBody.error}`,
@@ -52,7 +53,7 @@ export default function MainTopCarousel({ className, ...props }: any) {
         { event: "*", schema: "public", table: "photo_albums" },
         (payload) => {
           console.log("Change received!**payload**", payload);
-          fetchPhotos(); // Re-fetch photos on any changes
+          // fetchPhotos(); // Re-fetch photos on any changes
         }
       )
       .subscribe((status: any) => {
