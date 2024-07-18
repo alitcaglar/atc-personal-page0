@@ -18,17 +18,22 @@ import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
 import { toast } from "../ui/use-toast";
 import { supabase } from "@/lib/connectToDb";
 import { fetchSessionDataCSR } from "@/utils/fetchSessionData";
-import { useRouter } from "next/navigation";
 
 export default function MainTopCarousel({ className, ...props }: any) {
   const [photos, setPhotos] = useState<any>(null);
   const [sessionEmail, setSessionEmail] = useState<any>(null);
   const [sessionRole, setSessionRole] = useState<any>(null);
-  const router = useRouter();
 
   const fetchPhotos = async () => {
     try {
-      const res = await fetch("/api/get-photos");
+      const res = await fetch("/api/get-photos", {
+        method: "GET", // Varsayılan olarak GET yöntemi kullanılabilir
+        headers: {
+          "Content-Type": "application/json", // İçerik türü JSON
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`, // Kimlik doğrulama token'ı (örnek)
+          Accept: "application/json", // Sunucudan JSON formatında veri kabul et
+        },
+      });
       const responseBody = await res.json();
       if (res.ok) {
         setPhotos(responseBody);

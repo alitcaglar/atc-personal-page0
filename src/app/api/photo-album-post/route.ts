@@ -46,31 +46,23 @@ export async function POST(request: Request) {
     const data = await request.json();
     console.log("Data received:", data);
 
-    // Yeni fotoğraf albümü oluştur
     const newPhoto = await createPhotoAlbum(data);
 
     if (newPhoto) {
-      // Başarı yanıtını döndür
       console.log("Photo saved successfully:", newPhoto);
-
       return NextResponse.json({
         success: true,
         message: "Photo saved successfully",
         data: newPhoto,
       });
     } else {
-      // Başarısızlık yanıtını döndür
-      console.error("Failed to save photo. 1 ::", data, Error);
-      return NextResponse.json(
-        {
-          success: false,
-          error: `Failed to save photo 1 : ${Error}***${data}***${Error}`,
-        }
-        // { status: 500 }
-      );
+      console.error("Failed to save photo. 1");
+      return NextResponse.json({
+        success: false,
+        error: "Failed to save photo 1",
+      });
     }
   } catch (error) {
-    // Hataları yönet
     console.error("Error saving photo 2:", error);
     return NextResponse.json(
       { success: false, error: "Failed to save photo 2" },
