@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -75,75 +75,74 @@ export default function MainTopCarousel({ className, ...props }: any) {
   if (!photos) return null;
 
   return (
-    <Carousel
-      className={cn(
-        "md:mx-10 md:my-28 mx-4 my-4 md:w-5/12 w-full m-4 overflow-hidden",
-        className
-      )}
-    >
-      <CarouselPrevious className="border-transparent absolute translate-x-14 z-10" />
-      <CarouselNext className="border-transparent absolute -translate-x-14 z-10" />
-      <CarouselContent className="cursor-pointer">
-        {photos.data.map((photo: any, index: any) => (
-          <CarouselItem className="text-center" key={index}>
-            <p className="mt-4 text-2xl opacity-80 text-slate-500">
-              {photo.photoName}
-            </p>
-            <p className="mb-2 text-lg opacity-50 text-slate-500">
-              by {photo.takenBy} in {photo.takenYear}
-            </p>
-            <div className="w-full bg-gradient-to-l from-transparent via-lime-500 to-transparent h-1"></div>
-            <Image
-              src={photo.photoUrl}
-              alt={photo.photoName}
-              className="relative w-full h-4/6 overflow-hidden object-cover"
-              width={500}
-              height={500}
-            />
-            <div className="w-full bg-gradient-to-l from-transparent via-lime-500 to-transparent h-1"></div>
-            {!sessionEmail ? (
-              <div>
-                <Link
-                  href="/profile"
-                  className="flex justify-center items-center m-2 ml-3 text-lime-600 dark:text-lime-400 hover:text-teal-600 dark:hover:text-teal-400 hover:transition hover:duration-300 opacity-80"
-                >
-                  Please login to use CRUD features
-                </Link>
-              </div>
-            ) : (
-              <div className="m-2 flex justify-around items-center text-3xl text-slate-500 opacity-70 animate-pulse">
-                <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
-                  <EnterUpdateForm />
-                </div>
-
-                <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
-                  <PhotoEditButton photoName={photo.photoName} />
-                </div>
-
-                <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
-                  <PhotoDeleteButton
-                    alertDialog="You are about to delete this photo"
-                    photoName={photo.photoName}
-                  />
-                </div>
-
-                <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
+    <Suspense fallback={<div>Loading...</div>}>
+      <Carousel
+        className={cn(
+          "md:mx-10 md:my-28 mx-4 my-4 md:w-5/12 w-full m-4 overflow-hidden",
+          className
+        )}
+      >
+        <CarouselPrevious className="border-transparent absolute translate-x-14 z-10" />
+        <CarouselNext className="border-transparent absolute -translate-x-14 z-10" />
+        <CarouselContent className="cursor-pointer">
+          {photos.data.map((photo: any, index: any) => (
+            <CarouselItem className="text-center" key={index}>
+              <p className="mt-4 text-2xl opacity-80 text-slate-500">
+                {photo.photoName}
+              </p>
+              <p className="mb-2 text-lg opacity-50 text-slate-500">
+                by {photo.takenBy} in {photo.takenYear}
+              </p>
+              <div className="w-full bg-gradient-to-l from-transparent via-lime-500 to-transparent h-1"></div>
+              <Image
+                src={photo.photoUrl}
+                alt={photo.photoName}
+                className="relative w-full h-4/6 overflow-hidden object-cover"
+                width={500}
+                height={500}
+              />
+              <div className="w-full bg-gradient-to-l from-transparent via-lime-500 to-transparent h-1"></div>
+              {!sessionEmail ? (
+                <div>
                   <Link
-                    href={`/app-photos/${photo.photoUrl
-                      .replaceAll("/", "slsh")
-                      .replaceAll(".", "dott")}`}
+                    href="/profile"
+                    className="flex justify-center items-center m-2 ml-3 text-lime-600 dark:text-lime-400 hover:text-teal-600 dark:hover:text-teal-400 hover:transition hover:duration-300 opacity-80"
                   >
-                    <MdZoomOutMap />
+                    Please login to use CRUD features
                   </Link>
                 </div>
-              </div>
-            )}
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <Button type="button" onClick={fetchPhotos}>
-        Get Fetch
-      </Button>
-    </Carousel>
+              ) : (
+                <div className="m-2 flex justify-around items-center text-3xl text-slate-500 opacity-70 animate-pulse">
+                  <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
+                    <EnterUpdateForm />
+                  </div>
+
+                  <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
+                    <PhotoEditButton photoName={photo.photoName} />
+                  </div>
+
+                  <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
+                    <PhotoDeleteButton
+                      alertDialog="You are about to delete this photo"
+                      photoName={photo.photoName}
+                    />
+                  </div>
+
+                  <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
+                    <Link
+                      href={`/app-photos/${photo.photoUrl
+                        .replaceAll("/", "slsh")
+                        .replaceAll(".", "dott")}`}
+                    >
+                      <MdZoomOutMap />
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
+    </Suspense>
   );
 }
