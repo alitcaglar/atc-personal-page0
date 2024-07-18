@@ -52,6 +52,7 @@ export async function POST(request: Request) {
     if (newPhoto) {
       // Başarı yanıtını döndür
       console.log("Photo saved successfully:", newPhoto);
+
       return NextResponse.json({
         success: true,
         message: "Photo saved successfully",
@@ -59,9 +60,12 @@ export async function POST(request: Request) {
       });
     } else {
       // Başarısızlık yanıtını döndür
-      console.error("Failed to save photo. 1");
+      console.error("Failed to save photo. 1 ::", data, Error);
       return NextResponse.json(
-        { success: false, error: "Failed to save photo 1" }
+        {
+          success: false,
+          error: `Failed to save photo 1 : ${Error}***${data}***${Error}`,
+        }
         // { status: 500 }
       );
     }
