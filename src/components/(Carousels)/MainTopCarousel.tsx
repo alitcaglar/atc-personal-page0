@@ -12,8 +12,6 @@ import EnterUpdateForm from "../Forms/EnterUpdateForm";
 import { MdZoomOutMap } from "react-icons/md";
 import PhotoEditButton from "../Buttons/PhotoEditButton";
 import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
-import { cookies } from "next/headers";
-import { headers } from "next/headers";
 
 import { supabase } from "@/lib/connectToDbServer";
 
