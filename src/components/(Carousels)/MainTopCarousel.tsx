@@ -94,7 +94,7 @@ export default async function MainTopCarousel({ className, ...props }: any) {
   );
 }
 
-// "use client";
+//// "use client";
 
 // import { useEffect, useState } from "react";
 
