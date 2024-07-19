@@ -1,4 +1,5 @@
 // pages/api/get-photos.js
+
 import { supabase } from "@/lib/connectToDb";
 import { NextResponse } from "next/server";
 

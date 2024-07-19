@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -16,65 +13,13 @@ import { MdZoomOutMap } from "react-icons/md";
 import PhotoEditButton from "../Buttons/PhotoEditButton";
 import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
 import { toast } from "../ui/use-toast";
-import { supabase } from "@/lib/connectToDb";
-import { fetchSessionDataCSR } from "@/utils/fetchSessionData";
+import { supabase } from "@/lib/connectToDbServer";
+import { useRouter } from "next/navigation";
 
-export default function MainTopCarousel({ className, ...props }: any) {
-  const [photos, setPhotos] = useState<any>(null);
-  const [sessionEmail, setSessionEmail] = useState<any>(null);
-  const [sessionRole, setSessionRole] = useState<any>(null);
-
-  const fetchPhotos = async () => {
-    try {
-      const res = await fetch("/api/get-photos", {
-        method: "GET", // Varsayılan olarak GET yöntemi kullanılabilir
-        headers: {
-          "Content-Type": "application/json", // İçerik türü JSON
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`, // Kimlik doğrulama token'ı (örnek)
-          Accept: "application/json", // Sunucudan JSON formatında veri kabul et
-        },
-      });
-      const responseBody = await res.json();
-      if (res.ok) {
-        setPhotos(responseBody);
-        console.log("***photos fetched ***");
-      } else {
-        toast({
-          title: `${responseBody.error}`,
-          description: " ",
-        });
-        throw new Error("Network response was not ok");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    const subscription = supabase
-      .channel("photo_albums")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "photo_albums" },
-        (payload) => {
-          fetchPhotos(); // Re-fetch photos on any changes
-          console.log("Change received!**payload**", payload);
-        }
-      )
-      .subscribe((status: any) => {
-        if (status === "SUBSCRIBED") {
-          console.log("Subscribed to photo_albums changes");
-        }
-      });
-
-    fetchSessionDataCSR(setSessionEmail, setSessionRole);
-    fetchPhotos(); // Initial fetch
-
-    return () => {
-      supabase.removeChannel(subscription);
-      console.log("Unsubscribed from photo_albums changes");
-    };
-  }, []);
+export default async function MainTopCarousel({ className, ...props }: any) {
+  const { data: photos, error } = await supabase
+    .from("photo_albums") // Supabase'deki tablo adı
+    .select("*");
 
   if (!photos) return null;
 
@@ -88,7 +33,7 @@ export default function MainTopCarousel({ className, ...props }: any) {
       <CarouselPrevious className="border-transparent absolute translate-x-14 z-10" />
       <CarouselNext className="border-transparent absolute -translate-x-14 z-10" />
       <CarouselContent className="cursor-pointer">
-        {photos.data.map((photo: any, index: any) => (
+        {photos?.map((photo: any, index: any) => (
           <CarouselItem className="text-center" key={index}>
             <p className="mt-4 text-2xl opacity-80 text-slate-500">
               {photo.photoName}
@@ -105,7 +50,7 @@ export default function MainTopCarousel({ className, ...props }: any) {
               height={500}
             />
             <div className="w-full bg-gradient-to-l from-transparent via-lime-500 to-transparent h-1"></div>
-            {!sessionEmail ? (
+            {!photos ? (
               <div>
                 <Link
                   href="/profile"
