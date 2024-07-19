@@ -1,25 +1,21 @@
 import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
 
-export function createClient() {
+export function createSupabaseClient() {
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
+      // Cookie yönetimini devre dışı bırakmak için boş bir seçenek nesnesi kullanabilirsiniz
       cookies: {
         getAll() {
-          return cookies().getAll();
+          return []; // Boş bir array döndürerek cookie işlemlerini devre dışı bırakabilirsiniz
         },
-        setAll(cookiesToSet) {
-          try {
-            cookiesToSet.forEach(({ name, value, options }) =>
-              cookies().set(name, value, options)
-            );
-          } catch {}
+        setAll() {
+          // Cookie ayarlarını yapmayın
         },
       },
     }
   );
 }
 
-export const supabase = createClient();
+export const supabase = createSupabaseClient();
