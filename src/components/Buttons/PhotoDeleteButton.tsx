@@ -37,7 +37,10 @@ export default function PhotoDeleteButton({
 
   const handleDelete = async () => {
     console.log("deleting photo: ", photoName);
-
+    toast({
+      title: "DELETING...",
+      description: " ",
+    });
     try {
       const response = await fetch("/api/photo-album-delete", {
         method: "DELETE",
@@ -49,12 +52,15 @@ export default function PhotoDeleteButton({
 
       const responseBody = await response.json();
 
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       if (response.ok) {
         toast({
           title: "SUCCESS!",
           description: "Deleted photo successfully! Please refresh the page",
         });
-        console.log("Photo deleted successfully refresh page");
+        console.log("Photo deleted successfully,please refresh the page");
+
         router.refresh(); // Refresh the page to reflect the deletion
       } else {
         console.error("Failed to delete photo");
@@ -92,7 +98,7 @@ export default function PhotoDeleteButton({
               !sessionEmail ? () => router.push("/profile") : handleDelete
             }
           >
-            Delete
+            {!sessionEmail ? "Login to delete" : "Delete"}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

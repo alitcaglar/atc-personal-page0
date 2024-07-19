@@ -3,7 +3,7 @@ import MainTopCarousel from "@/components/(Carousels)/MainTopCarousel";
 import Emblems from "@/components/main-3d-programs/Emblems";
 import Footer from "@/components/Footer";
 
-export const revalidate = 1;
+export const revalidate = 2;
 
 export default function Home() {
   return (

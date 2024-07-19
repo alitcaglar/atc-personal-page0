@@ -15,7 +15,7 @@ import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
 
 import { supabase } from "@/lib/connectToDbServer";
 
-
+export const revalidate = 2;
 
 export default async function MainTopCarousel({ className, ...props }: any) {
   const { data: photos, error } = await supabase
