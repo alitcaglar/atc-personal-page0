@@ -8,6 +8,8 @@ import { Toaster } from "@/components/ui/toaster";
 import LoggedIn from "@/components/LoggedIn/LoggedIn";
 import BackgroundSliderComponent from "@/components/BackgroundSlider/BackgroundSliderComponent";
 
+export const revalidate = 1;
+
 //import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });

@@ -3,6 +3,9 @@ import MainTopCarousel from "@/components/(Carousels)/MainTopCarousel";
 import Emblems from "@/components/main-3d-programs/Emblems";
 import Footer from "@/components/Footer";
 
+export const revalidate = 1;
+
+
 export default function Home() {
   return (
     <main className=" relative flex min-h-screen flex-wrap items-center justify-around overflow-hidden">

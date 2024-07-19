@@ -5,14 +5,11 @@ export function createSupabaseClient() {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
-      // Cookie yönetimini devre dışı bırakmak için boş bir seçenek nesnesi kullanabilirsiniz
       cookies: {
         getAll() {
-          return []; // Boş bir array döndürerek cookie işlemlerini devre dışı bırakabilirsiniz
+          return [];
         },
-        setAll() {
-          // Cookie ayarlarını yapmayın
-        },
+        setAll() {},
       },
     }
   );

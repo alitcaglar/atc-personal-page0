@@ -15,9 +15,11 @@ import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
 
 import { supabase } from "@/lib/connectToDbServer";
 
+export const revalidate = 1;
+
 export default async function MainTopCarousel({ className, ...props }: any) {
   const { data: photos, error } = await supabase
-    .from("photo_albums") // Supabase'deki tablo adı
+    .from("photo_albums")
     .select("*");
 
   if (!photos) return null;
