@@ -13,10 +13,9 @@ import { MdZoomOutMap } from "react-icons/md";
 import PhotoEditButton from "../Buttons/PhotoEditButton";
 import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
 
-import { createClient } from "@/lib/connectToDbServer";
+import { supabase } from "@/lib/connectToDbServer";
 
 export default async function MainTopCarousel({ className, ...props }: any) {
-  const supabase = createClient();
   const { data: photos, error } = await supabase
     .from("photo_albums") // Supabase'deki tablo adı
     .select("*");
