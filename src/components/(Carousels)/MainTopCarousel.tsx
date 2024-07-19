@@ -12,9 +12,8 @@ import EnterUpdateForm from "../Forms/EnterUpdateForm";
 import { MdZoomOutMap } from "react-icons/md";
 import PhotoEditButton from "../Buttons/PhotoEditButton";
 import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
-import { toast } from "../ui/use-toast";
+
 import { supabase } from "@/lib/connectToDbServer";
-import { useRouter } from "next/navigation";
 
 export default async function MainTopCarousel({ className, ...props }: any) {
   const { data: photos, error } = await supabase
@@ -50,43 +49,33 @@ export default async function MainTopCarousel({ className, ...props }: any) {
               height={500}
             />
             <div className="w-full bg-gradient-to-l from-transparent via-lime-500 to-transparent h-1"></div>
-            {!photos ? (
-              <div>
+
+            <div className="m-2 flex justify-around items-center text-3xl text-slate-500 opacity-70 animate-pulse">
+              <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
+                <EnterUpdateForm />
+              </div>
+
+              <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
+                <PhotoEditButton photoName={photo.photoName} />
+              </div>
+
+              <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
+                <PhotoDeleteButton
+                  alertDialog="You are about to delete this photo"
+                  photoName={photo.photoName}
+                />
+              </div>
+
+              <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
                 <Link
-                  href="/profile"
-                  className="flex justify-center items-center m-2 ml-3 text-lime-600 dark:text-lime-400 hover:text-teal-600 dark:hover:text-teal-400 hover:transition hover:duration-300 opacity-80"
+                  href={`/app-photos/${photo.photoUrl
+                    .replaceAll("/", "slsh")
+                    .replaceAll(".", "dott")}`}
                 >
-                  Please login to use CRUD features
+                  <MdZoomOutMap />
                 </Link>
               </div>
-            ) : (
-              <div className="m-2 flex justify-around items-center text-3xl text-slate-500 opacity-70 animate-pulse">
-                <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
-                  <EnterUpdateForm />
-                </div>
-
-                <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
-                  <PhotoEditButton photoName={photo.photoName} />
-                </div>
-
-                <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
-                  <PhotoDeleteButton
-                    alertDialog="You are about to delete this photo"
-                    photoName={photo.photoName}
-                  />
-                </div>
-
-                <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
-                  <Link
-                    href={`/app-photos/${photo.photoUrl
-                      .replaceAll("/", "slsh")
-                      .replaceAll(".", "dott")}`}
-                  >
-                    <MdZoomOutMap />
-                  </Link>
-                </div>
-              </div>
-            )}
+            </div>
           </CarouselItem>
         ))}
       </CarouselContent>
