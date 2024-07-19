@@ -18,8 +18,6 @@ import { headers } from "next/headers";
 import { supabase } from "@/lib/connectToDbServer";
 
 export default async function MainTopCarousel({ className, ...props }: any) {
-  const cookieStore = cookies();
-  const headersList = headers();
   const { data: photos, error } = await supabase
     .from("photo_albums") // Supabase'deki tablo adı
     .select("*");
