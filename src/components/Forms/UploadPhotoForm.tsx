@@ -251,9 +251,7 @@ export default function UploadPhotoForm() {
               className="m-2 hover:cursor-pointer"
             />
             <Button
-              onClick={
-                !sessionEmail ? () => router.push("/profile") : handleFileUpload
-              }
+              onClick={handleFileUpload}
               className={
                 "m-2 bg-gradient-to-r from-lime-600 to-teal-600 hover:ring-2 transition duration-300"
               }

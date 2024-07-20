@@ -14,6 +14,9 @@ import PhotoEditButton from "../Buttons/PhotoEditButton";
 import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
 
 import { supabase } from "@/lib/connectToDbServer";
+import { Suspense } from "react";
+import Loading from "@/app/loading";
+import ZoomOutPhoto from "../ZoomOutPhoto/ZoomOutPhoto";
 
 export const revalidate = 2;
 
@@ -69,13 +72,7 @@ export default async function MainTopCarousel({ className, ...props }: any) {
               </div>
 
               <div className="hover:ring-teal-600 hover:ring-2 p-2 w-12 h-12 rounded-lg flex justify-center items-center">
-                <Link
-                  href={`/app-photos/${photo.photoUrl
-                    .replaceAll("/", "slsh")
-                    .replaceAll(".", "dott")}`}
-                >
-                  <MdZoomOutMap />
-                </Link>
+                <ZoomOutPhoto photo={photo} />
               </div>
             </div>
           </CarouselItem>

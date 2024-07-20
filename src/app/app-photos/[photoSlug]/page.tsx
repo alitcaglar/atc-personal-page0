@@ -9,7 +9,7 @@ export default function PhotoPage({ params }: any) {
     .replaceAll("dott", ".")
     .replaceAll("%3A", ":");
   return (
-    <div className="overflow-hidden h-screen mt-5">
+    <div className="overflow-hidden mt-5">
       <div className="w-full bg-gradient-to-l from-transparent via-lime-500 to-transparent h-1"></div>
       <Image
         src={urlRevive}
