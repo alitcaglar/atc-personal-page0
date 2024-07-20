@@ -137,7 +137,7 @@ export default function Profile() {
   return sessionEmail ? (
     <Greetings sessionEmail={sessionEmail} sessionRole={sessionRole} />
   ) : (
-    <div className="flex justify-center items-center min-h-screen bg-slate-200 bg-opacity-40 dark:bg-slate-800 dark:bg-opacity-60 backdrop-blur-sm">
+    <div className="flex justify-center items-center h-screen bg-slate-200 bg-opacity-40 dark:bg-slate-800 dark:bg-opacity-60 backdrop-blur-sm">
       <div className="border-2 rounded-xl p-8 mt-16 border-teal-500 shadow-sm shadow-teal-300 bg-slate-500 bg-opacity-20">
         <p className="text-3xl font-bold bg-gradient-to-r from-teal-500 to-lime-500 bg-clip-text text-transparent">
           {loginOrSignup === "signup" ? (

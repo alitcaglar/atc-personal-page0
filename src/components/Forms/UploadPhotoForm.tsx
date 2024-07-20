@@ -150,7 +150,7 @@ export default function UploadPhotoForm() {
         console.log(values);
         toast({
           title: "SUCCESS!",
-          description: "Added photo successfully!",
+          description: "Added photo successfully! Please refresh the page",
         });
         router.refresh();
       } else {

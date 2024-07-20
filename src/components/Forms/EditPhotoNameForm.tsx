@@ -90,7 +90,8 @@ export default function EditPhotoNameForm({
         console.log("Photo name updated successfully");
         toast({
           title: "SUCCESS!",
-          description: "Photo name updated successfully!",
+          description:
+            "Photo name updated successfully! Please refresh the page",
         });
         router.refresh();
         // You might want to update the UI here if needed

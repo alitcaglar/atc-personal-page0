@@ -47,11 +47,11 @@ export default function Greetings(sessionEmail: any, sessionRole: any) {
   };
 
   return (
-    <main className="flex-row justify-center items-center">
+    <main className="flex-row justify-center items-center overflow-x-hidden">
       <div className="flex flex-row justify-center items-center w-screen">
         <Button
           onClick={handleLogout}
-          className=" flex items-center justify-center w-96 bg-gradient-to-b from-lime-600 to-teal-500 mb-8 text-3xl hover:ring-4 rounded-xl text-slate-200 dark:text-slate-800 sticky mt-12"
+          className=" flex items-center justify-center w-96 bg-gradient-to-b from-lime-600 to-teal-500 mb-8 text-3xl hover:ring-4 rounded-xl text-slate-200 dark:text-slate-800 fixed mt-32"
         >
           Sign Out
         </Button>
