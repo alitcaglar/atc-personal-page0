@@ -121,6 +121,12 @@ export default function UploadPhotoForm() {
   //form submit // ve iceriginde ki await post function
   async function onSubmit(values: z.infer<typeof uploadPhotoFormSchema>) {
     console.log("form values:", values);
+
+    toast({
+      title: "Photo is uploading ...",
+      description: " ",
+    });
+
     setIsLoading(true);
     try {
       const response = await fetch("/api/photo-album-post", {
@@ -132,7 +138,10 @@ export default function UploadPhotoForm() {
       });
 
       const responseBody = await response.json();
-      console.log("Form submission method:", response.headers.get("method"));
+
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      // console.log("Form submission method:", response.headers.get("method"));
 
       if (response.ok) {
         setPhotoUrl("");

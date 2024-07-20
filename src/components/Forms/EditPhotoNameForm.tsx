@@ -23,6 +23,7 @@ import { Input } from "@/components/ui/input";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import { fetchSessionDataCSR } from "@/utils/fetchSessionData";
+import Link from "next/link";
 
 const EditPhotoNameFormSchema = z.object({
   newPhotoName: z.string().min(2, {
@@ -60,7 +61,13 @@ export default function EditPhotoNameForm({
   const [isLoading, setIsLoading] = useState(false);
 
   async function onSubmit(values: z.infer<typeof EditPhotoNameFormSchema>) {
-    console.log("form values:", values);
+    //console.log("form values:", values);
+
+    toast({
+      title: "Photo name is changing...",
+      description: " ",
+    });
+
     setIsLoading(true);
     try {
       const response = await fetch("/api/photo-album-patch", {
@@ -74,7 +81,10 @@ export default function EditPhotoNameForm({
         }),
       });
       const responseBody = await response.json();
-      console.log("Form submission method:", response.headers.get("method"));
+
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      // console.log("Form submission method:", response.headers.get("method"));
       if (response.ok) {
         // Handle success
         console.log("Photo name updated successfully");
@@ -108,22 +118,27 @@ export default function EditPhotoNameForm({
           method="PATCH"
           className="space-y-8"
         >
-          <FormField
-            control={form.control}
-            name="newPhotoName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>New Photo Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          {sessionEmail && (
+            <FormField
+              control={form.control}
+              name="newPhotoName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>New Photo Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
           {!sessionEmail ? (
-            <Button type="button" disabled>
-              Please log in
+            <Button
+              type="button"
+              className="m-4 bg-gradient-to-r from-lime-600 to-teal-600 hover:from-lime-700 hover:to-teal-700"
+            >
+              <Link href="/profile">Please log in to update</Link>
             </Button>
           ) : (
             <Button

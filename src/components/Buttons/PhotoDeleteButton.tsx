@@ -38,7 +38,7 @@ export default function PhotoDeleteButton({
   const handleDelete = async () => {
     console.log("deleting photo: ", photoName);
     toast({
-      title: "DELETING...",
+      title: "Photo is being deleted...",
       description: " ",
     });
     try {
