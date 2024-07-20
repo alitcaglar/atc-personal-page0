@@ -37,15 +37,6 @@ export default function EditPhotoNameForm({
 }: {
   photoName: string;
 }) {
-  const [sessionEmail, setSessionEmail] = useState<any>(null);
-  const [sessionRole, setSessionRole] = useState<any>(null);
-
-  useEffect(() => {
-    fetchSessionDataCSR(setSessionEmail, setSessionRole);
-  }, []);
-
-  // const router = useRouter();
-
   const router = useRouter();
 
   const { toast } = useToast();
@@ -119,42 +110,32 @@ export default function EditPhotoNameForm({
           method="PATCH"
           className="space-y-8"
         >
-          {sessionEmail && (
-            <FormField
-              control={form.control}
-              name="newPhotoName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>New Photo Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          )}
-          {!sessionEmail ? (
-            <Button
-              type="button"
-              className="m-4 bg-gradient-to-r from-lime-600 to-teal-600 hover:from-lime-700 hover:to-teal-700"
-            >
-              <Link href="/profile">Please log in to update</Link>
-            </Button>
-          ) : (
-            <Button
-              type="submit"
-              className="bg-gradient-to-r from-lime-600 to-teal-600 hover:from-lime-700 hover:to-teal-700"
-            >
-              {isLoading ? (
-                <div className="animate-spin px-3">
-                  <AiOutlineLoading3Quarters />
-                </div>
-              ) : (
-                "Update"
-              )}
-            </Button>
-          )}
+          <FormField
+            control={form.control}
+            name="newPhotoName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>New Photo Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button
+            type="submit"
+            className="bg-gradient-to-r from-lime-600 to-teal-600 hover:from-lime-700 hover:to-teal-700"
+          >
+            {isLoading ? (
+              <div className="animate-spin px-3">
+                <AiOutlineLoading3Quarters />
+              </div>
+            ) : (
+              "Update"
+            )}
+          </Button>
         </form>
       </Form>
     </>

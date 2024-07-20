@@ -10,8 +10,17 @@ import {
 } from "@/components/ui/dialog";
 import { MdEditDocument } from "react-icons/md";
 import EditPhotoNameForm from "../Forms/EditPhotoNameForm";
+import { useEffect, useState } from "react";
+import { fetchSessionDataCSR } from "@/utils/fetchSessionData";
 
 export default function PhotoEditButton({ photoName }: { photoName: string }) {
+  const [sessionEmail, setSessionEmail] = useState<any>(null);
+  const [sessionRole, setSessionRole] = useState<any>(null);
+
+  useEffect(() => {
+    fetchSessionDataCSR(setSessionEmail, setSessionRole);
+  }, []);
+
   return (
     <>
       {" "}
@@ -30,11 +39,7 @@ export default function PhotoEditButton({ photoName }: { photoName: string }) {
                 </i>
               </DialogTitle>
               <DialogDescription>
-                {
-                  /*session?.user?.role !== "user" && session?.user && */ <EditPhotoNameForm
-                    photoName={photoName}
-                  />
-                }
+                {sessionEmail && <EditPhotoNameForm photoName={photoName} />}
               </DialogDescription>
             </DialogHeader>
           </DialogContent>
