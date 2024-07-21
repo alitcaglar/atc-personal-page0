@@ -7,15 +7,14 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
+// import Link from "next/link";
 import EnterUpdateForm from "../Forms/EnterUpdateForm";
-import { MdZoomOutMap } from "react-icons/md";
+// import { MdZoomOutMap } from "react-icons/md";
 import PhotoEditButton from "../Buttons/PhotoEditButton";
 import PhotoDeleteButton from "../Buttons/PhotoDeleteButton";
 
 import { supabase } from "@/lib/connectToDbServer";
-import { Suspense } from "react";
-import Loading from "@/app/loading";
+
 import ZoomOutPhoto from "../ZoomOutPhoto/ZoomOutPhoto";
 
 export const revalidate = 2;
