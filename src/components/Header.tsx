@@ -9,32 +9,10 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import navLinks from "@/utils/navLinks";
 import HeaderBottom from "./HeaderBottom";
 import { CgProfile } from "react-icons/cg";
-import { fetchSessionDataCSR } from "@/utils/fetchSessionData";
 
 import { Separator } from "@/components/ui/separator";
 
 export default function Header() {
-  //session
-
-  // const [sessionEmail, setSessionEmail] = useState<any>(null);
-  // const [sessionRole, setSessionRole] = useState<any>(null);
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // useEffect(() => {
-  //   fetchSessionDataCSR(setSessionEmail, setSessionRole);
-  //   console.log("*header session fetched*");
-
-  //   if (sessionEmail !== null || sessionRole !== null) {
-  //     setIsLoggedIn(true);
-  //     console.log("Is logged in:", isLoggedIn);
-  //   } else {
-  //     setIsLoggedIn(false);
-  //     console.log("Is logged in:", isLoggedIn);
-  //   }
-  // }, [sessionEmail, sessionRole, isLoggedIn, pathname]);
-
-  //session
-
   const [openNav, setOpenNav] = useState(false);
   const pathname = usePathname();
 
@@ -68,24 +46,15 @@ export default function Header() {
           >
             <CiMenuBurger />
           </button>
-          {/* <ul className="flex items-center translate-x-12">
-            <li
-              className={
-                pathname.startsWith("/profile")
-                  ? "p-2 text-teal-500  text-3xl flex justify-center items-center" +
-                    (openNav ? " hidden" : " sm:hidden")
-                  : "p-2  text-slate-500  hover:text-teal-500 text-3xl hover:transition hover:ease-in-out hover:duration-300    flex justify-center items-center" +
-                    (openNav ? " hidden" : " sm:hidden")
-              }
-            >
-              <Link href="/profile" onClick={() => setOpenNav(false)}>
-                <CgProfile />
-              </Link>
-            </li>
-            <li className={openNav ? " hidden" : " sm:hidden"}>
-              <ThemeSwitcher />
-            </li>
-          </ul> */}
+          <div
+            onClick={() => setOpenNav(!openNav)}
+            className={
+              !openNav
+                ? "hidden"
+                : "block absolute overflow-hidden bg-black bg-opacity-10 w-full h-screen right-0 top-[73px] bottom-0"
+            }
+          ></div>
+
           <ul
             className={
               "sm:flex items-center mr-3 overflow-hidden " +
