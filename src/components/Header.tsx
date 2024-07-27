@@ -17,7 +17,7 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <>
+    <div className={pathname === "/cv-page" ? "hidden" : ""}>
       <header className="h-[73px] flex justify-between backdrop-blur-sm fixed top-0 left-0 right-0 bg-slate-200 bg-opacity-40 dark:bg-slate-800 dark:bg-opacity-60 z-30">
         <Link
           href="/"
@@ -101,6 +101,6 @@ export default function Header() {
         </nav>
       </header>
       <HeaderBottom />
-    </>
+    </div>
   );
 }
