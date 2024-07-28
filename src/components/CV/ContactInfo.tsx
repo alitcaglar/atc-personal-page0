@@ -34,7 +34,7 @@ export default function ContactInfo() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            https://www.linkedin.com/in/ali-turabi-%C3%A7a%C4%9Flar-790283104/
+            https://www.linkedin.com/in/ali-turabi-caglar/
           </a>
         </p>
       </div>

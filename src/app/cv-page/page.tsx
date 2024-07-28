@@ -10,7 +10,7 @@ import ContactInfo from "@/components/CV/ContactInfo";
 export default function Home() {
   return (
     <>
-      <main className=" min-h-screen p-12 grid grid-cols-5 gap-1 grid-rows-1 w-full ">
+      <main className=" min-h-screen p-12 grid sm:grid-cols-5 gap-1 grid-rows-1 w-full grid-cols-1">
         <div className="col-span-2 flex-row">
           <div className="max-w-4xl mx-auto bg-slate-100 shadow-lg bg-opacity-60 rounded-lg mb-2">
             <HeaderInfo />
