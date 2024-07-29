@@ -10,6 +10,7 @@ export default function MainTypewriter() {
         <Typewriter
           words={[
             "Eat(); Sleep(); Code();  Repeat!",
+            "Welcome to my personal page! Be part of my journey as a developer.",
             "Always learning, this problem-solving expert turned developer crafts intuitive applications.",
             "From nuclear precision to digital finesse, this ever-evolving developer's expertise shines.",
             "Complex challenges fuel innovation! This growth-minded developer delivers smart solutions.",
