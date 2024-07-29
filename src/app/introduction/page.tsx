@@ -21,12 +21,12 @@ export default function Introduction() {
     <main className="flex flex-col items-center">
       <p className="text-3xl bg-gradient-to-r from-teal-600 to-lime-600 bg-clip-text text-transparent m-8">
         <span className="opacity-0">0</span>
-        Welcome to my personal page! I am a full-stack React developer living in
-        Turkiye, with a background in nuclear energy engineering. I am fluent in
-        English and Russian, and Turkish is my native language. I am open to
-        freelance projects and relocation opportunities and am excited to
-        showcase my work and capabilities here. Explore my projects, learn more
-        about me, and feel free to get in touch!
+        Welcome to my personal page! I am a full-stack React(Next.js) developer
+        living in Turkiye, with a background in nuclear energy engineering. I am
+        fluent in English and Russian, and Turkish is my native language. I am
+        open to freelance projects and relocation opportunities and am excited
+        to showcase my work and capabilities here. Explore my projects, learn
+        more about me, and feel free to get in touch!
       </p>
       <Image
         src="https://free-images.com/lg/37f0/computer_computers_1245714.jpg"
